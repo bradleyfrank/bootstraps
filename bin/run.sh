@@ -103,7 +103,9 @@ bootstrap_macos() {
 
   # install Homebrew packages
   brew update
-  brew bundle install "$brewfile"
+  pushd "$(dirname $brewfile)" >/dev/null 2>&1
+  brew bundle install "$(basename $brewfile)"
+  popd >/dev/null 2>&1
   brew cleanup
 
   # install custom dictionary
