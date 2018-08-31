@@ -18,6 +18,7 @@ bmf::packages:
   p7zip: {}
   p7zip-plugins: {}
   perf: {}
+  reptyr: {}
   stow: {}
   strace: {}
   tmux: {}
