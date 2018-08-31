@@ -270,12 +270,6 @@ popd >/dev/null 2>&1
 
 
 # Generate .bashrc and .bash_profile
-echo -n "Generating .bashrc and .bash_profile... "
-if [[ -x "$BASH_DOTFILES_SCRIPT" ]]; then
-  $BASH_DOTFILES_SCRIPT
-  # shellcheck disable=SC1090
-  . "$HOME/.bash_profile"
-fi
-
-
-exit 0
+$BASH_DOTFILES_SCRIPT
+# shellcheck disable=SC1090
+. "$HOME/.bash_profile"
