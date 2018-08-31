@@ -121,7 +121,7 @@ bootstrap_macos() {
 bootstrap_linux() {
   local puppet_manifest="/srv/puppet" pkg_manager
 
-  if type dnf; then
+  if type dnf >/dev/null 2>&1; then
     pkg_manager="dnf"
   else
     pkg_manager="yum"
