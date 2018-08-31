@@ -222,7 +222,7 @@ esac
 # download Python requirements.txt and install packages
 requirements=$(mktemp)
 curl -o "$requirements" -s -L "$BOOTSTRAP_ASSETS"/requirements.txt
-pip3 install -U --user "$requirements"
+pip3 install -U --user -r "$requirements"
 
 
 # download dotfiles repository
