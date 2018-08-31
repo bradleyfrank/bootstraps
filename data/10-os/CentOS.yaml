@@ -1,0 +1,90 @@
+---
+##
+## Users
+##
+bmf::users:
+  bfrank:
+    groups:
+      - 'centos'
+      - 'wheel'
+    comment: 'Brad Frank'
+    home: '/home/bfrank'
+bmf::ssh_keys:
+  bfrank:
+    key: |-
+      AAAAC3NzaC1lZDI1NTE5AAAAIL2JPZBuEami0TfudfMIEJ4p3K6Fs8MJEDp0KtXI5ruM
+    type: 'ed25519'
+    user: 'bfrank'
+##
+## Packages
+##
+bmf::packages:
+  gvfs-smb: {}
+  linux-logo: {}
+  policycoreutils: {}
+  rpm2cpio: {}
+##
+## Repo Management
+##
+yum::manage_os_default_repos: false
+yum::gpgkeys:
+  /etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce:
+    source: 'puppet:///modules/bmf/RPM-GPG/RPM-GPG-KEY-docker-ce'
+  /etc/pki/rpm-gpg/RPM-GPG-KEY-remi:
+    source: 'puppet:///modules/bmf/RPM-GPG/RPM-GPG-KEY-remi'
+yum::managed_repos:
+  - 'docker-ce'
+  - 'remi-php72'
+  - 'remi-safe'
+##
+## Repos
+##
+yum::repos:
+  docker-ce:
+    ensure: 'present'
+    enabled: true
+    descr: 'Docker CE Stable'
+    baseurl: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable/'
+    gpgcheck: true
+    gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce'
+    target: '/etc/yum.repos.d/docker-ce.repo'
+  remi-php72:
+    ensure: 'present'
+    enabled: true
+    descr: 'Remi PHP 7.2 RPM repository'
+    mirrorlist: 'http://cdn.remirepo.net/enterprise/$releasever/php72/mirror'
+    gpgcheck: true
+    gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi'
+    target: '/etc/yum.repos.d/remi-php72.repo'
+  remi-safe:
+    ensure: 'present'
+    enabled: true
+    descr: 'Safe Remi RPM repository'
+    mirrorlist: 'http://cdn.remirepo.net/enterprise/$releasever/safe/mirror'
+    gpgcheck: true
+    gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi'
+    target: '/etc/yum.repos.d/remi-safe.repo'
+##
+## Services
+##
+bmf::services:
+  auditd:
+    restart: '/usr/sbin/service auditd restart'
+  systemd-journald: {}
+  sshd: {}
+##
+## Security
+##
+bmf::configs:
+  audit.rules:
+    path: '/etc/audit/rules.d/audit.rules'
+    notify: 'Service[auditd]'
+    source: 'puppet:///modules/bmf/conf.d/audit.rules'
+  sshd_config:
+    path: '/etc/ssh/sshd_config'
+    notify: 'Service[sshd]'
+    source: 'puppet:///modules/bmf/conf.d/sshd_config'
+  banner:
+    mode: '0644'
+    path: '/etc/profile.d/banner.sh'
+    source: 'puppet:///modules/bmf/config/banner.sh'

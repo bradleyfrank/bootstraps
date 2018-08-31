@@ -1,0 +1,35 @@
+---
+##
+## Packages
+##
+bmf::packages:
+  augeas: {}
+  expect: {}
+  fail2ban: {}
+  ffmpeg: {}
+  ghostscript: {}
+  git: {}
+  glances: {}
+  htop: {}
+  mosh: {}
+  most: {}
+  ncdu: {}
+  nmap: {}
+  p7zip: {}
+  p7zip-plugins: {}
+  perf: {}
+  stow: {}
+  strace: {}
+  tmux: {}
+  tree: {}
+  vim: {}
+  wget: {}
+  xz: {}
+##
+## Files
+##
+bmf::configs:
+  words:
+    mode: '0755'
+    path: '/usr/local/share/dict/words'
+    source: 'puppet:///modules/bmf/assets/words'

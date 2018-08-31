@@ -1,0 +1,34 @@
+##
+## This file managed by Puppet.
+##
+# Delete all currently loaded rules
+-D
+
+# Set kernel buffer size
+-b 8192
+
+# Set the action that is performed when a critical error is detected
+# Failure modes: 0=silent 1=printk 2=panic
+-f 1
+
+# Record all root commands
+-a exit,always -F arch=b64 -F euid=0 -S execve
+
+# Collect system administrator actions
+-w /etc/sudoers -p wa -k actions
+
+# Record events that modify user/group information
+-w /etc/group -p wa -k audit_rules_usergroup_modification
+-w /etc/passwd -p wa -k audit_rules_usergroup_modification
+-w /etc/gshadow -p wa -k audit_rules_usergroup_modification
+-w /etc/shadow -p wa -k audit_rules_usergroup_modification
+-w /etc/security/opasswd -p wa -k audit_rules_usergroup_modification
+
+# Ensure auditd collects unauthorised access attempts to files (unsuccessful)
+-a always,exit -F arch=b32 -S creat -S open -S openat -S open_by_handle_at -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access
+-a always,exit -F arch=b32 -S creat -S open -S openat -S open_by_handle_at -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access
+-a always,exit -F arch=b64 -S creat -S open -S openat -S open_by_handle_at -S truncate -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access
+-a always,exit -F arch=b64 -S creat -S open -S openat -S open_by_handle_at -S truncate -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=4294967295 -k access
+
+# Make the auditd configuration immutable
+-e 2

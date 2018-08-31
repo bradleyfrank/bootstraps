@@ -1,0 +1,8 @@
+#!/bin/bash
+
+chmod 700 ./ssh
+chmod 700 ./ssh/.ssh
+chmod 600 ./ssh/.ssh/authorized_keys
+chmod 600 ./ssh/.ssh/config
+
+chmod 775 ./bin/.local/bin/*

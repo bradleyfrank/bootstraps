@@ -1,0 +1,65 @@
+---
+bmf::user_defaults:
+  ensure: 'present'
+  groups:
+    - 'centos'
+  managehome: 'true'
+  purge_ssh_keys: 'true'
+  shell: '/bin/bash'
+bmf::config_defaults:
+  ensure: 'file'
+  group: 'root'
+  mode: '0600'
+  owner: 'root'
+##
+## Module Hiera config (do not change)
+##
+lookup_options:
+  ##
+  ## Users
+  ##
+  bmf::user_defaults:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::users:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::ssh_keys:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  ##
+  ## Packages
+  ##
+  bmf::package_defaults:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::packages:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  ##
+  ## Services
+  ##
+  bmf::service_defaults:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::services:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  ##
+  ## Security
+  ##
+  bmf::config_defaults:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::configs:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true

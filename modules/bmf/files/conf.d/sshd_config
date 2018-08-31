@@ -1,0 +1,49 @@
+##
+## This file managed by Puppet.
+##
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv XMODIFIERS
+AllowUsers
+AllowGroups centos
+AllowStreamLocalForwarding no
+AllowTcpForwarding no
+AuthorizedKeysFile .ssh/authorized_keys
+AuthenticationMethods publickey
+ChallengeResponseAuthentication no
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+DenyUsers root
+DenyGroups root
+GatewayPorts no
+GSSAPIAuthentication no
+GSSAPICleanupCredentials no
+HostbasedAuthentication no
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKeyAlgorithms ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,ssh-rsa,ssh-rsa-cert-v01@openssh.com
+IgnoreUserKnownHosts yes
+KerberosAuthentication no
+KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha256
+LoginGraceTime 60
+LogLevel VERBOSE
+MACs hmac-sha2-256,hmac-sha2-512
+MaxAuthTries 3
+MaxSessions 3
+Port 22
+PasswordAuthentication no
+PermitEmptyPasswords no
+PermitRootLogin no
+PermitTunnel no
+PermitUserEnvironment no
+PrintLastLog yes
+PrintMotd no
+Protocol 2
+PubkeyAuthentication yes
+StrictModes yes
+Subsystem sftp /usr/lib/ssh/sftp-server -f AUTHPRIV -l INFO
+SyslogFacility AUTHPRIV
+UseDNS no
+UsePAM yes
+UsePrivilegeSeparation sandbox
+X11Forwarding no

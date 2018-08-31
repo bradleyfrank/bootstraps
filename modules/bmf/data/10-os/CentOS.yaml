@@ -1,0 +1,12 @@
+---
+##
+## Packages
+##
+bmf::package_defaults:
+  provider: 'yum'
+##
+## Services
+##
+bmf::service_defaults:
+  enable: 'true'
+  ensure: 'running'
