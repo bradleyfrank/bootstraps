@@ -81,7 +81,7 @@ SYS_DIRECTORIES=(
 #
 
 bootstrap_macos() {
-  local brewfile requirements settings_script
+  local brewfile settings_script
 
   # exempt admin group from sudo password requirement
   sudo bash -c \
