@@ -185,6 +185,7 @@ stow_packages() {
     echo -n " $_pkg"
     stow -d "$DOTFILES_DIR" -t "$HOME" "$flags" "$_pkg"
   done
+  echo
 }
 
 
