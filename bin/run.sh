@@ -250,6 +250,7 @@ fi
 
 # stow all packages in dotfiles
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
+HOST_NAME=$(uname -n)
 
 if git branch -a | grep -qE "$HOST_NAME" >/dev/null 2>&1; then
   # local hostname branch exists: go ahead and stow
