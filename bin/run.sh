@@ -98,13 +98,13 @@ bootstrap_macos() {
   fi
 
   # download Brewfile from GitHub
-  brewfile=$(mktemp)
+  brewfile="$(mktemp -d)/Brewfile"
   curl -o "$brewfile" -s -L "$BOOTSTRAP_ASSETS"/Brewfile
 
   # install Homebrew packages
   brew update
   pushd "$(dirname $brewfile)" >/dev/null 2>&1
-  brew bundle install "$(basename $brewfile)"
+  brew bundle install Brewfile
   popd >/dev/null 2>&1
   brew cleanup
 
