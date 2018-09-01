@@ -179,9 +179,10 @@ stow_packages() {
   shopt -s nullglob
   stow_packages=(*/)
 
+  echo -n "Stowing"
   for pkg in "${stow_packages[@]}"; do
     _pkg=$(echo "$pkg" | cut -d '/' -f 1)
-    echo -n "Stowing $_pkg"
+    echo -n " $_pkg"
     stow -d "$DOTFILES_DIR" -t "$HOME" "$flags" "$_pkg"
   done
 }
