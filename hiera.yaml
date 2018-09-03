@@ -12,5 +12,5 @@ hierarchy:
     path: "10-os/%{facts.os.name}/%{facts.os.release.major}.yaml"
   - name: "Operating System"
     path: "10-os/%{facts.os.name}.yaml"
-  - name: "Global"
-    path: "0-global.yaml"
+  - name: "Common"
+    path: "0-common.yaml"
