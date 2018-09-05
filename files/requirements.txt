@@ -1,5 +1,3 @@
-powerline-status
-powerline-gitstatus
 pycodestyle
 pydf
 pylint
