@@ -13,3 +13,4 @@ The AWS script acts as a wrapper to create and grant `sudo` access to `[username
 ### Linux & MacOS
 
 `curl -fsSL https://bradleyfrank.github.io/puppet/bin/run.sh | bash`
+
