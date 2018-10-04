@@ -212,7 +212,7 @@ done
 # fix permissions
 chmod 0700 "$HOME"/.ssh
 chmod 0750 "$DOTFILES_DIR"
-sudo chown $(id -un) $(dirname $DICTIONARY)
+sudo chown "$(id -un)" "$(dirname $DICTIONARY)"
 
 
 # initial bootstraps
