@@ -8,6 +8,8 @@ bmf::packages:
     require: 'Package[python34-pip]'
   python2-pip: {}
   python34: {}
+  python34-devel:
+    require: 'Package[python34]'
   python34-pip:
     require: 'Package[python34]'
 ##
