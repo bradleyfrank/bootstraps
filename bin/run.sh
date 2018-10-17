@@ -25,6 +25,9 @@ WORDS="$GH_RAW/bradleyfrank/puppet/master/modules/bmf/files/assets/words"
 DOTFILES_DIR="$HOME/.dotfiles"
 BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
 
+PUPPETLABS_REPO="https://yum.puppetlabs.com"
+PUPPETLABS_RELEASE="puppetlabs-release-pc1-el-7.noarch.rpm"
+
 #
 # Local development structure
 #
@@ -129,9 +132,14 @@ bootstrap_linux() {
     pkg_manager="yum"
   fi
 
+
+  # install EPEL repository if not Fedora
+  if [[ -f /etc/redhat-release ]] || [[ -f /etc/centos-release ]]; then
+    sudo "$pkg_manager" install -y epel-release
+  fi
+
   # install Puppet dependencies (repo + packages)
-  sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-  sudo "$pkg_manager" install -y epel-release
+  sudo rpm -Uvh "${PUPPETLABS_REPO}/${PUPPETLABS_RELEASE}"
   sudo "$pkg_manager" clean all
   sudo "$pkg_manager" makecache
   sudo "$pkg_manager" install -y puppet-agent git augeas
