@@ -125,18 +125,19 @@ bootstrap_macos() {
 
 
 bootstrap_linux() {
-  local puppet_manifest="/srv/puppet" pkg_manager puppetlabs_rpm os_family
+  local puppet_manifest="/srv/puppet" pkg_manager puppetlabs_rpm os_name
 
-  if type dnf >/dev/null 2>&1; then
-    pkg_manager="dnf"
-  else
-    pkg_manager="yum"
-  fi
+  # parse OS name from /etc/os-release file
+  os_name="$(sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release)"
 
+  # set proper package manager
+  case "$os_name" in
+    Fedora) pkg_manager="dnf" ;;
+         *) pkg_manager="yum" ;;
+  esac
 
   # install EPEL repository if not Fedora
-  os_family="$(sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release)"
-  if [[ "$os_family" != "Fedora" ]]; then
+  if [[ "$os_name" != "Fedora" ]]; then
     sudo "$pkg_manager" install -y epel-release
   fi
 

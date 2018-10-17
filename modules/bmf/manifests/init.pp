@@ -11,6 +11,8 @@ class bmf (
   $config_defaults,
   $users,
   $user_defaults,
+  $repos,
+  $repos_defaults,
   $packages,
   $package_defaults,
   $services,
@@ -19,7 +21,6 @@ class bmf (
 ) {
 
   include selinux
-  include yum
 
   ## Configs & Files
   create_resources(file, $configs, $config_defaults)
@@ -30,6 +31,9 @@ class bmf (
 
   ## Packages
   create_resources(package, $packages, $package_defaults)
+
+  ## Repos
+  create_resources(yumrepo, $repos, $repos_defaults)
 
   ## Services
   create_resources(service, $services, $service_defaults)

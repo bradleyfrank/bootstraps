@@ -1,12 +1,4 @@
 ---
-bmf::users: {}
-bmf::user_defaults:
-  ensure: 'present'
-  groups:
-    - 'centos'
-  managehome: 'true'
-  purge_ssh_keys: 'true'
-  shell: '/bin/bash'
 bmf::configs: {}
 bmf::config_defaults:
   ensure: 'file'
@@ -15,25 +7,34 @@ bmf::config_defaults:
   owner: 'root'
 bmf::packages: {}
 bmf::package_defaults: {}
+bmf::repos: {}
+bmf::repos_defaults:
+  ensure: 'present'
+  enabled: true
+  gpgcheck: true
 bmf::services: {}
 bmf::service_defaults: {}
 bmf::ssh_keys: {}
+bmf::users: {}
+bmf::user_defaults:
+  ensure: 'present'
+  groups:
+    - 'centos'
+  managehome: 'true'
+  purge_ssh_keys: 'true'
+  shell: '/bin/bash'
 ##
 ## Module Hiera config (do not change)
 ##
 lookup_options:
   ##
-  ## Users
+  ## Configs
   ##
-  bmf::user_defaults:
+  bmf::config_defaults:
     merge:
       strategy: deep
       merge_hash_arrays: true
-  bmf::users:
-    merge:
-      strategy: deep
-      merge_hash_arrays: true
-  bmf::ssh_keys:
+  bmf::configs:
     merge:
       strategy: deep
       merge_hash_arrays: true
@@ -49,6 +50,17 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
   ##
+  ## Repos
+  ##
+  bmf::repos_defaults:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::repos:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  ##
   ## Services
   ##
   bmf::service_defaults:
@@ -60,13 +72,17 @@ lookup_options:
       strategy: deep
       merge_hash_arrays: true
   ##
-  ## Security
+  ## Users
   ##
-  bmf::config_defaults:
+  bmf::ssh_keys:
     merge:
       strategy: deep
       merge_hash_arrays: true
-  bmf::configs:
+  bmf::user_defaults:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  bmf::users:
     merge:
       strategy: deep
       merge_hash_arrays: true
