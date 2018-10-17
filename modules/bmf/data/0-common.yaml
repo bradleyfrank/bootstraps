@@ -1,4 +1,5 @@
 ---
+bmf::users: {}
 bmf::user_defaults:
   ensure: 'present'
   groups:
@@ -6,11 +7,17 @@ bmf::user_defaults:
   managehome: 'true'
   purge_ssh_keys: 'true'
   shell: '/bin/bash'
+bmf::configs: {}
 bmf::config_defaults:
   ensure: 'file'
   group: 'root'
   mode: '0600'
   owner: 'root'
+bmf::packages: {}
+bmf::package_defaults: {}
+bmf::services: {}
+bmf::service_defaults: {}
+bmf::ssh_keys: {}
 ##
 ## Module Hiera config (do not change)
 ##
