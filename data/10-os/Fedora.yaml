@@ -18,10 +18,13 @@ bmf::packages:
   libmp4v2: {}
   mediawriter: {}
   mkvtoolnix: {}
-  mpv: {}
-  nautilus-dropbox*: {}
+  mpv:
+    require: 'Yumrepo[negativo17-multimedia]'
+  nautilus-dropbox*:
+    require: 'Yumrepo[dropbox]'
   powerline-fonts: {}
   python3: {}
+  python3-devel: {}
   ranger: {}
   screenfetch: {}
   seahorse: {}
@@ -31,7 +34,8 @@ bmf::packages:
   tldr: {}
   vivaldi-stable:
     require: 'Yumrepo[vivaldi]'
-  vlc: {}
+  vlc:
+    require: 'Yumrepo[negativo17-multimedia]'
 ##
 ## Repo Management
 ##
@@ -58,6 +62,7 @@ bmf::repos:
   atom:
     descr: 'Atom Editor'
     baseurl: 'https://packagecloud.io/AtomEditor/atom/el/7/$basearch'
+    gpgcheck: false
     gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-atom'
   docker-ce:
     descr: 'Docker CE Stable'
