@@ -5,10 +5,15 @@
 bmf::packages:
   adobe-source-*-fonts: {}
   atom: {}
+    require: 'Yumrepo[atom]'
   bluefish: {}
   docker-ce: {}
+    require: 'Yumrepo[docker-ce]'
+  ffmpeg: {}
+    require: 'Yumrepo[negativo17-multimedia]'
   gnome-tweaks: {}
   google-chrome-stable: {}
+    require: 'Yumrepo[google-chrome]'
   hstr: {}
   libmp4v2: {}
   mediawriter: {}
@@ -21,9 +26,11 @@ bmf::packages:
   screenfetch: {}
   seahorse: {}
   spotify-client: {}
+    require: 'Yumrepo[negativo17-spotify]'
   thefuck: {}
   tldr: {}
   vivaldi-stable: {}
+    require: 'Yumrepo[vivaldi]'
   vlc: {}
 ##
 ## Repo Management
