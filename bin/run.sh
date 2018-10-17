@@ -26,7 +26,8 @@ DOTFILES_DIR="$HOME/.dotfiles"
 BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
 
 PUPPETLABS_REPO="https://yum.puppetlabs.com"
-PUPPETLABS_RELEASE="puppetlabs-release-pc1-el-7.noarch.rpm"
+PUPPETLABS_RELEASE="puppetlabs-release-pc1"
+PUPPETLABS_VERSION="el-7"
 
 #
 # Local development structure
@@ -124,7 +125,7 @@ bootstrap_macos() {
 
 
 bootstrap_linux() {
-  local puppet_manifest="/srv/puppet" pkg_manager
+  local puppet_manifest="/srv/puppet" pkg_manager puppetlabs_rpm
 
   if type dnf >/dev/null 2>&1; then
     pkg_manager="dnf"
@@ -138,8 +139,13 @@ bootstrap_linux() {
     sudo "$pkg_manager" install -y epel-release
   fi
 
-  # install Puppet dependencies (repo + packages)
-  sudo rpm -Uvh "${PUPPETLABS_REPO}/${PUPPETLABS_RELEASE}"
+  # install Puppetlabs repo
+  if ! rpm -qa "$PUPPETLABS_RELEASE" >/dev/null 2>$1; then
+    puppetlabs_rpm="${PUPPETLABS_RELEASE}-${PUPPETLABS_VERSION}.noarch.rpm"
+    sudo rpm -Uvh "${PUPPETLABS_REPO}/${puppetlabs_rpm}"
+  fi
+
+  # clean dnf cache and install packages required for Puppet
   sudo "$pkg_manager" clean all
   sudo "$pkg_manager" makecache
   sudo "$pkg_manager" install -y puppet-agent git augeas
