@@ -5,5 +5,4 @@ powerline-docker
 pycodestyle
 pydf
 pylint
-s-tui
 tmuxp
