@@ -166,6 +166,7 @@ bootstrap_linux() {
 
 dotfiles_repo_clone() {
   git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
+  chmod 0750 "$DOTFILES_DIR"
   pushd "$DOTFILES_DIR" >/dev/null 2>&1
   git submodule update --init --recursive
   popd >/dev/null 2>&1
@@ -234,7 +235,6 @@ esac
 
 # fix permissions
 chmod 0700 "$HOME"/.ssh
-chmod 0750 "$DOTFILES_DIR"
 sudo chown "$(id -un)" "$(dirname $DICTIONARY)"
 
 
