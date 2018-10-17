@@ -174,17 +174,14 @@ dotfiles_repo_clone() {
 
 
 dotfiles_repo_clone_post() {
-  # when false, executable bit changes are ignored by Git
-  git config core.fileMode false
-
   # download and install post-merge hook
-  local githook_postmerge
-  githook_postmerge="$DOTFILES_DIR"/.git/hooks/post-merge
+  local githook_postmerge="$DOTFILES_DIR"/.git/hooks/post-merge
   wget "$BOOTSTRAP_ASSETS"/post-merge -qO "$githook_postmerge"
   chmod u+x "$githook_postmerge"
 
-  # run post-merge to fix permissions; hence setting fileMode
   pushd "$DOTFILES_DIR" >/dev/null 2>&1
+  # when false, executable bit changes are ignored by Git
+  git config core.fileMode false
   # shellcheck disable=SC1091
   . ./.git/hooks/post-merge
   popd >/dev/null 2>&1
