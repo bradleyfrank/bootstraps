@@ -107,7 +107,7 @@ bootstrap_macos() {
 
   # install Homebrew packages
   brew update
-  pushd "$(dirname $brewfile)" >/dev/null 2>&1
+  pushd "$(dirname "$brewfile")" >/dev/null 2>&1
   brew bundle install Brewfile
   popd >/dev/null 2>&1
   brew cleanup
@@ -140,7 +140,7 @@ bootstrap_linux() {
   fi
 
   # install Puppetlabs repo
-  if ! rpm -qa "$PUPPETLABS_RELEASE" >/dev/null 2>$1; then
+  if ! rpm -qa "$PUPPETLABS_RELEASE" >/dev/null 2>&1; then
     puppetlabs_rpm="${PUPPETLABS_RELEASE}-${PUPPETLABS_VERSION}.noarch.rpm"
     sudo rpm -Uvh "${PUPPETLABS_REPO}/${puppetlabs_rpm}"
   fi
