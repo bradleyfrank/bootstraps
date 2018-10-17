@@ -4,15 +4,15 @@
 ##
 bmf::packages:
   adobe-source-*-fonts: {}
-  atom: {}
+  atom:
     require: 'Yumrepo[atom]'
   bluefish: {}
-  docker-ce: {}
+  docker-ce:
     require: 'Yumrepo[docker-ce]'
-  ffmpeg: {}
+  ffmpeg:
     require: 'Yumrepo[negativo17-multimedia]'
   gnome-tweaks: {}
-  google-chrome-stable: {}
+  google-chrome-stable:
     require: 'Yumrepo[google-chrome]'
   hstr: {}
   libmp4v2: {}
@@ -25,11 +25,11 @@ bmf::packages:
   ranger: {}
   screenfetch: {}
   seahorse: {}
-  spotify-client: {}
+  spotify-client:
     require: 'Yumrepo[negativo17-spotify]'
   thefuck: {}
   tldr: {}
-  vivaldi-stable: {}
+  vivaldi-stable:
     require: 'Yumrepo[vivaldi]'
   vlc: {}
 ##
