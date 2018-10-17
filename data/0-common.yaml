@@ -6,7 +6,6 @@ bmf::packages:
   augeas: {}
   expect: {}
   fail2ban: {}
-  ffmpeg: {}
   ghostscript: {}
   git: {}
   glances: {}
