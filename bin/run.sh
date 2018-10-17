@@ -209,17 +209,17 @@ for directory in "${SYS_DIRECTORIES[@]}"; do
 done
 
 
-# fix permissions
-chmod 0700 "$HOME"/.ssh
-chmod 0750 "$DOTFILES_DIR"
-sudo chown "$(id -un)" "$(dirname $DICTIONARY)"
-
-
 # initial bootstraps
 case "$(uname -s)" in
   Darwin) bootstrap_macos ;;
    Linux) bootstrap_linux ;;
 esac
+
+
+# fix permissions
+chmod 0700 "$HOME"/.ssh
+chmod 0750 "$DOTFILES_DIR"
+sudo chown "$(id -un)" "$(dirname $DICTIONARY)"
 
 
 # download Python requirements.txt and install packages
