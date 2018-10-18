@@ -212,6 +212,15 @@ settings_io() {
   defaults write NSGlobalDomain InitialKeyRepeat -int 25
   defaults write NSGlobalDomain KeyRepeat -int 1
 
+  # increase power/bandwidth supplied to the BluetoothAudioAgent
+  sudo defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Max (editable)" 80
+  sudo defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" 80
+  sudo defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool (editable)" 80
+  sudo defaults write com.apple.BluetoothAudioAgent "Apple Initial Bitpool Min (editable)" 80
+  sudo defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool" 80
+  sudo defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" 80
+  sudo defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" 80
+
 }
 
 
@@ -267,4 +276,6 @@ settings_interface
 settings_io
 settings_system
 
-killall Dock
+# restart services to apply changes
+sudo killall Dock
+sudo killall coreaudiod
