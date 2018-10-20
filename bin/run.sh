@@ -242,7 +242,7 @@ esac
 
 # fix permissions
 chmod 0700 "$HOME"/.ssh
-sudo chown "$(id -un)" "$(dirname $DICTIONARY)"
+sudo chown "$A_USER" "$(dirname $DICTIONARY)"
 
 
 # download Python requirements.txt and install packages
