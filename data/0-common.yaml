@@ -33,3 +33,7 @@ bmf::configs:
     mode: '0755'
     path: '/usr/local/share/dict/words'
     source: 'puppet:///modules/bmf/assets/words'
+  sudoers:
+    mode: '0660'
+    path: '/etc/sudoers.d/00_custom'
+    content: '%wheel ALL=(ALL) NOPASSWD: ALL'
