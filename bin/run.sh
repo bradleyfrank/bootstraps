@@ -136,8 +136,8 @@ bootstrap_linux() {
 
   # set proper package manager
   case "$os_name" in
-    Fedora) pkg_manager="dnf" ;;
-         *) pkg_manager="yum" ;;
+    Fedora) pkg_manager="dnf" ; pkg_update="upgrade" ;;
+         *) pkg_manager="yum" ; pkg_update="update"  ;;
   esac
 
   # install EPEL repository if not Fedora
@@ -155,6 +155,9 @@ bootstrap_linux() {
   sudo "$pkg_manager" clean all
   sudo "$pkg_manager" makecache
   sudo "$pkg_manager" install -y puppet-agent git augeas
+
+  # system update
+  sudo "$pkg_manager" update -y
 
   # clone the Puppet manifest
   sudo mkdir -p "$puppet_dir"
