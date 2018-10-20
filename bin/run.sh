@@ -79,6 +79,9 @@ SYS_DIRECTORIES=(
   "/usr/local/share/dict"
 )
 
+A_USER="$(id -un)"
+A_GROUP="$(id -Gn | awk '{print $1}')"
+
 
 #
 # --==## FUNCTIONS ##==--
@@ -125,7 +128,8 @@ bootstrap_macos() {
 
 
 bootstrap_linux() {
-  local puppet_manifest="/srv/puppet" pkg_manager puppetlabs_rpm os_name
+  local pkg_manager pkg_update puppetlabs_rpm os_name
+  local puppet_dir="/srv/puppet" puppet_apply="/usr/local/bin/puppet-apply"
 
   # parse OS name from /etc/os-release file
   os_name="$(sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release)"
@@ -153,14 +157,17 @@ bootstrap_linux() {
   sudo "$pkg_manager" install -y puppet-agent git augeas
 
   # clone the Puppet manifest
-  sudo mkdir -p "$puppet_manifest"
-  sudo chown -R root:root /srv
-  sudo git clone "$PUPPET_REPO" "$puppet_manifest"
+  sudo mkdir -p "$puppet_dir"
+  sudo chown "$A_USER":"$A_GROUP" "$puppet_dir"
+  git clone "$PUPPET_REPO" "$puppet_dir"
+
+  # install Puppet apply script from GitHub
+  curl -o "$puppet_apply" -s -L "$BOOTSTRAP_ASSETS"/puppet-apply
+  sudo chown "$A_USER":"$A_GROUP" "$puppet_apply"
+  sudo chmod 0755 "$puppet_apply"
 
   # apply Puppet manifest
-  sudo /opt/puppetlabs/bin/puppet apply $puppet_manifest/manifests/site.pp \
-    --hiera_config $puppet_manifest/hiera.yaml \
-    --modulepath $puppet_manifest/modules
+  "$puppet_apply"
 }
 
 
