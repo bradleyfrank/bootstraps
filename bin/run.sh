@@ -156,7 +156,7 @@ bootstrap_linux() {
   sudo "$pkg_manager" install -y puppet-agent git augeas
 
   # system update
-  sudo "$pkg_manager" update -y
+  sudo "$pkg_manager" "$pkg_update" -y
 
   # clone the Puppet manifest
   sudo mkdir -p "$puppet_dir"
