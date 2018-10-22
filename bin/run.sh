@@ -163,8 +163,8 @@ bootstrap_linux() {
   sudo chown "$A_USER" "$puppet_dir"
   git clone "$PUPPET_REPO" "$puppet_dir"
 
-  # install Puppet apply script from GitHub
-  curl -o "$puppet_apply" -s -L "$BOOTSTRAP_ASSETS"/puppet-apply
+  # install Puppet apply script
+  sudo cp "$puppet_dir"/files/puppet-apply "$puppet_apply"
   sudo chown "$A_USER" "$puppet_apply"
   sudo chmod 0755 "$puppet_apply"
 
