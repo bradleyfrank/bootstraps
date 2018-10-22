@@ -80,7 +80,6 @@ SYS_DIRECTORIES=(
 )
 
 A_USER="$(id -un)"
-A_GROUP="$(id -Gn | awk '{print $1}')"
 
 
 #
@@ -161,12 +160,12 @@ bootstrap_linux() {
 
   # clone the Puppet manifest
   sudo mkdir -p "$puppet_dir"
-  sudo chown "$A_USER":"$A_GROUP" "$puppet_dir"
+  sudo chown "$A_USER" "$puppet_dir"
   git clone "$PUPPET_REPO" "$puppet_dir"
 
   # install Puppet apply script from GitHub
   curl -o "$puppet_apply" -s -L "$BOOTSTRAP_ASSETS"/puppet-apply
-  sudo chown "$A_USER":"$A_GROUP" "$puppet_apply"
+  sudo chown "$A_USER" "$puppet_apply"
   sudo chmod 0755 "$puppet_apply"
 
   # apply Puppet manifest
