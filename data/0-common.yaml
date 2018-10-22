@@ -9,6 +9,7 @@ bmf::packages:
   ghostscript: {}
   git: {}
   glances: {}
+  hstr: {}
   htop: {}
   mosh: {}
   most: {}
