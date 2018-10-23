@@ -11,6 +11,7 @@ bmf::packages:
     require: 'Yumrepo[docker-ce]'
   ffmpeg:
     require: 'Yumrepo[negativo17-multimedia]'
+  git: {}
   gnome-tweaks: {}
   google-chrome-stable:
     require: 'Yumrepo[google-chrome]'
