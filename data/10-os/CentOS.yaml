@@ -32,6 +32,9 @@ bmf::configs:
   RPM-GPG-KEY-docker-ce:
     path: '/etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce'
     source: 'puppet:///modules/bmf/RPM-GPG/RPM-GPG-KEY-docker-ce'
+  IUS-COMMUNITY-GPG-KEY:
+    path: '/etc/pki/rpm-gpg/IUS-COMMUNITY-GPG-KEY'
+    source: 'puppet:///modules/bmf/RPM-GPG/IUS-COMMUNITY-GPG-KEY'
 ##
 ## Repos
 ##
@@ -41,6 +44,11 @@ bmf::repos:
     baseurl: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'
     gpgcheck: true
     gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce'
+  ius:
+    descr: 'IUS Community Packages for Enterprise Linux 7'
+    mirrorlist: 'https://mirrors.iuscommunity.org/mirrorlist?repo=ius-centos7&arch=$basearch&protocol=http'
+    gpgcheck: true
+    gpgkey: 'file:///etc/pki/rpm-gpg/IUS-COMMUNITY-GPG-KEY'
 ##
 ## Services
 ##
@@ -65,3 +73,7 @@ bmf::configs:
     mode: '0644'
     path: '/etc/profile.d/banner.sh'
     source: 'puppet:///modules/bmf/config/banner.sh'
+  rh-git29:
+    mode: '0644'
+    path: '/etc/profile.d/rh-git29.sh'
+    source: 'puppet:///modules/bmf/config/rh-git29.sh'
