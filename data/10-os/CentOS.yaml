@@ -22,48 +22,25 @@ bmf::packages:
   gvfs-smb: {}
   linux-logo: {}
   policycoreutils: {}
+  rh-git29: {}
   rpm2cpio: {}
+  tmux2u: {}
 ##
 ## Repo Management
 ##
-yum::manage_os_default_repos: false
-yum::gpgkeys:
-  /etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce:
+bmf::configs:
+  RPM-GPG-KEY-docker-ce:
+    path: '/etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce'
     source: 'puppet:///modules/bmf/RPM-GPG/RPM-GPG-KEY-docker-ce'
-  /etc/pki/rpm-gpg/RPM-GPG-KEY-remi:
-    source: 'puppet:///modules/bmf/RPM-GPG/RPM-GPG-KEY-remi'
-yum::managed_repos:
-  - 'docker-ce'
-  - 'remi-php72'
-  - 'remi-safe'
 ##
 ## Repos
 ##
-yum::repos:
+bmf::repos:
   docker-ce:
-    ensure: 'present'
-    enabled: true
     descr: 'Docker CE Stable'
-    baseurl: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable/'
+    baseurl: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'
     gpgcheck: true
     gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-docker-ce'
-    target: '/etc/yum.repos.d/docker-ce.repo'
-  remi-php72:
-    ensure: 'present'
-    enabled: true
-    descr: 'Remi PHP 7.2 RPM repository'
-    mirrorlist: 'http://cdn.remirepo.net/enterprise/$releasever/php72/mirror'
-    gpgcheck: true
-    gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi'
-    target: '/etc/yum.repos.d/remi-php72.repo'
-  remi-safe:
-    ensure: 'present'
-    enabled: true
-    descr: 'Safe Remi RPM repository'
-    mirrorlist: 'http://cdn.remirepo.net/enterprise/$releasever/safe/mirror'
-    gpgcheck: true
-    gpgkey: 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi'
-    target: '/etc/yum.repos.d/remi-safe.repo'
 ##
 ## Services
 ##
