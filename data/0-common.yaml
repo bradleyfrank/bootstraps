@@ -12,6 +12,7 @@ bmf::packages:
   htop: {}
   mosh: {}
   most: {}
+  mtr: {}
   ncdu: {}
   nmap: {}
   p7zip: {}
