@@ -25,10 +25,6 @@ WORDS="$GH_RAW/bradleyfrank/puppet/master/modules/bmf/files/assets/words"
 DOTFILES_DIR="$HOME/.dotfiles"
 BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
 
-PUPPETLABS_REPO="https://yum.puppetlabs.com"
-PUPPETLABS_RELEASE="puppetlabs-release-pc1"
-PUPPETLABS_VERSION="el-7"
-
 #
 # Local development structure
 #
@@ -127,16 +123,25 @@ bootstrap_macos() {
 
 
 bootstrap_linux() {
-  local pkg_manager pkg_update puppetlabs_rpm os_name
+  local pkg_manager pkg_update os_name os_majver puppet_rpm tmp_puppet_rpm
   local puppet_dir="/srv/puppet" puppet_apply="/usr/local/bin/puppet-apply"
 
-  # parse OS name from /etc/os-release file
-  os_name="$(sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release)"
+  # parse OS info from /etc/os-release file
+  os_name="$(sed -n 's/^NAME=\"\(.*\)\"/\1/p' /etc/os-release)"
+  os_majver="$(sed -n 's/^VERSION_ID=\"\([0-9]*\).*\"/\1/p' /etc/os-release)"
 
   # set proper package manager
   case "$os_name" in
-    Fedora) pkg_manager="dnf" ; pkg_update="upgrade" ;;
-         *) pkg_manager="yum" ; pkg_update="update"  ;;
+    Fedora)
+            pkg_manager="dnf"
+            pkg_update="upgrade"
+            puppet_rpm="puppet6-release-fedora-${os_majver}.noarch.rpm"
+            ;;
+         *)
+            pkg_manager="yum"
+            pkg_update="update"
+            puppet_rpm="puppet6-release-el-${os_majver}.noarch.rpm"
+            ;;
   esac
 
   # install EPEL repository if not Fedora
@@ -145,10 +150,11 @@ bootstrap_linux() {
   fi
 
   # install Puppetlabs repo
-  if ! rpm -qa "$PUPPETLABS_RELEASE" >/dev/null 2>&1; then
-    puppetlabs_rpm="${PUPPETLABS_RELEASE}-${PUPPETLABS_VERSION}.noarch.rpm"
-    sudo rpm -Uvh "${PUPPETLABS_REPO}/${puppetlabs_rpm}"
-  fi
+  tmp_puppet_rpm=$(mktemp)
+  curl -o "$tmp_puppet_rpm" -s -L \
+    https://yum.puppetlabs.com/puppet6/"$puppet_rpm"
+  sudo "$pkg_manager" install -y "$tmp_puppet_rpm"
+  sudo rpm --import /etc/pki/RPM-GPG-KEY-puppet6-release
 
   # clean dnf cache and install packages required for Puppet
   sudo "$pkg_manager" clean all
