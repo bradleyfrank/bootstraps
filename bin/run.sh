@@ -154,7 +154,7 @@ bootstrap_linux() {
   curl -o "$tmp_puppet_rpm" -s -L \
     https://yum.puppetlabs.com/puppet6/"$puppet_rpm"
   sudo rpm -ivh "$tmp_puppet_rpm"
-  sudo rpm --import /etc/pki/RPM-GPG-KEY-puppet6-release
+  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppet6-release
 
   # clean dnf cache and install packages required for Puppet
   sudo "$pkg_manager" clean all
