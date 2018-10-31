@@ -150,10 +150,12 @@ bootstrap_linux() {
   fi
 
   # install Puppetlabs repo
-  tmp_puppet_rpm=$(mktemp)
-  curl -o "$tmp_puppet_rpm" -s -L \
-    https://yum.puppetlabs.com/puppet6/"$puppet_rpm"
-  sudo rpm -ivh "$tmp_puppet_rpm"
+  if ! sudo rpm -qa "puppet6-release"; then
+    tmp_puppet_rpm=$(mktemp)
+    curl -o "$tmp_puppet_rpm" -s -L \
+      https://yum.puppetlabs.com/puppet6/"$puppet_rpm"
+    sudo rpm -ivh "$tmp_puppet_rpm"
+  fi
   sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppet6-release
 
   # clean dnf cache and install packages required for Puppet
