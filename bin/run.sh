@@ -150,7 +150,7 @@ bootstrap_linux() {
   fi
 
   # install Puppetlabs repo
-  if ! sudo rpm -qa "puppet6-release"; then
+  if [[ "$(sudo rpm -qa 'puppet6-release' | wc -l)" -eq 0 ]]; then
     tmp_puppet_rpm=$(mktemp)
     curl -o "$tmp_puppet_rpm" -s -L \
       https://yum.puppetlabs.com/puppet6/"$puppet_rpm"
