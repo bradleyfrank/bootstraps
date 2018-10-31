@@ -127,7 +127,7 @@ bootstrap_linux() {
   local puppet_dir="/srv/puppet" puppet_apply="/usr/local/bin/puppet-apply"
 
   # parse OS info from /etc/os-release file
-  os_name="$(sed -n 's/^NAME=\"\(.*\)\"/\1/p' /etc/os-release)"
+  os_name="$(sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release)"
   os_majver="$(sed -n 's/^VERSION_ID=\"\([0-9]*\).*\"/\1/p' /etc/os-release)"
 
   # set proper package manager
