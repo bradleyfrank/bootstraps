@@ -3,6 +3,9 @@
 ## Packages
 ##
 bmf::packages:
+  pip_upgrade_outdated:
+    provider: 'pip3'
+    require: 'Package[python34-pip]'
   pydf:
     provider: 'pip3'
     require: 'Package[python34-pip]'
