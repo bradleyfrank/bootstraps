@@ -1,0 +1,6 @@
+---
+- name: Configure Fedora Workstation
+  hosts: local
+  become: true
+  roles:
+    - fedora
