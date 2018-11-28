@@ -64,7 +64,7 @@ HOME_DIRECTORIES=(
 )
 
 SYS_DIRECTORIES=(
-  "/usr/local/{bin,etc,include,lib,share,srv,var}"
+  "/usr/local/{bin,etc,include,lib,share,var}"
   "/usr/local/share/dict"
 )
 
@@ -200,8 +200,10 @@ done
 
 
 # make system directory structure
+sudo chown "$A_USER" /usr/local
+sudo chmod 755 /usr/local
 for directory in "${SYS_DIRECTORIES[@]}"; do
-  eval "sudo mkdir -p $directory"
+  eval "mkdir -p $directory"
 done
 
 
