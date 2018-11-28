@@ -1,15 +1,6 @@
 ---
 # tasks file for ./roles/fedora
 
-- name: Install repo Docker CE Stable
-  yum_repository:
-    name: docker-ce
-    description: Docker CE Stable
-    file: docker-ce
-    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable/
-    gpgcheck: yes
-    gpgkey: https://download.docker.com/linux/centos/gpg
-
 - name: Install repo Dropbox Repository
   yum_repository:
     name: dropbox

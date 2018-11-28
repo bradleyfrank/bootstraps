@@ -5,7 +5,7 @@ default_packages:
   - 'adobe-source-*-fonts'
   - augeas
   - bluefish
-  - docker-ce
+  - docker
   - expect
   - fail2ban
   - ffmpeg
