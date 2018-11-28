@@ -2,12 +2,10 @@
 
 set -eu
 
-puppet_dir="/srv/puppet"
-
-pushd "$puppet_dir" >/dev/null 2>&1
+pushd /usr/local/srv >/dev/null 2>&1
 sudo git pull
 popd >/dev/null 2>&1
 
-sudo /opt/puppetlabs/bin/puppet apply $puppet_dir/manifests/site.pp \
-  --hiera_config $puppet_dir/hiera.yaml \
-  --modulepath $puppet_dir/modules
+sudo /opt/puppetlabs/bin/puppet apply /usr/local/srv/puppet/manifests/site.pp \
+  --hiera_config /usr/local/srv/puppet/hiera.yaml \
+  --modulepath /usr/local/srv/puppet/modules

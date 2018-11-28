@@ -13,17 +13,13 @@ GH_URL="https://github.com"
 
 BREW_URL="$GH_RAW/Homebrew/install/master/install"
 
-PUPPET_REPO="$GH_URL/bradleyfrank/puppet.git"
+BOOTSTRAP_REPO="$GH_URL/bradleyfrank/bootstraps.git"
 DOTFILES_REPO="$GH_URL/bradleyfrank/dotfiles.git"
-
-BOOTSTRAP_SCRIPTS="$GH_RAW/bradleyfrank/puppet/master/bin"
-BOOTSTRAP_ASSETS="$GH_RAW/bradleyfrank/puppet/master/files"
-
-DICTIONARY="/usr/local/share/dict/words"
-WORDS="$GH_RAW/bradleyfrank/puppet/master/modules/bmf/files/assets/words"
 
 DOTFILES_DIR="$HOME/.dotfiles"
 BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
+
+LOCAL_REPO="/usr/local/srv"
 
 #
 # Local development structure
@@ -33,7 +29,6 @@ BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
 # │   ├── Home
 # │   ├── Scratch
 # │   └── Snippets
-# ├── .atom
 # ├── .config
 # │   └── dotfiles
 # ├── .local
@@ -56,26 +51,26 @@ BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
 # │   │       ├── man7
 # │   │       ├── man8
 # │   │       └── man9
-# │   ├── srv
 # │   └── var
 # └── .ssh
 #
 
 HOME_DIRECTORIES=(
   "$HOME/Development/{Clients,Home,Scratch,Snippets}"
-  "$HOME/.atom"
   "$HOME/.config/dotfiles/archive"
-  "$HOME/.local/{bin,etc,include,lib,share,srv,opt,var}"
+  "$HOME/.local/{bin,etc,include,lib,share,opt,var}"
   "$HOME/.local/share/{bash,doc,man/man{1..9}}"
   "$HOME/.ssh"
 )
 
 SYS_DIRECTORIES=(
-  "/usr/local/{bin,etc,include,lib,share,var}"
+  "/usr/local/{bin,etc,include,lib,share,srv,var}"
   "/usr/local/share/dict"
 )
 
 A_USER="$(id -un)"
+OS_NAME=""
+OS_MAJVER=""
 
 
 #
@@ -83,96 +78,67 @@ A_USER="$(id -un)"
 #
 
 bootstrap_macos() {
-  local brewfile settings_script
-
   # exempt admin group from sudo password requirement
   sudo bash -c \
     "echo '%admin ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/nopasswd"
 
-  # install Xcode
   if ! type xcode-select >/dev/null 2>&1; then
     xcode-select --install
   fi
 
-  # install Homebrew
   if ! type brew >/dev/null 2>&1; then
     ruby -e "$(curl -fsSL $BREW_URL)"
   fi
 
-  # download Brewfile from GitHub
-  brewfile="$(mktemp -d)/Brewfile"
-  curl -o "$brewfile" -s -L "$BOOTSTRAP_ASSETS"/Brewfile
-
-  # install Homebrew packages
   brew update
-  pushd "$(dirname "$brewfile")" >/dev/null 2>&1
+  brew install git
+
+  git clone "$BOOTSTRAP_REPO" "$LOCAL_REPO"
+  pushd "$LOCAL_REPO"/files >/dev/null 2>&1
   brew bundle install Brewfile
   popd >/dev/null 2>&1
   brew cleanup
 
-  # install custom dictionary
-  wget "$WORDS" -qO "$DICTIONARY"
-  sudo chmod 0755 "$DICTIONARY"
-
-  # download and run system settings script
-  settings_script=$(mktemp)
-  curl -o "$settings_script" -s -L "$BOOTSTRAP_SCRIPTS"/macos.sh
+  cp "$LOCAL_REPO"/puppet/modules/bmf/files/assets/words /usr/local/share/dict/
   # shellcheck disable=SC1090
-  . "$settings_script"
+  . "$LOCAL_REPO"/bin/macos.sh
 }
 
 
 bootstrap_linux() {
-  local pkg_manager pkg_update os_name os_majver puppet_rpm tmp_puppet_rpm
-  local puppet_dir="/srv/puppet" puppet_apply="/usr/local/bin/puppet-apply"
+  OS_NAME="$(awk '{print $1}' /etc/redhat-release)"
+  OS_MAJVER="$(grep -oE '([0-9]+)' /etc/redhat-release | head -n 1)"
 
-  # parse OS info from /etc/os-release file
-  os_name="$(sed -n 's/^NAME=\(.*\)/\1/p' /etc/os-release)"
-  os_majver="$(sed -n 's/^VERSION_ID=\(\"\)\{0,1\}\([0-9]*\).*/\2/p' /etc/os-release)"
+  sudo yum install -y git
+  git_clone_repo "/srv" "$BOOTSTRAP_REPO"
 
-  # set proper package manager
-  case "$os_name" in
-    Fedora)
-            pkg_manager="dnf"
-            pkg_update="upgrade"
-            puppet_rpm="puppet6-release-fedora-${os_majver}.noarch.rpm"
-            ;;
-         *)
-            pkg_manager="yum"
-            pkg_update="update"
-            puppet_rpm="puppet6-release-el-${os_majver}.noarch.rpm"
-            ;;
+  case "$OS_NAME" in
+    Fedora) bootstrap_linux_fedora ;;
+         *) bootstrap_linux_centos ;;
   esac
+}
 
-  # install EPEL repository if not Fedora
-  if [[ "$os_name" != "Fedora" ]]; then
-    sudo "$pkg_manager" install -y epel-release
-  fi
 
-  # install Puppetlabs repo
+bootstrap_linux_centos() {
+  local rpm puppet_apply="/usr/local/bin/puppet-apply"
+
   if [[ "$(sudo rpm -qa 'puppet6-release' | wc -l)" -eq 0 ]]; then
-    tmp_puppet_rpm=$(mktemp)
-    curl -o "$tmp_puppet_rpm" -s -L \
-      https://yum.puppetlabs.com/puppet6/"$puppet_rpm"
-    sudo rpm -ivh "$tmp_puppet_rpm"
+    rpm=$(mktemp)
+    curl -o "$rpm" -s -L "https://yum.puppetlabs.com/puppet6/\
+      puppet6-release-el-${OS_MAJVER}.noarch.rpm"
+    sudo rpm -ivh "$rpm"
   fi
+
   sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppet6-release
 
-  # clean dnf cache and install packages required for Puppet
-  sudo "$pkg_manager" clean all
-  sudo "$pkg_manager" makecache
-  sudo "$pkg_manager" install -y puppet-agent git augeas
-
-  # system update
-  sudo "$pkg_manager" "$pkg_update" -y
-
-  # clone the Puppet manifest
-  sudo mkdir -p "$puppet_dir"
-  sudo chown "$A_USER" "$puppet_dir"
-  git clone "$PUPPET_REPO" "$puppet_dir"
+  sudo yum install -y epel-release
+  sudo yum clean all
+  sudo yum makecache
+  sudo yum install -y puppet-agent augeas
+  sudo yum update -y
 
   # install Puppet apply script
-  sudo cp "$puppet_dir"/files/puppet-apply "$puppet_apply"
+  sudo cp "$LOCAL_REPO"/files/puppet-apply "$puppet_apply"
   sudo chown "$A_USER" "$puppet_apply"
   sudo chmod 0755 "$puppet_apply"
 
@@ -181,26 +147,25 @@ bootstrap_linux() {
 }
 
 
-dotfiles_repo_clone() {
-  git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
-  chmod 0750 "$DOTFILES_DIR"
-  pushd "$DOTFILES_DIR" >/dev/null 2>&1
-  git submodule update --init --recursive
-  popd >/dev/null 2>&1
+bootstrap_linux_fedora() {
+  sudo dnf install -y ansible
+  sudo dnf upgrade -y
+  sudo ansible-playbook 
 }
 
 
-dotfiles_repo_clone_post() {
-  # download and install post-merge hook
-  local githook_postmerge="$DOTFILES_DIR"/.git/hooks/post-merge
-  wget "$BOOTSTRAP_ASSETS"/post-merge -qO "$githook_postmerge"
-  chmod u+x "$githook_postmerge"
+git_clone_repo() {
+  local destdir="$1" gitrepo="$2"
 
-  pushd "$DOTFILES_DIR" >/dev/null 2>&1
-  # when false, executable bit changes are ignored by Git
-  git config core.fileMode false
-  # shellcheck disable=SC1091
-  . ./.git/hooks/post-merge
+  pushd "$HOME" >/dev/null 2>&1
+  if [[ -d "$destdir" ]]; then rm -rf "$destdir"; fi
+  git clone "$gitrepo" "$destdir"
+
+  pushd "$destdir" >/dev/null 2>&1
+  git submodule update --init --recursive
+  popd >/dev/null 2>&1
+
+  chmod -R 0750 "$destdir"
   popd >/dev/null 2>&1
 }
 
@@ -210,7 +175,7 @@ stow_packages() {
   shopt -s nullglob
   stow_packages=(*/)
 
-  echo -n "Stowing"
+  echo -n "Stowing..."
   for pkg in "${stow_packages[@]}"; do
     _pkg=$(echo "$pkg" | cut -d '/' -f 1)
     echo -n " $_pkg"
@@ -249,35 +214,26 @@ esac
 
 # fix permissions
 chmod 0700 "$HOME"/.ssh
-sudo chown "$A_USER" "$(dirname $DICTIONARY)"
+sudo chown -R "$A_USER" "$(dirname "$DICTIONARY")"
 
 
-# download Python requirements.txt and install packages
-requirements=$(mktemp)
-curl -o "$requirements" -s -L "$BOOTSTRAP_ASSETS"/requirements.txt
-pip3 install -U --user -r "$requirements"
+# install python packages
+pip3 install -U --user -r "$LOCAL_REPO"/files/requirements.txt
 
 
-# download dotfiles repository
-if [[ ! -d "$DOTFILES_DIR" ]]; then
-  # brand new install
-  dotfiles_repo_clone
-  dotfiles_repo_clone_post
-else
-  pushd "$DOTFILES_DIR" >/dev/null 2>&1
-  if ! git status >/dev/null 2>&1; then
-    # remove any previous installation
-    popd >/dev/null 2>&1
-    rm -rf "$DOTFILES_DIR"
-    dotfiles_repo_clone
-    dotfiles_repo_clone_post
-  else
-    # exists so pull changes
-    git checkout master
-    git pull
-    popd >/dev/null 2>&1
-  fi
-fi
+# clone dotfiles repository
+git_clone_repo "$DOTFILES_DIR" "$DOTFILES_REPO"
+
+
+# install post-merge hook and run
+cp "$LOCAL_REPO"/files/post-merge "$DOTFILES_DIR"/.git/hooks/
+chmod u+x "$DOTFILES_DIR"/.git/hooks/post-merge
+pushd "$DOTFILES_DIR" >/dev/null 2>&1
+# when false, executable bit changes are ignored by Git
+git config core.fileMode false
+# shellcheck disable=SC1091
+. ./.git/hooks/post-merge
+popd >/dev/null 2>&1
 
 
 # stow all packages in dotfiles
