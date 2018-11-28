@@ -110,7 +110,7 @@ bootstrap_linux() {
   OS_MAJVER="$(grep -oE '([0-9]+)' /etc/redhat-release | head -n 1)"
 
   sudo yum install -y git
-  git_clone_repo "/srv" "$BOOTSTRAP_REPO"
+  git_clone_repo "$LOCAL_REPO" "$BOOTSTRAP_REPO"
 
   case "$OS_NAME" in
     Fedora) bootstrap_linux_fedora ;;
@@ -158,7 +158,7 @@ git_clone_repo() {
   local destdir="$1" gitrepo="$2"
 
   pushd "$HOME" >/dev/null 2>&1
-  if [[ -d "$destdir" ]]; then rm -rf "$destdir"; fi
+  if [[ -d "$destdir" ]]; then sudo rm -rf "$destdir"; fi
   git clone "$gitrepo" "$destdir"
 
   pushd "$destdir" >/dev/null 2>&1
