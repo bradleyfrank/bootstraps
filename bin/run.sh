@@ -150,7 +150,7 @@ bootstrap_linux_centos() {
 bootstrap_linux_fedora() {
   sudo dnf install -y ansible
   sudo dnf upgrade -y
-  sudo ansible-playbook 
+  sudo ansible-playbook "$LOCAL_REPO"/ansible/site.xml
 }
 
 
