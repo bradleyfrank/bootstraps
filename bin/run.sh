@@ -214,11 +214,6 @@ case "$(uname -s)" in
 esac
 
 
-# fix permissions
-chmod 0700 "$HOME"/.ssh
-sudo chown -R "$A_USER" "$(dirname "$DICTIONARY")"
-
-
 # install python packages
 pip3 install -U --user -r "$LOCAL_REPO"/files/requirements.txt
 
