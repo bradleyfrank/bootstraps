@@ -29,6 +29,7 @@ default_packages:
   - gedit-plugin-wordcompletion
   - gedit-plugins-data
   - ghostscript
+  - ghostwriter
   - git
   - glances
   - gnome-tweaks
