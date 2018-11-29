@@ -45,8 +45,3 @@
     baseurl: https://repo.vivaldi.com/stable/rpm/$basearch
     gpgcheck: yes
     gpgkey: https://repo.vivaldi.com/stable/linux_signing_key.pub
-
-- name: Install packages
-  dnf:
-    name: "{{ default_packages }}"
-    state: present
