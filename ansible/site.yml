@@ -3,4 +3,4 @@
   hosts: localhost
   become: true
   roles:
-    - "workstation_{{ ansible_facts['distribution'] }}"
+    - workstation
