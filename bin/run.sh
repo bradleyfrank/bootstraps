@@ -93,7 +93,7 @@ bootstrap_macos() {
   brew update
   brew install git
 
-  git clone "$BOOTSTRAP_REPO" "$LOCAL_REPO"
+  git_clone_repo "$LOCAL_REPO" "$BOOTSTRAP_REPO"
   pushd "$LOCAL_REPO"/files >/dev/null 2>&1
   brew bundle install Brewfile
   popd >/dev/null 2>&1
