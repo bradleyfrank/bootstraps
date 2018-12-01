@@ -71,6 +71,7 @@ SYS_DIRECTORIES=(
 A_USER="$(id -un)"
 OS_NAME=""
 OS_MAJVER=""
+HOST_NAME=$(uname -n)
 
 
 #
@@ -94,12 +95,11 @@ bootstrap_macos() {
   brew install git
 
   git_clone_repo "$LOCAL_REPO" "$BOOTSTRAP_REPO"
-  pushd "$LOCAL_REPO"/files >/dev/null 2>&1
+  pushd "$LOCAL_REPO"/assets >/dev/null 2>&1
   brew bundle install Brewfile
   popd >/dev/null 2>&1
   brew cleanup
 
-  cp "$LOCAL_REPO"/puppet/modules/bmf/files/assets/words /usr/local/share/dict/
   # shellcheck disable=SC1090
   . "$LOCAL_REPO"/bin/macos.sh
 }
@@ -138,7 +138,7 @@ bootstrap_linux_centos() {
   sudo yum update -y
 
   # install Puppet apply script
-  sudo cp "$LOCAL_REPO"/files/puppet-apply "$puppet_apply"
+  sudo cp "$LOCAL_REPO"/assets/puppet-apply "$puppet_apply"
   sudo chown "$A_USER" "$puppet_apply"
   sudo chmod 0755 "$puppet_apply"
 
@@ -148,9 +148,9 @@ bootstrap_linux_centos() {
 
 
 bootstrap_linux_fedora() {
-  sudo dnf install -y ansible
   sudo dnf upgrade -y
-  sudo ansible-playbook "$LOCAL_REPO"/ansible/site.yml
+  sudo dnf install -y $(<"$LOCAL_REPO"/assets/Fedora-packages)
+  dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf
 }
 
 
@@ -215,7 +215,11 @@ esac
 
 
 # install python packages
-pip3 install -U --user -r "$LOCAL_REPO"/files/requirements.txt
+pip3 install -U --user -r "$LOCAL_REPO"/assets/requirements.txt
+
+
+# install custom dictionary
+cp "$LOCAL_REPO"/assets/words /usr/local/share/dict/
 
 
 # clone dotfiles repository
@@ -223,7 +227,7 @@ git_clone_repo "$DOTFILES_DIR" "$DOTFILES_REPO"
 
 
 # install post-merge hook and run
-cp "$LOCAL_REPO"/files/post-merge "$DOTFILES_DIR"/.git/hooks/
+cp "$LOCAL_REPO"/assets/post-merge "$DOTFILES_DIR"/.git/hooks/
 chmod u+x "$DOTFILES_DIR"/.git/hooks/post-merge
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
 # when false, executable bit changes are ignored by Git
@@ -235,7 +239,6 @@ popd >/dev/null 2>&1
 
 # stow all packages in dotfiles
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
-HOST_NAME=$(uname -n)
 
 if git branch -a | grep -qE "$HOST_NAME" >/dev/null 2>&1; then
   # local hostname branch exists: go ahead and stow
