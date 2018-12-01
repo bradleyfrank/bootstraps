@@ -1,0 +1,9 @@
+docker
+pip_upgrade_outdated
+powerline-status
+powerline-gitstatus
+powerline-docker
+pycodestyle
+pydf
+pylint
+tmuxp
