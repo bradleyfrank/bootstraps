@@ -148,8 +148,25 @@ bootstrap_linux_centos() {
 
 
 bootstrap_linux_fedora() {
+  local packages
+
+  # install repos and gpgkeys
+  pushd "$LOCAL_REPO"/assets/Fedora-repos >/dev/null 2>&1
+  sudo command cp -f ./* /etc/yum.repos.d/
+  while read -r gpgkey; do
+    sudo rpm --import "$gpgkey"
+  done <<< "$(grep -hEr "^gpgkey" . | awk -F '=' '{print $2}' | uniq)"
+  popd >/dev/null 2>&1
+
+  # update and install packages
+  sudo dnf clean all
+  sudo dnf makecache
+
+  mapfile -t packages < "$LOCAL_REPO"/assets/Fedora-packages
+  sudo dnf install -y "${packages[@]}"
   sudo dnf upgrade -y
-  sudo dnf install -y $(<"$LOCAL_REPO"/assets/Fedora-packages)
+
+  # load Gnome settings
   dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf
 }
 
@@ -200,8 +217,8 @@ done
 
 
 # make system directory structure
-sudo chown "$A_USER" /usr/local
-sudo chmod 755 /usr/local
+sudo chown -R "$A_USER" /usr/local
+sudo chmod -R 755 /usr/local
 for directory in "${SYS_DIRECTORIES[@]}"; do
   eval "mkdir -p $directory"
 done
