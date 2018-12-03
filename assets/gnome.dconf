@@ -4,20 +4,8 @@ sleep-inactive-ac-type='suspend'
 
 
 [shell]
-enabled-extensions=['background-logo@fedorahosted.org', 'dash-to-dock@micxgx.gmail.com', 'system-monitor@paradoxxx.zero.gmail.com']
+enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com']
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']
-
-[shell/extensions/dash-to-dock]
-extend-height=false
-dock-fixed=false
-intellihide-mode='FOCUS_APPLICATION_WINDOWS'
-intellihide=false
-require-pressure-to-show=false
-dock-position='BOTTOM'
-custom-theme-shrink=true
-preferred-monitor=0
-height-fraction=0.90000000000000002
-dash-max-icon-size=40
 
 [shell/extensions/system-monitor]
 battery-display=false
