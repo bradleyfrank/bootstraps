@@ -161,7 +161,9 @@ bootstrap_linux_fedora() {
 
   # update and install packages
   sudo dnf clean all
-  sudo dnf makecache
+  while ! sudo dnf makecache; do
+    sudo dnf clean all
+  done
 
   mapfile -t packages < "$LOCAL_REPO"/assets/Fedora-packages
   sudo dnf install -y "${packages[@]}"
