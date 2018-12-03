@@ -153,7 +153,7 @@ bootstrap_linux_fedora() {
   # install repos and gpgkeys
   pushd "$LOCAL_REPO"/assets/Fedora-repos >/dev/null 2>&1
   sudo command cp -f ./* /etc/yum.repos.d/
-  chmod 644 /etc/yum.repos.d/*
+  sudo chmod 644 /etc/yum.repos.d/*
   while read -r gpgkey; do
     sudo rpm --import "$gpgkey"
   done <<< "$(grep -hEr "^gpgkey" . | awk -F '=' '{print $2}' | uniq)"
