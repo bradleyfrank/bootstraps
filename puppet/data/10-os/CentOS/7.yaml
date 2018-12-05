@@ -6,6 +6,7 @@ bmf::packages:
   pip_upgrade_outdated:
     provider: 'pip3'
     require: 'Package[python34-pip]'
+  procps-ng: {}
   pydf:
     provider: 'pip3'
     require: 'Package[python34-pip]'
@@ -15,6 +16,7 @@ bmf::packages:
     require: 'Package[python34]'
   python34-pip:
     require: 'Package[python34]'
+  sysvinit-tools: {}
 ##
 ## Security
 ##
