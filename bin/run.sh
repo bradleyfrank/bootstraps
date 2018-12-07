@@ -168,9 +168,6 @@ bootstrap_linux_fedora() {
   sudo dnf upgrade -y
   mapfile -t packages < "$LOCAL_REPO"/assets/Fedora-packages
   sudo dnf install -y "${packages[@]}"
-
-  # load Gnome settings
-  dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf
 }
 
 
