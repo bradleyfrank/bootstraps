@@ -41,6 +41,7 @@ LOCAL_REPO="/usr/local/srv"
 # │   │   ├── dict
 # │   │   │   └── doc
 # │   │   ├── doc
+# │   │   ├── konsole
 # │   │   └── man
 # │   │       ├── man1
 # │   │       ├── man2
@@ -59,7 +60,7 @@ HOME_DIRECTORIES=(
   "$HOME/Development/{Clients,Home,Scratch,Snippets}"
   "$HOME/.config/dotfiles/archive"
   "$HOME/.local/{bin,etc,include,lib,share,opt,var}"
-  "$HOME/.local/share/{bash,doc,man/man{1..9}}"
+  "$HOME/.local/share/{bash,doc,konsole,man/man{1..9}}"
   "$HOME/.ssh"
 )
 
