@@ -1,5 +1,4 @@
 adobe-source-*-fonts
-augeas
 bluefish
 docker
 expect
@@ -25,10 +24,7 @@ gedit-plugin-textsize
 gedit-plugin-wordcompletion
 gedit-plugins-data
 ghostscript
-ghostwriter
 glances
-gnome-shell-extension-system-monitor-applet
-gnome-tweaks
 google-chrome-stable
 hstr
 htop
@@ -37,12 +33,12 @@ libreoffice
 libreoffice-gallery-vrt-network-equipment
 mediawriter
 mkvtoolnix
-mosh
 most
 mpv
 mtr
 nautilus-dropbox*
 ncdu
+neofetch
 nmap
 p7zip
 p7zip-plugins
@@ -52,7 +48,7 @@ python3
 python3-devel
 ranger
 reptyr
-screenfetch
+retext
 seahorse
 spotify-client
 stow
@@ -66,4 +62,3 @@ vlc
 wine*
 wget
 xz
-Zim
