@@ -1,5 +1,4 @@
 adobe-source-*-fonts
-bluefish
 docker
 expect
 fail2ban
@@ -9,6 +8,7 @@ glances
 google-chrome-stable
 hstr
 htop
+kate
 libmp4v2
 libreoffice
 libreoffice-gallery-vrt-network-equipment
