@@ -27,8 +27,7 @@ LOCAL_REPO="/usr/local/srv"
 # ├── Development
 # │   ├── Clients
 # │   ├── Home
-# │   ├── Scratch
-# │   └── Snippets
+# │   └── Scratch
 # ├── .config
 # │   └── dotfiles
 # ├── .local
@@ -57,7 +56,7 @@ LOCAL_REPO="/usr/local/srv"
 #
 
 HOME_DIRECTORIES=(
-  "$HOME/Development/{Clients,Home,Scratch,Snippets}"
+  "$HOME/Development/{Clients,Home,Scratch}"
   "$HOME/.config/dotfiles/archive"
   "$HOME/.local/{bin,etc,include,lib,share,opt,var}"
   "$HOME/.local/share/{bash,doc,konsole,man/man{1..9}}"
