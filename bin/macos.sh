@@ -62,6 +62,13 @@ defaults write com.apple.Terminal NewTabWorkingDirectoryBehavior -int 1
 defaults write com.apple.TextEdit RichText -int 0
 
 
+# ==== TextMate ====
+
+# symlink to patched `par`
+pushd "$HOME/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin" > /dev/null 2>&1
+ln -s /usr/local/bin/par par
+popd > /dev/null 2>&1
+
 # ==== Desktop ====
 
 # show filename extensions by default
