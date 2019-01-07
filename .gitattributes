@@ -1,0 +1,2 @@
+puppet/modules/* linguist-vendored
+puppet/modules/bmf linguist-vendored=false
