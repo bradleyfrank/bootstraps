@@ -4,7 +4,7 @@ sleep-inactive-ac-type='suspend'
 
 
 [shell]
-enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com']
+enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com', 'dash-to-dock@micxgx.gmail.com']
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']
 
 [shell/extensions/system-monitor]
@@ -33,6 +33,36 @@ net-graph-width=50
 net-show-text=false
 show-tooltip=true
 swap-display=false
+
+
+[shell/extensions/dash-to-dock]
+apply-custom-theme=true
+show-apps-at-top=true
+intellihide=false
+dock-position='BOTTOM'
+dash-max-icon-size=32
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+extend-height=true
+
+
+[gedit/preferences/editor]
+display-right-margin=true
+display-overview-map=true
+scheme='tango'
+auto-save=true
+tabs-size=uint32 4
+display-line-numbers=true
+insert-spaces=true
+right-margin-position=uint32 80
+background-pattern='none'
+wrap-last-split-mode='word'
+
+[gedit/preferences/ui]
+show-tabs-mode='auto'
+side-panel-visible=false
+
+[gedit/plugins]
+active-plugins=['docinfo', 'sort', 'filebrowser', 'time', 'modelines', 'spell']
 
 
 [desktop/notifications/application/org-gnome-evolution]
