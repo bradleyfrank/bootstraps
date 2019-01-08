@@ -68,7 +68,7 @@ SYS_DIRECTORIES=(
   "/usr/local/share/dict"
 )
 
-A_USER="$(id -un)"
+USERNAME="$(id -un)"
 OS_NAME=""
 OS_MAJVER=""
 HOST_NAME=$(uname -n)
@@ -139,7 +139,7 @@ bootstrap_linux_centos() {
 
   # install Puppet apply script
   sudo cp "$LOCAL_REPO"/assets/puppet-apply "$puppet_apply"
-  sudo chown "$A_USER" "$puppet_apply"
+  sudo chown "$USERNAME" "$puppet_apply"
   sudo chmod 0755 "$puppet_apply"
 
   # apply Puppet manifest
@@ -217,7 +217,7 @@ done
 
 
 # make system directory structure
-sudo chown -R "$A_USER" /usr/local
+sudo chown -R "$USERNAME" /usr/local
 sudo chmod -R 755 /usr/local
 for directory in "${SYS_DIRECTORIES[@]}"; do
   eval "mkdir -p $directory"
