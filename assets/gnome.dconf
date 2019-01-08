@@ -7,6 +7,7 @@ clock-show-date=true
 clock-format='12h'
 clock-show-seconds=false
 clock-show-weekday=true
+enable-animations=false
 
 [desktop/wm/preferences]
 action-right-click-titlebar='minimize'
