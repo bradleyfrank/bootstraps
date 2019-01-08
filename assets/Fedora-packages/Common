@@ -8,7 +8,7 @@ glances
 google-chrome-stable
 hstr
 htop
-kate
+keychain
 libmp4v2
 libreoffice
 libreoffice-gallery-vrt-network-equipment
@@ -17,13 +17,12 @@ mkvtoolnix
 most
 mpv
 mtr
-nautilus-dropbox*
 ncdu
 neofetch
 nmap
-par
 p7zip
 p7zip-plugins
+par
 perf
 powerline-fonts
 python3
@@ -41,7 +40,6 @@ tldr
 tree
 vim
 vlc
-wine*
 wget
-yakuake
+wine*
 xz

@@ -148,7 +148,10 @@ bootstrap_linux_centos() {
 
 
 bootstrap_linux_fedora() {
-  local packages
+  local pkgs_common pkgs_extra
+
+  # update system
+  sudo dnf upgrade -y
 
   # install repos and gpgkeys
   pushd "$LOCAL_REPO"/assets/Fedora-repos >/dev/null 2>&1
@@ -165,9 +168,13 @@ bootstrap_linux_fedora() {
     sudo dnf clean all
   done
 
-  sudo dnf upgrade -y
-  mapfile -t packages < "$LOCAL_REPO"/assets/Fedora-packages
-  sudo dnf install -y "${packages[@]}"
+  mapfile -t pkgs_common < "$LOCAL_REPO"/assets/Fedora-packages/Common
+  sudo dnf install -y "${pkgs_common[@]}"
+
+  mapfile -t pkgs_extra < "$LOCAL_REPO"/assets/Fedora-packages/Gnome
+  sudo dnf install -y "${pkgs_extra[@]}"
+
+  dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf
 }
 
 
