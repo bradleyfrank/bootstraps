@@ -15,9 +15,6 @@ action-right-click-titlebar='minimize'
 [shell]
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']
 
-[desktop/notifications/application/org-gnome-evolution]
-enable=false
-
 [desktop/notifications/application/org-gnome-fileroller]
 enable=false
 
@@ -92,7 +89,37 @@ side-panel-visible=false
 
 [gedit/plugins]
 active-plugins=['docinfo', 'sort', 'filebrowser', 'time', 'modelines', 'spell']
+[evolution/mail]
+junk-empty-on-exit-days=0
+paned-size=1143292
+junk-check-incoming=true
+mark-seen-timeout=0
+junk-lookup-addressbook=false
+browser-close-on-reply-policy='ask'
+headers=['<?xml version="1.0"?>\n<header name="From" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Reply-To" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="To" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Cc" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Bcc" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Subject" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Date" enabled=""/>\n', '<?xml version="1.0"?>\n<header name="Newsgroups"/>\n', '<?xml version="1.0"?>\n<header name="Face"/>\n', '<?xml version="1.0"?>\n<header name="x-evolution-mailer"/>\n']
+reply-style-name='quoted'
+junk-check-custom-header=true
+layout=1
+forward-style-name='attached'
+image-loading-policy='never'
+search-gravatar-for-photo=true
+show-to-do-bar=false
+show-headers=[('From', true), ('Reply-To', true), ('To', true), ('Cc', true), ('Bcc', true), ('Subject', true), ('Date', true), ('Newsgroups', false), ('Face', true), ('x-evolution-mailer', false)]
+composer-top-signature=true
+send-recv-all-on-start=true
+trash-empty-on-exit-days=0
+thread-subject=true
 
+[evolution/shell]
+menubar-visible=true
+folder-bar-width=224
+sidebar-visible=true
+default-component-id='mail'
+buttons-visible=false
+attachment-view=0
+toolbar-visible=true
+buttons-style='icons'
+statusbar-visible=false
 
 ##
 ## System
