@@ -21,6 +21,9 @@ enable=false
 [desktop/notifications/application/rhythmbox]
 enable=false
 
+[mutter]
+center-new-windows=true
+
 
 ##
 ## Extensions
