@@ -91,7 +91,8 @@ show-tabs-mode='auto'
 side-panel-visible=false
 
 [gedit/plugins]
-active-plugins=['docinfo', 'sort', 'filebrowser', 'time', 'modelines', 'spell']
+active-plugins=['docinfo', 'joinlines', 'codecomment', 'git', 'modelines', 'filebrowser', 'colorpicker', 'sort', 'multiedit', 'time', 'spell']
+
 [evolution/mail]
 junk-empty-on-exit-days=0
 paned-size=1143292
