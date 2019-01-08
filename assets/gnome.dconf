@@ -139,6 +139,7 @@ toolbar-visible=true
 buttons-style='icons'
 statusbar-visible=false
 
+
 ##
 ## System
 ##
@@ -159,6 +160,10 @@ automatic-timezone=true
 [settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='suspend'
+
+[settings-daemon/plugins/color]
+night-light-schedule-automatic=true
+night-light-enabled=true
 
 
 ##
