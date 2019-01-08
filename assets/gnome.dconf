@@ -4,7 +4,6 @@
 
 [desktop/interface]
 clock-show-date=true
-show-battery-percentage=false
 clock-format='12h'
 clock-show-seconds=false
 clock-show-weekday=true
