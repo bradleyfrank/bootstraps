@@ -129,4 +129,6 @@ night-light-enabled=true
 ##
 
 [desktop/input-sources]
-xkb-options=['caps:ctrl_modifier']
+current=uint32 0
+sources=[('xkb', 'us')]
+xkb-options=['ctrl:nocaps']
