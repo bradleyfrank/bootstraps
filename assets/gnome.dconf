@@ -30,7 +30,7 @@ center-new-windows=true
 ##
 
 [shell]
-enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com', 'KeepAwake@jepfa.de']
+enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com', 'KeepAwake@jepfa.de', 'dash-to-dock@micxgx.gmail.com']
 
 [shell/extensions/system-monitor]
 battery-display=false
@@ -58,6 +58,20 @@ net-graph-width=50
 net-show-text=false
 show-tooltip=true
 swap-display=false
+
+[shell/extensions/dash-to-dock]
+show-apps-at-top=true
+extend-height=true
+dock-fixed=false
+force-straight-corner=false
+intellihide=false
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+require-pressure-to-show=false
+apply-custom-theme=true
+show-favorites=false
+dock-position='BOTTOM'
+custom-theme-shrink=true
+dash-max-icon-size=32
 
 
 ##
