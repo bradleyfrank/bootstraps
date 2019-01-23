@@ -61,17 +61,24 @@ swap-display=false
 
 [shell/extensions/dash-to-dock]
 show-apps-at-top=true
-extend-height=true
+extend-height=false
 dock-fixed=false
-force-straight-corner=false
+force-straight-corner=true
 intellihide=false
 intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+custom-background-color=true
 require-pressure-to-show=false
-apply-custom-theme=true
+apply-custom-theme=false
 show-favorites=false
 dock-position='BOTTOM'
 custom-theme-shrink=true
-dash-max-icon-size=32
+background-opacity=0.75
+height-fraction=1.0
+dash-max-icon-size=40
+background-color='#2e3436'
+running-indicator-style='SEGMENTED'
+preferred-monitor=0
+transparency-mode='FIXED'
 
 
 ##
