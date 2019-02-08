@@ -8,13 +8,13 @@ set -eu
 # --==## SETTINGS ##==--
 #
 
-GH_RAW="https://raw.githubusercontent.com"
-GH_URL="https://github.com"
+GITHUB_RAW_URL="https://raw.githubusercontent.com"
+GITHUB_COM_URL="https://github.com"
 
-BREW_URL="$GH_RAW/Homebrew/install/master/install"
+BREW_URL="$GITHUB_RAW_URL/Homebrew/install/master/install"
 
-BOOTSTRAP_REPO="$GH_URL/bradleyfrank/bootstraps.git"
-DOTFILES_REPO="$GH_URL/bradleyfrank/dotfiles.git"
+BOOTSTRAP_REPO="$GITHUB_COM_URL/bradleyfrank/bootstraps.git"
+DOTFILES_REPO="$GITHUB_COM_URL/bradleyfrank/dotfiles.git"
 
 DOTFILES_DIR="$HOME/.dotfiles"
 BASH_DOTFILES_SCRIPT="$HOME/.local/bin/generate-dotfiles"
@@ -68,10 +68,10 @@ SYS_DIRECTORIES=(
   "/usr/local/share/dict"
 )
 
-USERNAME="$(id -un)"
+LOCAL_USER="$(id -un)"
+LOCAL_HOSTNAME=$(uname -n)
 OS_NAME=""
 OS_MAJVER=""
-HOST_NAME=$(uname -n)
 
 
 #
@@ -139,7 +139,7 @@ bootstrap_linux_centos() {
 
   # install Puppet apply script
   sudo cp "$LOCAL_REPO"/assets/puppet-apply "$puppet_apply"
-  sudo chown "$USERNAME" "$puppet_apply"
+  sudo chown "$LOCAL_USER" "$puppet_apply"
   sudo chmod 0755 "$puppet_apply"
 
   # apply Puppet manifest
@@ -224,7 +224,7 @@ done
 
 
 # make system directory structure
-sudo chown -R "$USERNAME" /usr/local
+sudo chown -R "$LOCAL_USER" /usr/local
 sudo chmod -R 755 /usr/local
 for directory in "${SYS_DIRECTORIES[@]}"; do
   eval "mkdir -p $directory"
@@ -264,18 +264,18 @@ popd >/dev/null 2>&1
 # stow all packages in dotfiles
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
 
-if git branch -a | grep -qE "$HOST_NAME" >/dev/null 2>&1; then
+if git branch -a | grep -qE "$LOCAL_HOSTNAME" >/dev/null 2>&1; then
   # local hostname branch exists: go ahead and stow
   git checkout master
   stow_packages ""
 else
   # no hostname branch: create one and backup configs
-  git checkout -b "$HOST_NAME"
+  git checkout -b "$LOCAL_HOSTNAME"
   stow_packages "--adopt"
   git add -A
   if git commit --dry-run >/dev/null 2>&1; then
     # only commit if there are changes to commit
-    git commit -m "Backup dotfiles for $HOST_NAME."
+    git commit -m "Backup dotfiles for $LOCAL_HOSTNAME."
   fi
   git checkout master
   # reset any submodules to dotfiles-specified commit
