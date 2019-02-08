@@ -5,4 +5,5 @@ gedit-plugin-joinlines
 gedit-plugin-multiedit
 libgnome-keyring
 gnome-shell-extension-background-logo
+gnome-shell-extension-dash-to-dock
 gnome-shell-extension-system-monitor-applet
