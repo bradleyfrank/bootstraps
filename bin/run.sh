@@ -148,7 +148,9 @@ bootstrap_linux_centos() {
 
 
 bootstrap_linux_fedora() {
-  local pkgs_common pkgs_extra
+  local xdg_desktop \
+    pkgs_dir="$LOCAL_REPO/assets/Fedora-packages" pkgs_combined pkgs
+    
 
   # update system
   sudo dnf upgrade -y
@@ -168,13 +170,23 @@ bootstrap_linux_fedora() {
     sudo dnf clean all
   done
 
-  mapfile -t pkgs_common < "$LOCAL_REPO"/assets/Fedora-packages/Common
-  sudo dnf install -y "${pkgs_common[@]}"
+  # determine desktop environment
+  xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
 
-  mapfile -t pkgs_extra < "$LOCAL_REPO"/assets/Fedora-packages/Gnome
-  sudo dnf install -y "${pkgs_extra[@]}"
+  # create list of appropriate packages to install
+  pkgs_combined="$(mktemp)"
+  cat "$pkgs_dir"/common "$pkgs_dir"/"$xdg_desktop" > "$pkgs_combined"
 
-  dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf
+  # install packages
+  readarray -t pkgs < "$pkgs_combined"
+  sudo dnf install -y "${pkgs[@]}"
+
+  # desktop configuration
+  case "$xdg_desktop" in
+       gnome) dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf ;;
+         kde) ;;
+    cinnamon) ;;
+  esac
 }
 
 
