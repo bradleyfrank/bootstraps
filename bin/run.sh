@@ -177,6 +177,7 @@ bootstrap_linux_fedora() {
   # install packages
   readarray -t pkgs < "$pkgs_full_list"
   sudo dnf install -y "${pkgs[@]}"
+  sudo dnf upgrade -y
 
   # desktop configuration
   case "$xdg_desktop" in
