@@ -1,11 +1,11 @@
 [negativo17-multimedia]
 name=negativo17 - Multimedia
 baseurl=https://negativo17.org/repos/multimedia/fedora-$releasever/$basearch
-gpgkey=https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-slaanesh
 gpgcheck=1
 
 [negativo17-spotify]
 name=negativo17 - Spotify
 baseurl=https://negativo17.org/repos/spotify/fedora-$releasever/$basearch
-gpgkey=https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-slaanesh
 gpgcheck=1

@@ -1,5 +1,5 @@
 [google-chrome]
 name=Google Chrome
 baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
-gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-google-chrome
 gpgcheck=1

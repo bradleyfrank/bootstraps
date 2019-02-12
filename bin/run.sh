@@ -148,37 +148,34 @@ bootstrap_linux_centos() {
 
 
 bootstrap_linux_fedora() {
-  local xdg_desktop \
-    pkgs_dir="$LOCAL_REPO/assets/Fedora-packages" pkgs_combined pkgs
-    
+  local xdg_desktop
+  local pkgs_full_list pkgs pkgs_dir="$LOCAL_REPO/assets/Fedora-packages"
 
   # update system
+  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$OS_MAJVER"-primary
   sudo dnf upgrade -y
 
-  # install repos and gpgkeys
+  # install repos and import gpg keys
   pushd "$LOCAL_REPO"/assets/Fedora-repos >/dev/null 2>&1
-  sudo command cp -f ./* /etc/yum.repos.d/
-  sudo chmod 644 /etc/yum.repos.d/*
-  while read -r gpgkey; do
-    sudo rpm --import "$gpgkey"
-  done <<< "$(grep -hEr "^gpgkey" . | awk -F '=' '{print $2}' | uniq)"
+  sudo command cp -f ./yum.repos.d/* /etc/yum.repos.d/
+  sudo command cp -f ./rpm-gpg/* /etc/pki/rpm-gpg/
+  sudo chmod 644 /etc/yum.repos.d/* /etc/pki/rpm-gpg/*
+  rpm --import ./rpm-gpg/*
   popd >/dev/null 2>&1
 
   # update and install packages
   sudo dnf clean all
-  while ! sudo dnf makecache; do
-    sudo dnf clean all
-  done
+  while ! sudo dnf makecache; do sudo dnf clean all; done
 
-  # determine desktop environment
+  # determine desktop environment (e.g. Gnome, KDE, Cinnamon)
   xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
 
   # create list of appropriate packages to install
-  pkgs_combined="$(mktemp)"
-  cat "$pkgs_dir"/common "$pkgs_dir"/"$xdg_desktop" > "$pkgs_combined"
+  pkgs_full_list="$(mktemp)"
+  cat "$pkgs_dir"/common "$pkgs_dir"/"$xdg_desktop" > "$pkgs_full_list"
 
   # install packages
-  readarray -t pkgs < "$pkgs_combined"
+  readarray -t pkgs < "$pkgs_full_list"
   sudo dnf install -y "${pkgs[@]}"
 
   # desktop configuration
