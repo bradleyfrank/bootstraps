@@ -1,0 +1,5 @@
+[negativo17-spotify]
+name=negativo17 - Spotify
+baseurl=https://negativo17.org/repos/spotify/fedora-$releasever/$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-slaanesh
+gpgcheck=1
