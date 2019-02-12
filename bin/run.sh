@@ -157,8 +157,8 @@ bootstrap_linux_fedora() {
 
   # install repos and import gpg keys
   pushd "$LOCAL_REPO"/assets/Fedora-repos >/dev/null 2>&1
-  sudo command cp -f ./yum.repos.d/* /etc/yum.repos.d/
-  sudo command cp -f ./rpm-gpg/* /etc/pki/rpm-gpg/
+  sudo command cp -rf ./yum.repos.d/* /etc/yum.repos.d/
+  sudo command cp -rf ./rpm-gpg/* /etc/pki/rpm-gpg/
   sudo chmod 644 /etc/yum.repos.d/* /etc/pki/rpm-gpg/*
   rpm --import ./rpm-gpg/*
   popd >/dev/null 2>&1
