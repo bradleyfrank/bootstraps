@@ -152,7 +152,7 @@ bootstrap_linux_fedora() {
   local pkgs_full_list pkgs pkgs_dir="$LOCAL_REPO/assets/Fedora-packages"
 
   # update system
-  rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$OS_MAJVER"-primary
+  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$OS_MAJVER"-primary
   sudo dnf upgrade -y
 
   # install repos and import gpg keys
@@ -160,7 +160,7 @@ bootstrap_linux_fedora() {
   sudo command cp -rf ./yum.repos.d/* /etc/yum.repos.d/
   sudo command cp -rf ./rpm-gpg/* /etc/pki/rpm-gpg/
   sudo chmod 644 /etc/yum.repos.d/* /etc/pki/rpm-gpg/*
-  rpm --import ./rpm-gpg/*
+  sudo rpm --import ./rpm-gpg/*
   popd >/dev/null 2>&1
 
   # update and install packages
