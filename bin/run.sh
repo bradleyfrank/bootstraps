@@ -108,7 +108,10 @@ bootstrap_linux() {
   OS_NAME="$(awk '{print $1}' /etc/redhat-release)"
   OS_MAJVER="$(grep -oE '([0-9]+)' /etc/redhat-release | head -n 1)"
 
-  sudo yum install -y git
+  if ! rpm --verify git >/dev/null 2>&1; then
+    sudo yum install -y git
+  fi
+
   git_clone_repo "$LOCAL_REPO" "$BOOTSTRAP_REPO"
 
   case "$OS_NAME" in
