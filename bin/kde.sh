@@ -73,7 +73,7 @@ plugin=org.kde.plasma.systemtray
 
 [Containments][2][Applets][5][Configuration]
 PreloadWeight=75
-SystrayContainmentId=7
+SystrayContainmentId=3
 
 [Containments][2][Applets][6]
 immutability=1
