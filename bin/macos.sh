@@ -41,15 +41,15 @@ defaults write com.apple.safari autofillmiscellaneousforms -bool false
 
 # ==== Terminal ====
 
-# make Bash 4 an available shell option
+# make up-to-date Bash an available shell option
 if ! grep -q '/usr/local/bin/bash' /etc/shells; then
   sudo bash -c "echo '/usr/local/bin/bash' >> /etc/shells"
 fi
 
-# set Bash 4 as default shell for user
+# set user-installed Bash as default shell for user
 sudo chsh -s /usr/local/bin/bash "$(id -un)"
 
-# set global default Shell to Bash 4
+# set global default Shell to user-installed Bash
 defaults write com.apple.Terminal Shell -string "/usr/local/bin/bash"
 
 # make new tabs open in default directory
@@ -68,6 +68,7 @@ defaults write com.apple.TextEdit RichText -int 0
 pushd "$HOME/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin" > /dev/null 2>&1
 ln -s /usr/local/bin/par par
 popd > /dev/null 2>&1
+
 
 # ==== Desktop ====
 
@@ -232,7 +233,6 @@ sudo defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Max" 80
 sudo defaults write com.apple.BluetoothAudioAgent "Negotiated Bitpool Min" 80
 
 
-
 # ==== Security ====
 
 # require password as soon as screensaver or sleep mode starts
@@ -276,6 +276,8 @@ sudo pmset displaysleep 15
 # put computer to sleep after 30 minutes of inactivity
 sudo pmset sleep 30
 
+
+# ==== Post-Configuration ====
 
 # restart services to apply changes
 sudo killall Dock
