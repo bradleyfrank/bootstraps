@@ -157,6 +157,9 @@ knownItems=org.kde.plasma.keyboardindicator,org.kde.plasma.printmanager,org.kde.
 showAllItems=true
 shownItems=org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.networkmanagement
 
+[General]
+immutability=2
+
 [ScreenMapping]
 itemsOnDisabledScreens=
 EOF
