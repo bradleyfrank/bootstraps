@@ -86,3 +86,8 @@ trash-icon-visible=false
 [org/cinnamon/settings-daemon/peripherals/keyboard]
 repeat-interval=uint32 30
 delay=uint32 500
+
+[org/cinnamon/desktop/input-sources]
+current=uint32 0
+sources=[('xkb', 'us')]
+xkb-options=['ctrl:nocaps']
