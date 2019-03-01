@@ -183,11 +183,9 @@ bootstrap_linux_fedora() {
 
   # desktop configuration
   case "$xdg_desktop" in
-       gnome) dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf ;;
-         kde) "$LOCAL_REPO"/bin/kde.sh ;;
-  x-cinnamon) dconf load / < "$LOCAL_REPO"/assets/cinnamon.dconf
-              "$LOCAL_REPO"/bin/cinnamon.py "$HOME"
-              ;;
+       gnome) "$LOCAL_REPO"/bin/gnome.sh    ;;
+         kde) "$LOCAL_REPO"/bin/kde.sh      ;;
+  x-cinnamon) "$LOCAL_REPO"/bin/cinnamon.sh ;;
   esac
 }
 
