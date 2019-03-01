@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+#
+# WARNING:
+# Although this script is 'working' in the sense that it re-writes the json files
+# with the assigned values, the json is written 'out of order' as far as the system
+# is concerned, and is considered corrupt.
+#
+
 import json
 import os
 import sys
