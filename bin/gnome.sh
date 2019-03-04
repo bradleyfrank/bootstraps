@@ -1,3 +1,3 @@
 #!/bin/bash
 
-dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf
+dconf load /org/gnome/ < "$1"/assets/gnome.dconf
