@@ -69,6 +69,26 @@ trash-icon-visible=false
 
 
 ##
+## System
+##
+
+[org/cinnamon/desktop/sound]
+event-sounds=false
+
+[org/cinnamon/sounds]
+logout-enabled=false
+map-enabled=false
+maximize-enabled=false
+switch-enabled=false
+tile-enabled=false
+minimize-enabled=false
+unplug-enabled=false
+close-enabled=false
+plug-enabled=false
+unmaximize-enabled=false
+
+
+##
 ## I/O
 ##
 
