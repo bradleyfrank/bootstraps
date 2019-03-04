@@ -30,7 +30,7 @@ center-new-windows=true
 ##
 
 [shell]
-enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com', 'KeepAwake@jepfa.de', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['background-logo@fedorahosted.org', 'system-monitor@paradoxxx.zero.gmail.com', 'dash-to-dock@micxgx.gmail.com']
 
 [shell/extensions/system-monitor]
 battery-display=false
