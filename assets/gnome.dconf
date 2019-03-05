@@ -149,6 +149,11 @@ night-light-enabled=true
 ## I/O
 ##
 
+[desktop/peripherals/touchpad]
+two-finger-scrolling-enabled=true
+tap-to-click=true
+
+
 [desktop/input-sources]
 current=uint32 0
 sources=[('xkb', 'us')]
