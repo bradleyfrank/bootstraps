@@ -69,11 +69,15 @@ trash-icon-visible=false
 
 
 ##
-## System
+## I/O
 ##
 
-[org/cinnamon/desktop/sound]
-event-sounds=false
+[org/cinnamon/settings-daemon/peripherals/keyboard]
+repeat-interval=uint32 30
+delay=uint32 500
+
+[org/gnome/libgnomekbd/keyboard]
+options=['ctrl\tctrl:nocaps']
 
 [org/cinnamon/sounds]
 logout-enabled=false
@@ -86,16 +90,3 @@ unplug-enabled=false
 close-enabled=false
 plug-enabled=false
 unmaximize-enabled=false
-
-
-##
-## I/O
-##
-
-[org/cinnamon/settings-daemon/peripherals/keyboard]
-repeat-interval=uint32 30
-delay=uint32 500
-
-[org/gnome/libgnomekbd/keyboard]
-options=['ctrl\tctrl:nocaps']
-
