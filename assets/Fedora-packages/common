@@ -3,6 +3,7 @@ bcal
 docker
 expect
 fail2ban
+fdupes
 ffmpeg
 ghostscript
 glances
