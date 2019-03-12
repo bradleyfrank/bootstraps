@@ -15,6 +15,7 @@ keychain
 libmp4v2
 libreoffice
 libreoffice-gallery-vrt-network-equipment
+libvirt-client
 mediawriter
 mkvtoolnix
 most
@@ -42,6 +43,7 @@ stow
 strace
 system-config-printer
 tldr
+tmux
 tree
 vim
 vlc
