@@ -5,6 +5,7 @@ expect
 fail2ban
 fdupes
 ffmpeg
+figlet
 ghostscript
 glances
 google-chrome-stable
