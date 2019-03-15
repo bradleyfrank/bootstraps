@@ -130,19 +130,25 @@ side-panel-visible=false
 [gedit/plugins]
 active-plugins=['docinfo', 'joinlines', 'codecomment', 'git', 'modelines', 'filebrowser', 'colorpicker', 'sort', 'multiedit', 'time', 'spell']
 
-[terminal/legacy/profiles:/:57ec47b4-dd6d-4fa3-9434-f65de25dd9ed]
-visible-name='Personal'
-palette=['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']
+[terminal/legacy/profiles:/:03aaa0bf-8be2-4211-898e-9b2e6ba77703]
+foreground-color='#d9d9e6e6f2f2'
+visible-name='Pali'
+palette=['#0a0a0a0a0a0a', '#abab8f8f7474', '#7474abab8f8f', '#8f8fabab7474', '#8f8f7474abab', '#abab74748f8f', '#74748f8fabab', '#F2F2F2F2F2F2', '#5D5D5D5D5D5D', '#FFFF1D1D6262', '#9c9cc3c3afaf', '#FFFFD0D00A0A', '#afaf9c9cc3c3', '#FFFF1D1D6262', '#4B4BB8B8FDFD', '#A0A02020F0F0']
 scroll-on-output=true
 use-system-font=false
 use-theme-colors=false
-font='Source Code Pro 11'
+font='Source Code Pro 12'
+allow-bold=true
 scrollback-unlimited=true
+use-theme-background=false
+bold-color-same-as-fg=true
+bold-color='#d9d9e6e6f2f2'
+background-color='#23232E2E3737'
 audible-bell=false
 
 [terminal/legacy/profiles:]
-list=['57ec47b4-dd6d-4fa3-9434-f65de25dd9ed']
-default='57ec47b4-dd6d-4fa3-9434-f65de25dd9ed'
+list=['03aaa0bf-8be2-4211-898e-9b2e6ba77703']
+default='03aaa0bf-8be2-4211-898e-9b2e6ba77703'
 
 
 ##
