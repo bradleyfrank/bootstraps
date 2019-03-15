@@ -112,13 +112,15 @@ custom-theme-shrink=true
 [gedit/preferences/editor]
 display-right-margin=true
 display-overview-map=true
-scheme='tango'
 auto-save=true
+scheme='kate'
 tabs-size=uint32 4
+editor-font='Source Code Pro 11'
 display-line-numbers=true
 insert-spaces=true
 right-margin-position=uint32 80
 background-pattern='none'
+use-default-font=false
 wrap-last-split-mode='word'
 
 [gedit/preferences/ui]
