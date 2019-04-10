@@ -69,9 +69,14 @@ pushd "$HOME/Library/Application Support/TextMate/Managed/Bundles/Bundle Support
 ln -s /usr/local/bin/par par
 popd > /dev/null 2>&1
 
-# symlink vscodium to standard location for dotfiles
+# symlink vscodium configs to match Linux
 pushd "$HOME/Library/Application Support" > /dev/null 2>&1
 ln -s "$HOME"/.config/VSCodium VSCodium
+popd > /dev/null 2>&1
+
+# symlink `code` bin to avoid adding another PATH
+pushd /usr/local/bin > /dev/null 2>&1
+ln -s /Applications/VSCodium.app/Contents/Resources/app/bin/code code
 popd > /dev/null 2>&1
 
 
