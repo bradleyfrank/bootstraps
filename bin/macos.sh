@@ -62,11 +62,16 @@ defaults write com.apple.Terminal NewTabWorkingDirectoryBehavior -int 1
 defaults write com.apple.TextEdit RichText -int 0
 
 
-# ==== TextMate ====
+# ==== Coding Editors ====
 
 # symlink to patched `par`
 pushd "$HOME/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin" > /dev/null 2>&1
 ln -s /usr/local/bin/par par
+popd > /dev/null 2>&1
+
+# symlink vscodium to standard location for dotfiles
+pushd "$HOME/Library/Application Support" > /dev/null 2>&1
+ln -s "$HOME"/.config/VSCodium VSCodium
 popd > /dev/null 2>&1
 
 

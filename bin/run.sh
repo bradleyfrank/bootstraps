@@ -56,7 +56,7 @@ LOCAL_REPO="/usr/local/srv"
 
 HOME_DIRECTORIES=(
   "$HOME/Development/{Clients,Home,Scratch}"
-  "$HOME/.config/dotfiles/archive"
+  "$HOME/.config/{dotfiles/archive,VSCodium/User}"
   "$HOME/.local/{bin,etc,include,lib,share,opt,var}"
   "$HOME/.local/share/{bash,doc,man/man{1..9}}"
   "$HOME/.ssh"
