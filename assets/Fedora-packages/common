@@ -1,5 +1,6 @@
 adobe-source-*-fonts
 bcal
+dnf-plugin-system-upgrade
 docker
 expect
 fail2ban
