@@ -100,10 +100,8 @@ cask "xquartz"
 mas "1Blocker", id: 1107421413
 mas "Bumpr", id: 1166066070
 mas "Deliveries", id: 924726344
-mas "Evernote", id: 406056744
 mas "Microsoft Remote Desktop", id: 715768417
 mas "Pastebot", id: 1179623856
 mas "Pixelmator", id: 407963104
-mas "Reeder", id: 880001334
 mas "The Unarchiver", id: 425424353
 mas "Twitterrific", id: 1289378661
