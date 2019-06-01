@@ -8,6 +8,7 @@ fdupes
 ffmpeg
 figlet
 ghostscript
+ghostwriter
 glances
 google-chrome-stable
 hstr
@@ -32,7 +33,6 @@ perf
 powerline-fonts
 python3
 python3-devel
-ranger
 reptyr
 retext
 ruby
