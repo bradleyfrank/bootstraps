@@ -1,5 +1,0 @@
-0 */4 * * * root /usr/bin/rsnapshot alpha
-50 23 * * * root /usr/bin/rsnapshot beta
-40 23 * * 6 root /usr/bin/rsnapshot gamma
-30 23 1 * * root /usr/bin/rsnapshot delta
-
