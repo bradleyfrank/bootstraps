@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# default terminal profile
+# default terminal profile (located in dotfiles)
 kwriteconfig5 --file konsolerc --group "Desktop Entry" --key "DefaultProfile" "Brads-Terminal.profile"
 
 # interaction behavior is double-click
