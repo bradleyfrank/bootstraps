@@ -134,9 +134,6 @@ defaults write com.apple.finder CreateDesktop -bool false
 # set Dock to auto-hide
 defaults write com.apple.dock autohide -bool true
 
-# convert Dock to taskbar
-defaults write com.apple.dock static-only -bool true
-
 # disable bouncing Dock icons
 defaults write com.apple.dock no-bouncing -bool true
 
