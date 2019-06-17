@@ -29,7 +29,8 @@ LOCAL_REPO="/usr/local/srv"
 # │   ├── Home
 # │   └── Scratch
 # ├── .config
-# │   └── dotfiles
+# │   └── VSCodium
+# │       └── User
 # ├── .local
 # │   ├── bin
 # │   ├── etc
@@ -37,9 +38,6 @@ LOCAL_REPO="/usr/local/srv"
 # │   ├── lib
 # │   ├── opt
 # │   ├── share
-# │   │   ├── dict
-# │   │   │   └── doc
-# │   │   ├── doc
 # │   │   └── man
 # │   │       ├── man1
 # │   │       ├── man2
@@ -56,9 +54,9 @@ LOCAL_REPO="/usr/local/srv"
 
 HOME_DIRECTORIES=(
   "$HOME/Development/{Clients,Home,Scratch}"
-  "$HOME/.config/{dotfiles/archive,VSCodium/User}"
+  "$HOME/.config/VSCodium/User"
   "$HOME/.local/{bin,etc,include,lib,share,opt,var}"
-  "$HOME/.local/share/{bash,doc,man/man{1..9}}"
+  "$HOME/.local/share/{man/man{1..9}}"
   "$HOME/.ssh"
 )
 
@@ -69,8 +67,6 @@ SYS_DIRECTORIES=(
 
 LOCAL_USER="$(id -un)"
 LOCAL_HOSTNAME=$(uname -n)
-OS_NAME=""
-OS_MAJVER=""
 
 
 #
@@ -78,16 +74,12 @@ OS_MAJVER=""
 #
 
 bootstrap_macos() {
-  # exempt admin group from sudo password requirement
-  sudo bash -c \
-    "echo '%admin ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/nopasswd"
-
   if ! type xcode-select >/dev/null 2>&1; then
     xcode-select --install
   fi
 
   if ! type brew >/dev/null 2>&1; then
-    ruby -e "$(curl -fsSL $BREW_URL)"
+    ruby -e "$(curl -fsSL "$GITHUB_RAW_URL"/Homebrew/install/master/install)"
   fi
 
   brew update
@@ -104,57 +96,22 @@ bootstrap_macos() {
 }
 
 
-bootstrap_linux() {
-  OS_NAME="$(awk '{print $1}' /etc/redhat-release)"
-  OS_MAJVER="$(grep -oE '([0-9]+)' /etc/redhat-release | head -n 1)"
-
-  if ! rpm --verify git >/dev/null 2>&1; then
-    sudo yum install -y git
-  fi
-
-  git_clone_repo "$LOCAL_REPO" "$BOOTSTRAP_REPO"
-
-  case "$OS_NAME" in
-    Fedora) bootstrap_linux_fedora ;;
-         *) bootstrap_linux_centos ;;
-  esac
-}
-
-
-bootstrap_linux_centos() {
-  local rpm puppet_apply="/usr/local/bin/puppet-apply"
-
-  if [[ "$(sudo rpm -qa 'puppet6-release' | wc -l)" -eq 0 ]]; then
-    rpm=$(mktemp)
-    curl -o "$rpm" -s -L "https://yum.puppetlabs.com/puppet6/\
-      puppet6-release-el-${OS_MAJVER}.noarch.rpm"
-    sudo rpm -ivh "$rpm"
-  fi
-
-  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-puppet6-release
-
-  sudo yum install -y epel-release
-  sudo yum clean all
-  sudo yum makecache
-  sudo yum install -y puppet-agent augeas
-  sudo yum update -y
-
-  # install Puppet apply script
-  sudo cp "$LOCAL_REPO"/assets/puppet-apply "$puppet_apply"
-  sudo chown "$LOCAL_USER" "$puppet_apply"
-  sudo chmod 0755 "$puppet_apply"
-
-  # apply Puppet manifest
-  "$puppet_apply"
-}
-
-
-bootstrap_linux_fedora() {
-  local xdg_desktop
+bootstrap_fedora() {
+  local xdg_desktop os_majver
   local pkgs_full_list pkgs pkgs_dir="$LOCAL_REPO/assets/Fedora-packages"
 
+  os_majver="$(grep -oE '([0-9]+)' /etc/redhat-release | head -n 1)"
+
+  if ! type brew >/dev/null 2>&1; then
+    sh -c "$(curl -fsSL "$GITHUB_RAW_URL"/Linuxbrew/install/master/install.sh)"
+  fi
+
+  # install git in order to clone this repo
+  sudo dnf install git -y
+  git_clone_repo "$LOCAL_REPO" "$BOOTSTRAP_REPO"
+
   # update system
-  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$OS_MAJVER"-primary
+  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$os_majver"-primary
   sudo dnf upgrade -y
 
   # install repos and import gpg keys
@@ -169,7 +126,7 @@ bootstrap_linux_fedora() {
   sudo dnf clean all
   while ! sudo dnf makecache; do sudo dnf clean all; done
 
-  # determine desktop environment (e.g. Gnome, KDE, Cinnamon)
+  # determine desktop environment (i.e. Gnome, KDE)
   xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
 
   # create list of appropriate packages to install
@@ -183,9 +140,8 @@ bootstrap_linux_fedora() {
 
   # desktop configuration
   case "$xdg_desktop" in
-       gnome) dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf ;;
-         kde) "$LOCAL_REPO"/bin/kde.sh                                  ;;
-  x-cinnamon) "$LOCAL_REPO"/bin/cinnamon.sh "$LOCAL_REPO"               ;;
+    gnome) dconf load /org/gnome/ < "$LOCAL_REPO"/assets/gnome.dconf ;;
+    kde)   . "$LOCAL_REPO"/bin/kde.sh                                  ;;
   esac
 }
 
@@ -207,27 +163,15 @@ git_clone_repo() {
 
 
 stow_packages() {
-  local stow_packages flags="$1"
-  shopt -s nullglob
-  stow_packages=(*/)
-
-  echo -n "Stowing..."
-  for pkg in "${stow_packages[@]}"; do
-    _pkg=$(echo "$pkg" | cut -d '/' -f 1)
-    echo -n " $_pkg"
-    stow -d "$DOTFILES_DIR" -t "$HOME" "$flags" "$_pkg"
+  for dir in */; do
+    stow -d "$DOTFILES_DIR" -t "$HOME" "$1" "$dir"
   done
-  echo
 }
 
 
 #
 # --==## MAIN ##==--
 #
-
-# trigger sudo timeout
-sudo -v
-
 
 # make $HOME directory structure
 for directory in "${HOME_DIRECTORIES[@]}"; do
@@ -246,12 +190,12 @@ done
 # initial bootstraps
 case "$(uname -s)" in
   Darwin) bootstrap_macos ;;
-   Linux) bootstrap_linux ;;
+   Linux) bootstrap_fedora ;;
 esac
 
 
 # install python packages
-pip3 install -U --user -r "$LOCAL_REPO"/assets/requirements.txt
+python3 -m pip install -U --user -r "$LOCAL_REPO"/assets/requirements.txt
 
 
 # install custom dictionary
@@ -268,8 +212,7 @@ chmod u+x "$DOTFILES_DIR"/.git/hooks/post-merge
 pushd "$DOTFILES_DIR" >/dev/null 2>&1
 # when false, executable bit changes are ignored by Git
 git config core.fileMode false
-# shellcheck disable=SC1091
-. ./.git/hooks/post-merge
+./.git/hooks/post-merge
 popd >/dev/null 2>&1
 
 
