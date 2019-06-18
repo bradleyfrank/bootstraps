@@ -6,5 +6,5 @@ Bootstraps and manages MacOS and RedHat-based distros.
 
 ### Linux & MacOS
 
-`curl -fsSL https://bradleyfrank.github.io/bootstraps/bin/run.sh | bash`
+`curl -fsSL https://bradleyfrank.github.io/bootstraps/run.sh | bash`
 
