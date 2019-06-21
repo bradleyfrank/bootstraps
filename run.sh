@@ -106,11 +106,11 @@ bootstrap_fedora() {
   sudo dnf upgrade -y
 
   if ! type brew >/dev/null 2>&1; then
-    sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
     export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
     export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
     export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
     export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+    sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
   fi
 
   # install repositories
