@@ -97,6 +97,14 @@ bootstrap_fedora() {
 
   os_majver="$(rpm -E %fedora)"
 
+  # install Git in order to clone this repo
+  sudo dnf install git -y
+  git_clone_repo "$__tmp_repo" "$__bootstrap_repo"
+
+  # update system
+  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$os_majver"-primary
+  sudo dnf upgrade -y
+
   if ! type brew >/dev/null 2>&1; then
     sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
   fi
@@ -108,14 +116,6 @@ bootstrap_fedora() {
   else
     exit 1
   fi
-
-  # install Git in order to clone this repo
-  sudo dnf install git -y
-  git_clone_repo "$__tmp_repo" "$__bootstrap_repo"
-
-  # update system
-  sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$os_majver"-primary
-  sudo dnf upgrade -y
 
   # install repositories
   sudo dnf install -y \
