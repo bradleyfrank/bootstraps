@@ -101,7 +101,15 @@ bootstrap_fedora() {
     sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
   fi
 
-  # install git in order to clone this repo
+  if [[ -d ~/.linuxbrew ]]; then
+    eval "$(~/.linuxbrew/bin/brew shellenv)"
+  elif [[ -d /home/linuxbrew/.linuxbrew ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  else
+    exit 1
+  fi
+
+  # install Git in order to clone this repo
   sudo dnf install git -y
   git_clone_repo "$__tmp_repo" "$__bootstrap_repo"
 
