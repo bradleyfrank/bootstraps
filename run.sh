@@ -107,14 +107,10 @@ bootstrap_fedora() {
 
   if ! type brew >/dev/null 2>&1; then
     sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
-  fi
-
-  if [[ -d ~/.linuxbrew ]]; then
-    eval "$(~/.linuxbrew/bin/brew shellenv)"
-  elif [[ -d /home/linuxbrew/.linuxbrew ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  else
-    exit 1
+    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
   fi
 
   # install repositories
