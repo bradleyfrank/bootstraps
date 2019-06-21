@@ -14,7 +14,7 @@ __bootstrap_repo="https://github.com/bradleyfrank/bootstraps.git"
 __dotfiles_repo="https://github.com/bradleyfrank/dotfiles.git"
 
 __dotfiles_dir="$HOME/.dotfiles"
-__tmp_repo="$(mktmp -d)"
+__tmp_repo="$(mktemp -d)"
 
 __user="$(id -un)"
 __localhost=$(uname -n)
