@@ -1,10 +1,5 @@
-# Brad's Puppet Manifest
+# Bootstrapping Script
 
 Bootstraps and manages MacOS and RedHat-based distros.
 
-## Bootstrap
-
-### Linux & MacOS
-
 `curl -fsSL https://bradleyfrank.github.io/bootstraps/run.sh | bash`
-
