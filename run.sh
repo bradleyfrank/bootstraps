@@ -120,6 +120,7 @@ bootstrap_fedora() {
     https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
   sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
   sudo dnf config-manager --set-enabled google-chrome
+  sudo dnf copr enable dawid/better_fonts
 
   # update and install packages
   sudo dnf clean all
