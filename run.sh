@@ -19,50 +19,6 @@ __tmp_repo="$(mktemp -d)"
 __user="$(id -un)"
 __localhost=$(uname -n)
 
-#
-# Home directory structure
-#
-# ├── Development
-# │   ├── Clients
-# │   ├── Home
-# │   └── Scratch
-# ├── .config
-# │   └── VSCodium
-# │       └── User
-# ├── .local
-# │   ├── bin
-# │   ├── etc
-# │   ├── include
-# │   ├── lib
-# │   ├── opt
-# │   ├── share
-# │   │   └── man
-# │   │       ├── man1
-# │   │       ├── man2
-# │   │       ├── man3
-# │   │       ├── man4
-# │   │       ├── man5
-# │   │       ├── man6
-# │   │       ├── man7
-# │   │       ├── man8
-# │   │       └── man9
-# │   └── var
-# └── .ssh
-#
-
-__home_dir_struct=(
-  "$HOME/Development/{Clients,Home,Scratch}"
-  "$HOME/.config/VSCodium/User"
-  "$HOME/.local/{bin,etc,include,lib,share,opt,var}"
-  "$HOME/.local/share/{man/man{1..9}}"
-  "$HOME/.ssh"
-)
-
-__sys_dir_struct=(
-  "/usr/local/{bin,etc,include,lib,share,var}"
-  "/usr/local/share/dict"
-)
-
 
 #
 # --==## FUNCTIONS ##==--
@@ -92,8 +48,7 @@ bootstrap_macos() {
 
 
 bootstrap_fedora() {
-  local xdg_desktop os_majver
-  local pkgs_dir="$__tmp_repo/packages/Fedora" pkgs_common pkgs_desktop
+  local xdg_desktop os_majver pkgs_common pkgs_desktop
 
   os_majver="$(rpm -E %fedora)"
 
@@ -130,8 +85,8 @@ bootstrap_fedora() {
   xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
 
   # create list of appropriate packages to install
-  readarray -t pkgs_common < "$pkgs_dir"/common
-  readarray -t pkgs_desktop < "$pkgs_dir"/"$xdg_desktop"
+  readarray -t pkgs_common < "$__tmp_repo"/packages/Fedora/common
+  readarray -t pkgs_desktop < "$__tmp_repo"/packages/Fedora/"$xdg_desktop"
 
   # install packages from DNF
   sudo dnf install -y --allowerasing "${pkgs_common[@]}" "${pkgs_desktop[@]}"
@@ -174,7 +129,7 @@ git_clone_repo() {
 
 stow_packages() {
   for dir in */; do
-    stow -d "$__dotfiles_dir" -t "$HOME" "$1" "$dir"
+    stow -d "$__dotfiles_dir" -t "$HOME" --no-folding "$1" "$dir"
   done
 }
 
@@ -183,19 +138,10 @@ stow_packages() {
 # --==## MAIN ##==--
 #
 
-# make home directory structure
-for directory in "${__home_dir_struct[@]}"; do
-  eval "mkdir -p $directory"
-done
-
-
-# make system directory structure
+# prep system directory structure
 sudo chown -R "$__user" /usr/local
 sudo chmod -R 755 /usr/local
-for directory in "${__sys_dir_struct[@]}"; do
-  eval "mkdir -p $directory"
-done
-
+mkdir /usr/local/share/dict
 
 # initial bootstraps
 case "$(uname -s)" in
@@ -203,18 +149,14 @@ case "$(uname -s)" in
    Linux) bootstrap_fedora ;;
 esac
 
-
 # install python packages
 python3 -m pip install -U --user -r "$__tmp_repo"/packages/requirements.txt
-
 
 # install custom dictionary
 command cp -f "$__tmp_repo"/assets/words /usr/local/share/dict/
 
-
 # clone dotfiles repository
 git_clone_repo "$__dotfiles_dir" "$__dotfiles_repo"
-
 
 # install post-merge hook and run
 command cp -f "$__tmp_repo"/assets/post-merge "$__dotfiles_dir"/.git/hooks/
@@ -224,7 +166,6 @@ pushd "$__dotfiles_dir" >/dev/null 2>&1
 git config core.fileMode false
 ./.git/hooks/post-merge
 popd >/dev/null 2>&1
-
 
 # stow all packages in dotfiles
 pushd "$__dotfiles_dir" >/dev/null 2>&1
@@ -249,8 +190,8 @@ fi
 
 popd >/dev/null 2>&1
 
-
 # Generate .bashrc and .bash_profile
 "$HOME"/.local/bin/generate-dotfiles
+
 # shellcheck disable=SC1090
 . "$HOME/.bash_profile"
