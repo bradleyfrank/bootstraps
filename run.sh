@@ -141,7 +141,7 @@ stow_packages() {
 # prep system directory structure
 sudo chown -R "$__user" /usr/local
 sudo chmod -R 755 /usr/local
-mkdir /usr/local/share/dict
+mkdir -p /usr/local/share/dict
 
 # initial bootstraps
 case "$(uname -s)" in
