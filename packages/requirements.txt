@@ -1,4 +1,4 @@
-docker
+dns-lexicon
 pip_upgrade_outdated
 pycodestyle
 pydf
