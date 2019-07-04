@@ -190,6 +190,9 @@ fi
 
 popd >/dev/null 2>&1
 
+# install root user confs
+command cp -rf "$__tmp_repo"/assets/root/* /root/
+
 # Generate .bashrc and .bash_profile
 "$HOME"/.local/bin/generate-dotfiles
 
