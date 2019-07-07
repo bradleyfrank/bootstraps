@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Load Bash completions
+case "$(uname -s)" in
+  Darwin) . /usr/local/etc/profile.d/bash_completion.sh ;;
+  Linux ) . /etc/profile.d/bash_completion.sh ;;
+esac
+
+# Source git-prompt if necessary
+_git_prompt="/usr/share/git-core/contrib/completion/git-prompt.sh"
+[[ -e "$_git_prompt" ]] && . "$_git_prompt"
+
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 alias glances='glances --theme-white'
@@ -55,13 +65,12 @@ tardir() {
   tar -czf "${1%/}".tar.gz "$1"
 }
 
-export_ps1() {
-  reset="\[\e[0;0m\]" blue="\[\e[38;5;33m\]" red="[\[\e[38;5;160m\]" orange="\[\e[38;5;208m\]"
-  case "$(type -t __git_ps1)" in
-    function) git_branch="${orange}$(__git_ps1)${reset}" ;;
-    *)        git_branch="" ;;
-  esac
-  PS1="${red}\h${reset}:${blue}\W${reset}]${git_branch}# "
+__root_ps1() {
+  local ret=$? err="" reset="\[\e[0;0m\]" blue="\[\e[38;5;33m\]" red="\[\e[38;5;160m\]"
+  [[ $ret -gt 0 ]] && err="${red} ($ret)${reset}"
+  __git_ps1 "[${blue}\W${reset}]" "${err}\$ "
+  history -a
+  history -n
 }
 
-PROMPT_COMMAND="export_ps1; history -a; history -n"
+PROMPT_COMMAND="__root_ps1"
