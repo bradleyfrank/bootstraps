@@ -66,11 +66,18 @@ tardir() {
 }
 
 __root_ps1() {
-  local ret=$? err="" reset="\[\e[0;0m\]" blue="\[\e[38;5;33m\]" red="\[\e[38;5;160m\]"
+  local ret=$? err="" reset="\[\e[0;0m\]"
+  local blue="\[\e[38;5;33m\]" red="\[\e[38;5;160m\]" orange="\[\e[38;5;208m\]"
+  _user="${red}\u${reset}" _host="${orange}\h${reset}" _cwd="${blue}\W${reset}"
   [[ $ret -gt 0 ]] && err="${red} ($ret)${reset}"
-  __git_ps1 "[${blue}\W${reset}]" "${err}\$ "
+  __git_ps1 "[${_user}@${_host}:${_cwd}]" "${err}\$ "
   history -a
   history -n
 }
 
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="auto verbose"
+GIT_PS1_SHOWCOLORHINTS=1
 PROMPT_COMMAND="__root_ps1"
