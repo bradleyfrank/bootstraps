@@ -191,10 +191,7 @@ fi
 popd >/dev/null 2>&1
 
 # install root user confs
-command cp -rf "$__tmp_repo"/assets/root/* /root/
-
-# Generate .bashrc and .bash_profile
-"$HOME"/.local/bin/generate-dotfiles
+rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # shellcheck disable=SC1090
 . "$HOME/.bash_profile"
