@@ -191,7 +191,7 @@ fi
 popd >/dev/null 2>&1
 
 # install root user confs
-rsync -r "$__tmp_repo"/assets/root/ /root/
+sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # shellcheck disable=SC1090
 . "$HOME/.bash_profile"
