@@ -2,6 +2,13 @@
 ## Desktop & Interface
 ##
 
+show-battery-percentage=true
+button-layout='appmenu:minimize,maximize,close'
+
+[eog/view]
+background-color='rgb(0,0,0)'
+use-background-color=true
+
 [desktop/interface]
 clock-show-date=true
 clock-format='12h'
@@ -11,6 +18,12 @@ enable-animations=false
 
 [desktop/wm/preferences]
 action-right-click-titlebar='minimize'
+
+[desktop/background]
+picture-uri='file:///run/user/1000/gvfs/dav:host=nextcloud.francopuccini.casa,ssl=true,user=bfrank,prefix=%252Fremote.php%252Fwebdav/Pictures/Wallpaper/Linux/F22.jpg'
+
+[desktop/screensaver]
+picture-uri='file:///run/user/1000/gvfs/dav:host=nextcloud.francopuccini.casa,ssl=true,user=bfrank,prefix=%252Fremote.php%252Fwebdav/Pictures/Wallpaper/Misc/Glitch.png'
 
 [shell]
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']
@@ -132,6 +145,9 @@ side-panel-visible=false
 
 [gedit/plugins]
 active-plugins=['docinfo', 'joinlines', 'codecomment', 'git', 'modelines', 'filebrowser', 'colorpicker', 'sort', 'multiedit', 'time', 'spell']
+
+[terminal/legacy]
+theme-variant='system'
 
 [terminal/legacy/profiles:/:57ec47b4-dd6d-4fa3-9434-f65de25dd9ed]
 audible-bell=false
