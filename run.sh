@@ -98,6 +98,8 @@ bootstrap_fedora() {
   popd >/dev/null 2>&1
   brew cleanup
 
+  cp "$__tmp_repo"/assets/f22.jpg "$HOME"/Pictures/
+
   # desktop configuration
   case "$xdg_desktop" in
     gnome)
