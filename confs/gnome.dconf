@@ -2,6 +2,7 @@
 ## Desktop & Interface
 ##
 
+[/]
 show-battery-percentage=true
 button-layout='appmenu:minimize,maximize,close'
 
