@@ -205,7 +205,7 @@ if [[ "$(uname -s)" == "Linux" ]]; then
   sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
   "$HOME"/.local/bin/yum2
   sudo dnf makecache
-  sudo dnf install codium
+  sudo dnf install -y codium
 fi
 
 # shellcheck disable=SC1090
