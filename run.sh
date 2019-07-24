@@ -60,14 +60,6 @@ bootstrap_fedora() {
   sudo rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-"$os_majver"-primary
   sudo dnf upgrade -y
 
-  if ! type brew >/dev/null 2>&1; then
-    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
-    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
-    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-    sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
-  fi
-
   # install repositories
   sudo dnf install -y \
     fedora-workstation-repositories \
@@ -92,6 +84,15 @@ bootstrap_fedora() {
   # install packages from DNF
   sudo dnf install -y --allowerasing "${pkgs_common[@]}" "${pkgs_desktop[@]}"
   sudo dnf upgrade -y
+
+  # install Homebrew
+  if ! type brew >/dev/null 2>&1; then
+    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+    sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
+  fi
 
   # install packages from Homebrew
   pushd "$__tmp_repo"/packages/Fedora >/dev/null 2>&1
