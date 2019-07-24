@@ -55,7 +55,7 @@ default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', '
 ##
 
 [shell]
-enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com']
 
 [shell/extensions/system-monitor]
 battery-display=false
