@@ -66,7 +66,6 @@ bootstrap_fedora() {
     https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$os_majver".noarch.rpm \
     https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
   sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
-  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
   sudo dnf config-manager --set-enabled google-chrome
   sudo dnf copr enable dawid/better_fonts -y
 
@@ -200,6 +199,14 @@ popd >/dev/null 2>&1
 
 # install root user confs
 sudo rsync -r "$__tmp_repo"/assets/root/ /root/
+
+# sync local yum repository
+if [[ "$(uname -s)" == "Linux" ]]; then
+  dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
+  "$HOME"/.local/bin/yum2
+  dnf makecache
+  dnf install codium
+fi
 
 # shellcheck disable=SC1090
 . "$HOME/.bash_profile"
