@@ -101,7 +101,7 @@ bootstrap_fedora() {
   brew cleanup
 
   # copy wallpaper to home directory
-  command cp -f cp "$__tmp_repo"/assets/f22.jpg "$HOME"/Pictures/
+  command cp -f "$__tmp_repo"/assets/f22.jpg "$HOME"/Pictures/
 
   # desktop configuration
   case "$xdg_desktop" in
