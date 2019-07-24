@@ -202,10 +202,10 @@ sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # sync local yum repository
 if [[ "$(uname -s)" == "Linux" ]]; then
-  dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
+  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
   "$HOME"/.local/bin/yum2
-  dnf makecache
-  dnf install codium
+  sudo dnf makecache
+  sudo dnf install codium
 fi
 
 # shellcheck disable=SC1090
