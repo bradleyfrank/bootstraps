@@ -2,10 +2,6 @@
 ## Desktop & Interface
 ##
 
-[/]
-show-battery-percentage=true
-button-layout='appmenu:minimize,maximize,close'
-
 [eog/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
@@ -16,8 +12,10 @@ clock-format='12h'
 clock-show-seconds=false
 clock-show-weekday=true
 enable-animations=false
+show-battery-percentage=true
 
 [desktop/wm/preferences]
+button-layout='appmenu:minimize,maximize,close'
 action-right-click-titlebar='minimize'
 
 [desktop/background]
