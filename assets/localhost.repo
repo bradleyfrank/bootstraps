@@ -1,0 +1,5 @@
+[localhost]
+name=localhost
+baseurl=file:///home/bfrank/Repos/Fedora
+enabled=1
+gpgcheck=0

@@ -20,10 +20,10 @@ enable-animations=false
 action-right-click-titlebar='minimize'
 
 [desktop/background]
-picture-uri='file:///run/user/1000/gvfs/dav:host=nextcloud.francopuccini.casa,ssl=true,user=bfrank,prefix=%252Fremote.php%252Fwebdav/Pictures/Wallpaper/Linux/F22.jpg'
+picture-uri='file:///home/bfrank/Pictures/f22.jpg'
 
 [desktop/screensaver]
-picture-uri='file:///run/user/1000/gvfs/dav:host=nextcloud.francopuccini.casa,ssl=true,user=bfrank,prefix=%252Fremote.php%252Fwebdav/Pictures/Wallpaper/Misc/Glitch.png'
+picture-uri='file:///home/bfrank/Pictures/f22.jpg'
 
 [shell]
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']

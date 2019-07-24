@@ -74,6 +74,7 @@ bootstrap_fedora() {
     https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$os_majver".noarch.rpm \
     https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
   sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
+  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
   sudo dnf config-manager --set-enabled google-chrome
   sudo dnf copr enable dawid/better_fonts -y
 
@@ -97,6 +98,9 @@ bootstrap_fedora() {
   brew bundle install Brewfile
   popd >/dev/null 2>&1
   brew cleanup
+
+  # copy wallpaper to home directory
+  command cp -f cp "$__tmp_repo"/assets/f22.jpg "$HOME"/Pictures/
 
   # desktop configuration
   case "$xdg_desktop" in
@@ -137,6 +141,9 @@ stow_packages() {
 #
 # --==## MAIN ##==--
 #
+
+# prep home directory structure
+mkdir -p "$HOME"/Development/Home
 
 # prep system directory structure
 sudo chown -R "$__user" /usr/local
