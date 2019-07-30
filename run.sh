@@ -49,6 +49,7 @@ bootstrap_macos() {
 
 bootstrap_fedora() {
   local xdg_desktop os_majver pkgs_common pkgs_desktop
+  local rpmfusion="https://download1.rpmfusion.org"
 
   os_majver="$(rpm -E %fedora)"
 
@@ -63,11 +64,13 @@ bootstrap_fedora() {
   # install repositories
   sudo dnf install -y \
     fedora-workstation-repositories \
-    https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$os_majver".noarch.rpm \
-    https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
-  sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
+    "$rpmfusion"/free/fedora/rpmfusion-free-release-"$os_majver".noarch.rpm \
+    "$rpmfusion"/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
+  sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-multimedia.repo
+  sudo sed -i "/^baseurl=/a includepkgs=spotify\*,makemkv\*,ccextractor\*" \
+    /etc/yum.repos.d/fedora-multimedia.repo
   sudo dnf config-manager --set-enabled google-chrome
-  sudo dnf copr enable dawid/better_fonts -y
+  sudo dnf copr enable -y dawid/better_fonts
 
   # update and install packages
   sudo dnf clean all
