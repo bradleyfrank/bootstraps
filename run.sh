@@ -73,7 +73,7 @@ bootstrap_fedora() {
   sudo dnf clean all
   while ! sudo dnf makecache; do sudo dnf clean all; done
 
-  # determine desktop environment (i.e. Gnome, KDE)
+  # determine desktop environment (e.g. Gnome, KDE)
   xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
 
   # create list of appropriate packages to install
@@ -104,13 +104,9 @@ bootstrap_fedora() {
 
   # desktop configuration
   case "$xdg_desktop" in
-    gnome)
-      dconf load /org/gnome/ < "$__tmp_repo"/confs/gnome.dconf
-      ;;
-    kde)
-      # shellcheck disable=SC1090
-      . "$__tmp_repo"/confs/kde.sh
-      ;;
+         gnome) dconf load /org/gnome/ < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
+           kde) . "$__tmp_repo"/confs/"$xdg_desktop".sh ;;
+    x-cinnamon) dconf load / < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
   esac
 }
 
