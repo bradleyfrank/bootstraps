@@ -160,7 +160,7 @@ scroll-on-output=true
 scrollback-unlimited=true
 use-system-font=false
 use-theme-colors=false
-visible-name='Personal'
+visible-name='Brads-Profile'
 
 [terminal/legacy/profiles:]
 list=['57ec47b4-dd6d-4fa3-9434-f65de25dd9ed']
