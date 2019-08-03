@@ -101,3 +101,6 @@ visible-name='Brads-Profile'
 [org/gnome/terminal/legacy/profiles:]
 list=['57ec47b4-dd6d-4fa3-9434-f65de25dd9ed']
 default='57ec47b4-dd6d-4fa3-9434-f65de25dd9ed'
+
+[org/gnome/libgnomekbd/keyboard]
+options=['ctrl\ctrl:nocaps']
