@@ -132,6 +132,7 @@ git_clone_repo() {
 
 stow_packages() {
   for dir in */; do
+    [[ "$dir" =~ ^\. ]] && continue
     stow -d "$__dotfiles_dir" -t "$HOME" --no-folding "$1" "$dir"
   done
 }
