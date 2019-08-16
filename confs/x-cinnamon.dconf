@@ -1,7 +1,7 @@
 [org/cinnamon]
-enabled-applets=['panel1:right:1:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:3', 'panel1:right:2:keyboard@cinnamon.org:4', 'panel1:right:3:notifications@cinnamon.org:5', 'panel1:right:4:removable-drives@cinnamon.org:6', 'panel1:right:6:network@cinnamon.org:7', 'panel1:right:7:blueberry@cinnamon.org:8', 'panel1:right:9:calendar@cinnamon.org:10', 'panel1:right:10:sound@cinnamon.org:11', 'panel1:right:0:inhibit@cinnamon.org:12']
-next-applet-id=13
+enabled-applets=['panel1:right:1:systray@cinnamon.org:0', 'panel1:left:0:menu@cinnamon.org:1', 'panel1:left:2:grouped-window-list@cinnamon.org:3', 'panel1:right:5:keyboard@cinnamon.org:4', 'panel1:right:11:notifications@cinnamon.org:5', 'panel1:right:6:removable-drives@cinnamon.org:6', 'panel1:right:10:network@cinnamon.org:7', 'panel1:right:9:blueberry@cinnamon.org:8', 'panel1:right:12:calendar@cinnamon.org:10', 'panel1:right:3:sound@cinnamon.org:11', 'panel1:right:4:inhibit@cinnamon.org:12', 'panel1:right:7:power@cinnamon.org:13', 'panel1:right:0:sysmonitor@orcus:14', 'panel1:right:2:github-projects@morgan-design.com:19']
 panels-height=['1:35']
+panel-zone-icon-sizes='[{"panelId":1,"left":0,"center":0,"right":0}]'
 
 [org/cinnamon/desktop/background]
 picture-uri='file:///home/bfrank/Pictures/f22.jpg'
