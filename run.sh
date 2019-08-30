@@ -71,6 +71,7 @@ bootstrap_fedora() {
     /etc/yum.repos.d/fedora-multimedia.repo
   sudo dnf config-manager --set-enabled google-chrome
   sudo dnf copr enable -y dawid/better_fonts
+  sudo dnf copr enable -y taw/joplin
 
   # update and install packages
   sudo dnf clean all
