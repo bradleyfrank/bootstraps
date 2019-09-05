@@ -1,4 +1,5 @@
 dns-lexicon
+imgur_downloader
 pip_upgrade_outdated
 pycodestyle
 pydf
