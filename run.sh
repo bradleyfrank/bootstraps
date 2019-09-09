@@ -198,7 +198,7 @@ fi
 
 popd >/dev/null 2>&1
 
-# install root user confs
+# install root user configs
 sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # sync local yum repository
