@@ -1,0 +1,24 @@
+---
+# tasks file for ./roles/workstation
+
+- name: Import GPG keys
+  rpm_key: key={{ item }} state=present
+  loop:
+    - https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
+
+- name: Add RPM Fusion repos
+  package:
+    state: latest
+    name:
+      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version }}.noarch.rpm
+      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version }}.noarch.rpm
+
+- name: Add other repos
+  get_url:
+    dest: "/etc/yum.repos.d/"
+    url: "{{ item }}"
+    setype: system_conf_t
+    seuser: system_u
+  loop:
+    - https://negativo17.org/repos/fedora-flash-plugin.repo
+    - https://negativo17.org/repos/fedora-spotify.repo

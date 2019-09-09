@@ -1,0 +1,6 @@
+---
+# tasks file for ./roles/workstation
+
+- include_tasks: repos.yml
+- include_tasks: packages.yml
+- include_tasks: dconf.yml

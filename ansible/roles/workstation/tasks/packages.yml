@@ -1,0 +1,12 @@
+---
+# tasks file for ./roles/workstation
+
+- name: Install common packages
+  dnf:
+    name: "{{ default_packages }}"
+    state: present
+
+- name: Install DE-specific packages
+  dnf:
+    name: "{{ lookup('env','XDG_CURRENT_DESKTOP') | lower }}"
+    state: present

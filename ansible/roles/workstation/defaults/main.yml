@@ -1,0 +1,85 @@
+---
+# defaults file for ./roles/fedora
+
+default_packages:
+  - adobe-source-*-fonts
+  - dnf-plugin-system-upgrade
+  - expect
+  - fail2ban
+  - fdupes
+  - ffmpeg
+  - figlet
+  - fish
+  - fontconfig-enhanced-defaults
+  - fontconfig-font-replacements
+  - fwupd
+  - ghostscript
+  - ghostwriter
+  - glances
+  - google-chrome-stable
+  - hstr
+  - htop
+  - iftop
+  - joplin
+  - keychain
+  - libmp4v2
+  - libreoffice
+  - libreoffice-gallery-vrt-network-equipment
+  - libvirt-client
+  - libxcrypt-compat
+  - makemkv
+  - mediawriter
+  - mkvtoolnix
+  - most
+  - mpv
+  - mtr
+  - ncdu
+  - neofetch
+  - nmap
+  - p7zip
+  - p7zip-plugins
+  - par
+  - perf
+  - picard
+  - podman
+  - python3
+  - python3-devel
+  - remmina
+  - reptyr
+  - ruby
+  - seahorse
+  - ShellCheck
+  - solaar
+  - spotify-client
+  - stow
+  - strace
+  - system-config-printer
+  - tldr
+  - tlp
+  - tmux
+  - tree
+  - vim
+  - vlc
+  - wget
+  - xz
+  - youtube-dl
+
+gnome:
+  - gedit-plugin-codecomment
+  - gedit-plugin-colorpicker
+  - gedit-plugin-git
+  - gedit-plugin-joinlines
+  - gedit-plugin-multiedit
+  - gnome-shell-extension-dash-to-dock
+  - gnome-shell-extension-system-monitor-applet
+  - gnote
+  - libgnome-keyring
+  - meld
+
+kde:
+  - kate
+  - nextcloud-client-dolphin
+  - yakuake
+
+x-cinnamoon:
+  - meld
