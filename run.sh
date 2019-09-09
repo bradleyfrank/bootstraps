@@ -108,7 +108,7 @@ bootstrap_fedora() {
 
   # desktop configuration
   case "$xdg_desktop" in
-         gnome) dconf load /org/gnome/ < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
+         gnome) dconf load / < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
            kde) . "$__tmp_repo"/confs/"$xdg_desktop".sh ;;
     x-cinnamon) dconf load / < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
   esac

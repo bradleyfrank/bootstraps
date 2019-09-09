@@ -2,11 +2,11 @@
 ## Desktop & Interface
 ##
 
-[eog/view]
+[org/gnome/eog/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
 
-[desktop/interface]
+[org/gnome/desktop/interface]
 clock-show-date=true
 clock-format='12h'
 clock-show-seconds=false
@@ -14,35 +14,35 @@ clock-show-weekday=true
 enable-animations=false
 show-battery-percentage=true
 
-[desktop/wm/preferences]
+[org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
 action-right-click-titlebar='minimize'
 
-[desktop/background]
+[org/gnome/desktop/background]
 picture-uri='file:///home/bfrank/Pictures/f22.jpg'
 
-[desktop/screensaver]
+[org/gnome/desktop/screensaver]
 picture-uri='file:///home/bfrank/Pictures/f22.jpg'
 
-[shell]
+[org/gnome/shell]
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']
 
-[desktop/notifications/application/org-gnome-fileroller]
+[org/gnome/desktop/notifications/application/org-gnome-fileroller]
 enable=false
 
-[desktop/notifications/application/rhythmbox]
+[org/gnome/desktop/notifications/application/rhythmbox]
 enable=false
 
-[mutter]
+[org/gnome/mutter]
 center-new-windows=true
 
-[nautilus/preferences]
+[org/gnome/nautilus/preferences]
 default-folder-viewer='list-view'
 search-filter-time-type='last_modified'
 show-create-link=true
 show-delete-permanently=true
 
-[nautilus/list-view]
+[org/gnome/nautilus/list-view]
 default-visible-columns=['name', 'size', 'type', 'date_modified', 'starred']
 default-zoom-level='small'
 use-tree-view=true
@@ -53,10 +53,10 @@ default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', '
 ## Extensions
 ##
 
-[shell]
+[org/gnome/shell]
 enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com']
 
-[shell/extensions/system-monitor]
+[org/gnome/shell/extensions/system-monitor]
 battery-display=false
 battery-show-menu=true
 battery-show-text=false
@@ -83,7 +83,7 @@ net-show-text=false
 show-tooltip=true
 swap-display=false
 
-[shell/extensions/dash-to-dock]
+[org/gnome/shell/extensions/dash-to-dock]
 animation-time=0.19999999999999968
 unity-backlit-items=false
 preferred-monitor=0
@@ -121,10 +121,10 @@ custom-theme-shrink=true
 ## Apps
 ##
 
-[calendar]
+[org/gnome/calendar]
 follow-night-light=false
 
-[gedit/preferences/editor]
+[org/gnome/gedit/preferences/editor]
 display-right-margin=true
 display-overview-map=true
 auto-save=true
@@ -138,17 +138,17 @@ background-pattern='none'
 use-default-font=false
 wrap-last-split-mode='word'
 
-[gedit/preferences/ui]
+[org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
 side-panel-visible=false
 
-[gedit/plugins]
+[org/gnome/gedit/plugins]
 active-plugins=['docinfo', 'joinlines', 'codecomment', 'git', 'modelines', 'filebrowser', 'colorpicker', 'sort', 'multiedit', 'time', 'spell']
 
-[terminal/legacy]
+[org/gnome/terminal/legacy]
 theme-variant='system'
 
-[terminal/legacy/profiles:/:57ec47b4-dd6d-4fa3-9434-f65de25dd9ed]
+[org/gnome/terminal/legacy/profiles:/:57ec47b4-dd6d-4fa3-9434-f65de25dd9ed]
 audible-bell=false
 background-color='rgb(253,246,227)'
 bold-is-bright=true
@@ -162,7 +162,7 @@ use-system-font=false
 use-theme-colors=false
 visible-name='Brads-Profile'
 
-[terminal/legacy/profiles:]
+[org/gnome/terminal/legacy/profiles:]
 list=['57ec47b4-dd6d-4fa3-9434-f65de25dd9ed']
 default='57ec47b4-dd6d-4fa3-9434-f65de25dd9ed'
 
@@ -171,24 +171,24 @@ default='57ec47b4-dd6d-4fa3-9434-f65de25dd9ed'
 ## System
 ##
 
-[desktop/media-handling]
+[org/gnome/desktop/media-handling]
 autorun-x-content-start-app=@as []
 autorun-never=true
 autorun-x-content-ignore=['x-content/audio-cdda', 'x-content/video-dvd', 'x-content/audio-player', 'x-content/image-dcf', 'x-content/unix-software']
 autorun-x-content-open-folder=@as []
 
-[desktop/privacy]
+[org/gnome/desktop/privacy]
 remove-old-temp-files=true
 remove-old-trash-files=true
 
-[desktop/datetime]
+[org/gnome/desktop/datetime]
 automatic-timezone=true
 
-[settings-daemon/plugins/power]
+[org/gnome/settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='suspend'
 
-[settings-daemon/plugins/color]
+[org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=true
 night-light-enabled=true
 
@@ -197,11 +197,11 @@ night-light-enabled=true
 ## I/O
 ##
 
-[desktop/peripherals/touchpad]
+[org/gnome/desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
 tap-to-click=true
 
-[desktop/input-sources]
+[org/gnome/desktop/input-sources]
 current=uint32 0
 sources=[('xkb', 'us')]
 xkb-options=['ctrl:nocaps']
