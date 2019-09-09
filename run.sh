@@ -88,21 +88,6 @@ bootstrap_fedora() {
   sudo dnf install -y --allowerasing "${pkgs_common[@]}" "${pkgs_desktop[@]}"
   sudo dnf upgrade -y
 
-  # install Homebrew
-  if ! type brew >/dev/null 2>&1; then
-    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
-    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
-    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
-    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-    sh -c "$(curl -fsSL "$__github_raw_url"/Linuxbrew/install/master/install.sh)"
-  fi
-
-  # install packages from Homebrew
-  pushd "$__tmp_repo"/packages/Fedora >/dev/null 2>&1
-  brew bundle install Brewfile
-  popd >/dev/null 2>&1
-  brew cleanup
-
   # copy wallpaper to home directory
   command cp -f "$__tmp_repo"/assets/f22.jpg "$HOME"/Pictures/
 
