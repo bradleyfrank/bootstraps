@@ -1,7 +1,3 @@
-##
-## Desktop & Interface
-##
-
 [org/gnome/eog/view]
 background-color='rgb(0,0,0)'
 use-background-color=true
@@ -47,11 +43,6 @@ default-visible-columns=['name', 'size', 'type', 'date_modified', 'starred']
 default-zoom-level='small'
 use-tree-view=true
 default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
-
-
-##
-## Extensions
-##
 
 [org/gnome/shell]
 enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com']
@@ -116,11 +107,6 @@ apply-custom-theme=false
 dock-position='BOTTOM'
 custom-theme-shrink=true
 
-
-##
-## Apps
-##
-
 [org/gnome/calendar]
 follow-night-light=false
 
@@ -166,11 +152,6 @@ visible-name='Brads-Profile'
 list=['57ec47b4-dd6d-4fa3-9434-f65de25dd9ed']
 default='57ec47b4-dd6d-4fa3-9434-f65de25dd9ed'
 
-
-##
-## System
-##
-
 [org/gnome/desktop/media-handling]
 autorun-x-content-start-app=@as []
 autorun-never=true
@@ -191,11 +172,6 @@ sleep-inactive-ac-type='suspend'
 [org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=true
 night-light-enabled=true
-
-
-##
-## I/O
-##
 
 [org/gnome/desktop/peripherals/touchpad]
 two-finger-scrolling-enabled=true
