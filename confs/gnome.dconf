@@ -23,7 +23,6 @@ picture-uri='file:///home/bfrank/Pictures/f22.jpg'
 [org/gnome/shell]
 favorite-apps=['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'joplin.desktop', 'org.gnome.gedit.desktop', 'spotify.desktop', 'codium.desktop']
 
-
 [org/gnome/desktop/notifications/application/org-gnome-fileroller]
 enable=false
 
@@ -46,7 +45,7 @@ use-tree-view=true
 default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
 
 [org/gnome/shell]
-enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com']
+enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'dash-to-dock@micxgx.gmail.com']
 
 [org/gnome/shell/extensions/system-monitor]
 battery-display=false
@@ -76,37 +75,38 @@ show-tooltip=true
 swap-display=false
 
 [org/gnome/shell/extensions/dash-to-dock]
-animation-time=0.19999999999999968
-unity-backlit-items=false
-preferred-monitor=0
-hide-delay=1.0
-height-fraction=1.0
-transparency-mode='FIXED'
-running-indicator-dominant-color=false
-show-delay=0.0
-require-pressure-to-show=false
-show-show-apps-button=true
-custom-background-color=true
-intellihide=false
-custom-theme-running-dots-border-width=0
-show-favorites=true
-intellihide-mode='FOCUS_APPLICATION_WINDOWS'
-force-straight-corner=true
-background-opacity=0.75
-autohide=true
-show-apps-at-top=true
-background-color='#babdb6'
-dock-fixed=false
-custom-theme-customize-running-dots=true
-dash-max-icon-size=48
-extend-height=false
-custom-theme-running-dots-color='#2e3436'
-running-indicator-style='DOTS'
 animate-show-apps=false
-custom-theme-running-dots-border-color='#ffffff'
+animation-time=0.19999999999999968
 apply-custom-theme=false
-dock-position='BOTTOM'
+autohide=true
+background-color='#babdb6'
+background-opacity=0.75
+click-action='previews'
+custom-background-color=false
+custom-theme-customize-running-dots=false
+custom-theme-running-dots-border-color='#ffffff'
+custom-theme-running-dots-border-width=0
+custom-theme-running-dots-color='#2e3436'
 custom-theme-shrink=true
+dash-max-icon-size=40
+dock-fixed=false
+dock-position='BOTTOM'
+extend-height=false
+force-straight-corner=true
+height-fraction=1.0
+hide-delay=1.0
+intellihide=false
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+preferred-monitor=0
+require-pressure-to-show=false
+running-indicator-dominant-color=true
+running-indicator-style='DOTS'
+show-apps-at-top=true
+show-delay=0.0
+show-favorites=true
+show-show-apps-button=true
+transparency-mode='FIXED'
+unity-backlit-items=false
 
 [org/gnome/calendar]
 follow-night-light=false
