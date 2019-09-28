@@ -112,16 +112,19 @@ unity-backlit-items=false
 follow-night-light=false
 
 [org/gnome/gedit/preferences/editor]
-display-right-margin=true
-display-overview-map=true
+auto-indent=true
 auto-save=true
-scheme='kate'
-tabs-size=uint32 4
-editor-font='Source Code Pro 11'
+background-pattern='none'
+bracket-matching=true
 display-line-numbers=true
+display-overview-map=true
+display-right-margin=true
+editor-font='Source Code Pro 11'
+highlight-current-line=true
 insert-spaces=true
 right-margin-position=uint32 80
-background-pattern='none'
+scheme='solarized-light'
+tabs-size=uint32 2
 use-default-font=false
 wrap-last-split-mode='word'
 
@@ -130,7 +133,7 @@ show-tabs-mode='auto'
 side-panel-visible=false
 
 [org/gnome/gedit/plugins]
-active-plugins=['docinfo', 'joinlines', 'codecomment', 'git', 'modelines', 'filebrowser', 'colorpicker', 'sort', 'multiedit', 'time', 'spell']
+active-plugins=['multiedit', 'joinlines', 'colorpicker', 'codecomment', 'git', 'time', 'spell', 'sort', 'snippets', 'modelines', 'filebrowser', 'docinfo', 'pair_char_completion']
 
 [org/gnome/terminal/legacy]
 theme-variant='system'
