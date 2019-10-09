@@ -1,5 +1,6 @@
 adobe-source-*-fonts
 dnf-plugin-system-upgrade
+dnf-utils
 expect
 fail2ban
 fdupes
