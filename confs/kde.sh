@@ -13,9 +13,6 @@ kwriteconfig5 --file kxkbrc --group "Layout" --key "Options" "ctrl:nocaps"
 #kwriteconfig5 --file kcminputrc --group "Keyboard" --key "RepeatDelay" 140
 #kwriteconfig5 --file kcminputrc --group "Keyboard" --key "RepeatRate" 50.00
 
-# make Breeze default desktop theme
-kwriteconfig5 --file plasmarc --group "Theme" --key "name" "default"
-
 # insert plasma template
 cat << EOF > "$HOME"/.config/plasma-org.kde.plasma.desktop-appletsrc
 [ActionPlugins][0]
