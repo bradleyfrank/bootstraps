@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # default terminal profile (located in dotfiles)
-kwriteconfig5 --file konsolerc --group "Desktop Entry" --key "DefaultProfile" "Brads-Terminal.profile"
+kwriteconfig5 --file konsolerc --group "Desktop Entry" --key "DefaultProfile" "Solarized-Light.profile"
 
 # interaction behavior is double-click
 kwriteconfig5 --file kdeglobals --group "KDE" --key "SingleClick" "false"
