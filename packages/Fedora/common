@@ -1,3 +1,4 @@
+abcde
 adobe-source-*-fonts
 dnf-plugin-system-upgrade
 dnf-utils
@@ -59,6 +60,7 @@ sublime-text
 system-config-printer
 tlp
 tmux
+torbrowser-launcher
 tree
 vim
 vlc
