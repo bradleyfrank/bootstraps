@@ -71,7 +71,6 @@ cask "font-clear-sans"
 cask "font-roboto"
 cask "font-source-code-pro"
 cask "font-source-code-pro-for-powerline"
-cask "gmvault"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "iina"
@@ -104,4 +103,3 @@ mas "Microsoft Remote Desktop", id: 715768417
 mas "Pastebot", id: 1179623856
 mas "Pixelmator", id: 407963104
 mas "The Unarchiver", id: 425424353
-mas "Twitterrific", id: 1289378661
