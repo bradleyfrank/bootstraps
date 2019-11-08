@@ -69,8 +69,6 @@ bootstrap_fedora() {
   sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-multimedia.repo
   sudo sed -i "/^baseurl=/a includepkgs=spotify\*,makemkv\*,ccextractor\*" \
     /etc/yum.repos.d/fedora-multimedia.repo
-  sudo dnf config-manager \
-    --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
   sudo dnf config-manager --set-enabled google-chrome
   sudo dnf copr enable -y dawid/better_fonts
   sudo dnf copr enable -y taw/joplin
