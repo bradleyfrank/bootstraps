@@ -65,6 +65,19 @@ tardir() {
   tar -czf "${1%/}".tar.gz "$1"
 }
 
+# youtube-dl wrapper for docker
+youtube-dl() {
+  if type youtube-dl >/dev/null 2>&1; then
+    youtube-dl "$@"
+  elif type docker >/dev/null 2>&1; then
+    docker pull mikenye/youtube-dl -q
+    docker run --rm -i -v $(pwd):/workdir:rw mikenye/youtube-dl "$@"
+  else
+    echo "youtube-dl not found"
+    return 1
+  fi
+}
+
 __root_ps1() {
   local ret=$? err="" reset="\[\e[0;0m\]"
   local blue="\[\e[38;5;33m\]" red="\[\e[38;5;160m\]" orange="\[\e[38;5;208m\]"
