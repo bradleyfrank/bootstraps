@@ -1,5 +1,6 @@
 abcde
 adobe-source-*-fonts
+bat
 borgbackup
 dnf-plugin-system-upgrade
 dnf-utils
@@ -67,3 +68,4 @@ vlc
 wget
 xz
 youtube-dl
+z
