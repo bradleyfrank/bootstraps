@@ -191,6 +191,10 @@ if [[ "$(uname -s)" == "Linux" ]]; then
   "$HOME"/.local/bin/yum2
   sudo dnf makecache
   sudo dnf install -y codium
+
+  if [[ "$xdg_desktop" == "gnome" ]]; then
+    extensions="$(grep -Eo '^[0-9]+' "$__tmp_repo"/packages/gnome-extensions | tr '\n' ' ')"
+    "$HOME"/.local/bin/install_gnome_extension "$extensions"
 fi
 
 # shellcheck disable=SC1090
