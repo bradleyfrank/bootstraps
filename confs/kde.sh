@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# set the 'look and feel' to the Breeze theme
+lookandfeeltool --apply org.kde.breeze.desktop
+
 # default terminal profile (located in dotfiles)
 kwriteconfig5 --file konsolerc --group "Desktop Entry" --key "DefaultProfile" "Solarized-Light.profile"
 
@@ -153,6 +156,19 @@ hiddenItems=KOrganizer Reminder Daemon
 knownItems=org.kde.plasma.keyboardindicator,org.kde.plasma.printmanager,org.kde.plasma.notifications,org.kde.plasma.mediacontroller,org.kde.plasma.bluetooth,org.kde.plasma.devicenotifier,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.kdeconnect,org.kde.plasma.pkupdates,org.kde.plasma.networkmanagement,org.kde.plasma.volume
 showAllItems=true
 shownItems=org.kde.plasma.volume,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.networkmanagement
+
+[Containments][4]
+activityId=
+formfactor=0
+immutability=1
+lastScreen=0
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][4][General]
+ToolBoxButtonState=topright
+showToolbox=false
 
 [General]
 immutability=2
