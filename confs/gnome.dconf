@@ -45,7 +45,7 @@ use-tree-view=true
 default-column-order=['name', 'size', 'type', 'owner', 'group', 'permissions', 'where', 'date_modified', 'date_modified_with_time', 'date_accessed', 'recency', 'starred', 'detailed_type']
 
 [org/gnome/shell]
-enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'dash-to-dock@micxgx.gmail.com']
+enabled-extensions=['system-monitor@paradoxxx.zero.gmail.com', 'dash-to-panel@jderose9.github.com', 'clipboard-indicator@tudmotu.com', 'printers@linux-man.org']
 
 [org/gnome/shell/extensions/system-monitor]
 battery-display=false
