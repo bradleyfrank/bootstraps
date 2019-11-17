@@ -18,6 +18,8 @@ __tmp_repo="$(mktemp -d)"
 
 __user="$(id -un)"
 __localhost=$(uname -n)
+__os="$(uname -s)"
+__xdg_desktop=""
 
 
 #
@@ -48,7 +50,7 @@ bootstrap_macos() {
 
 
 bootstrap_fedora() {
-  local xdg_desktop os_majver pkgs_common pkgs_desktop
+  local os_majver pkgs_common pkgs_desktop
   local rpmfusion="https://download1.rpmfusion.org"
 
   os_majver="$(rpm -E %fedora)"
@@ -77,11 +79,11 @@ bootstrap_fedora() {
   while ! sudo dnf makecache; do sudo dnf clean all; done
 
   # determine desktop environment (e.g. Gnome, KDE)
-  xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
+  __xdg_desktop="$(echo "$XDG_CURRENT_DESKTOP" | tr '[:upper:]' '[:lower:]')"
 
   # create list of appropriate packages to install
   readarray -t pkgs_common < "$__tmp_repo"/packages/Fedora/common
-  readarray -t pkgs_desktop < "$__tmp_repo"/packages/Fedora/"$xdg_desktop"
+  readarray -t pkgs_desktop < "$__tmp_repo"/packages/Fedora/"$__xdg_desktop"
 
   # install packages from DNF
   sudo dnf install -y --allowerasing "${pkgs_common[@]}" "${pkgs_desktop[@]}"
@@ -91,10 +93,10 @@ bootstrap_fedora() {
   command cp -f "$__tmp_repo"/assets/f22.jpg "$HOME"/Pictures/
 
   # desktop configuration
-  case "$xdg_desktop" in
-         gnome) dconf load / < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
-           kde) . "$__tmp_repo"/confs/"$xdg_desktop".sh ;;
-    x-cinnamon) dconf load / < "$__tmp_repo"/confs/"$xdg_desktop".dconf ;;
+  case "$__xdg_desktop" in
+         gnome) dconf load / < "$__tmp_repo"/confs/"$__xdg_desktop".dconf ;;
+           kde) . "$__tmp_repo"/confs/"$__xdg_desktop".sh ;;
+    x-cinnamon) dconf load / < "$__tmp_repo"/confs/"$__xdg_desktop".dconf ;;
   esac
 }
 
@@ -136,7 +138,7 @@ sudo chmod -R 755 /usr/local
 mkdir -p /usr/local/share/dict
 
 # initial bootstraps
-case "$(uname -s)" in
+case "$__os" in
   Darwin) bootstrap_macos ;;
    Linux) bootstrap_fedora ;;
 esac
@@ -186,16 +188,16 @@ popd >/dev/null 2>&1
 sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # sync local yum repository
-if [[ "$(uname -s)" == "Linux" ]]; then
+if [[ "$__os" == "Linux" ]]; then
   sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
   "$HOME"/.local/bin/yum2
   sudo dnf makecache
   sudo dnf install -y codium
 
-  if [[ "$xdg_desktop" == "gnome" ]]; then
+  if [[ "$__xdg_desktop" == "gnome" ]]; then
     extensions="$(grep -Eo '^[0-9]+' "$__tmp_repo"/packages/gnome-extensions | tr '\n' ' ')"
     "$HOME"/.local/bin/install_gnome_extension "$extensions"
-fi
+  fi
 
 # shellcheck disable=SC1090
 . "$HOME/.bash_profile"
