@@ -187,16 +187,19 @@ popd >/dev/null 2>&1
 # install root user configs
 sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
-# sync local yum repository
+# extra steps if a Linux system
 if [[ "$__os" == "Linux" ]]; then
+  # sync local yum repository
   sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
   "$HOME"/.local/bin/yum2
   sudo dnf makecache
   sudo dnf install -y codium
 
+  # install gnome extensions
   if [[ "$__xdg_desktop" == "gnome" ]]; then
-    extensions="$(grep -Eo '^[0-9]+' "$__tmp_repo"/packages/gnome-extensions | tr '\n' ' ')"
-    "$HOME"/.local/bin/install_gnome_extension "$extensions"
+    # make the output an array to correctly pass params to install script
+    extensions=("$(grep -Eo '^[0-9]+' "$__tmp_repo"/packages/gnome-extensions | tr '\n' ' ')")
+    "$HOME"/.local/bin/install_gnome_extension "${extensions[@]}"
   fi
 fi
 
