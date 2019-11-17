@@ -198,6 +198,7 @@ if [[ "$__os" == "Linux" ]]; then
     extensions="$(grep -Eo '^[0-9]+' "$__tmp_repo"/packages/gnome-extensions | tr '\n' ' ')"
     "$HOME"/.local/bin/install_gnome_extension "$extensions"
   fi
+fi
 
 # shellcheck disable=SC1090
 . "$HOME/.bash_profile"
