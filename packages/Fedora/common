@@ -10,6 +10,7 @@ fdupes
 ffmpeg
 figlet
 fish
+flameshot
 foliate
 fontconfig-enhanced-defaults
 fontconfig-font-replacements
@@ -52,7 +53,6 @@ python3-devel
 remmina
 reptyr
 ruby
-scrot
 seahorse
 ShellCheck
 solaar
