@@ -198,10 +198,9 @@ if [[ "$__os" == "Linux" ]]; then
   # install gnome extensions
   if [[ "$__xdg_desktop" == "gnome" ]]; then
     # make the output an array to correctly pass params to install script
-    extensions=("$(grep -Eo '^[0-9]+' "$__tmp_repo"/packages/gnome-extensions | tr '\n' ' ')")
+    while read -r line || [[ -n "$line" ]]; do
+      extensions+=( "$(echo "$line" | grep -Eo '^[0-9]+')" )
+    done < "$__tmp_repo"/packages/gnome-extensions
     "$HOME"/.local/bin/install_gnome_extension "${extensions[@]}"
   fi
 fi
-
-# shellcheck disable=SC1090
-. "$HOME/.bash_profile"
