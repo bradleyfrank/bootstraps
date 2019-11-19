@@ -29,7 +29,7 @@ cleanup() {
   rm -rf "$__tmp_repo"
 }
 
-trap EXIT cleanup
+trap cleanup EXIT
 
 case "$OSTYPE" in
   "darwin"*) __os="macos" ;;
