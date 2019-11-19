@@ -64,10 +64,8 @@ bootstrap_macos() {
   . "$__tmp_repo"/confs/macos.sh
 }
 
-
 bootstrap_fedora() {
   local os_majver pkgs_common pkgs_desktop
-  local rpmfusion="https://download1.rpmfusion.org"
 
   os_majver="$(rpm -E %fedora)"
 
@@ -82,8 +80,9 @@ bootstrap_fedora() {
   # install repositories
   sudo dnf install -y \
     fedora-workstation-repositories \
-    "$rpmfusion"/free/fedora/rpmfusion-free-release-"$os_majver".noarch.rpm \
-    "$rpmfusion"/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
+    https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-"$os_majver".noarch.rpm \
+    https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$os_majver".noarch.rpm
+  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/repos/vscodium.repo
   sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-multimedia.repo
   sudo sed -i "/^baseurl=/a includepkgs=spotify\*,makemkv\*,ccextractor\*" \
     /etc/yum.repos.d/fedora-multimedia.repo
@@ -116,7 +115,6 @@ bootstrap_fedora() {
   esac
 }
 
-
 git_clone_repo() {
   local destdir="$1" gitrepo="$2"
 
@@ -139,7 +137,6 @@ stow_packages() {
     stow -d "$__dotfiles_dir" -t "$HOME" --no-folding "$1" "$dir"
   done
 }
-
 
 #
 # --==## MAIN ##==--
