@@ -130,6 +130,20 @@ git_clone_repo() {
   popd >/dev/null 2>&1
 }
 
+install_gnome_extensions() {
+  # make the output an array to correctly pass params to install script
+  while read -r line || [[ -n "$line" ]]; do
+    extensions+=( "$(echo "$line" | grep -Eo '^[0-9]+')" )
+  done < "$__tmp_repo"/packages/gnome-extensions
+  "$HOME"/.local/bin/install_gnome_extension "${extensions[@]}"
+}
+
+install_vscode_extensions() {
+  vscode_binary="/usr/bin/local/$1"
+  while read -r vs_extension || [[ -n "$vs_extension" ]]; do
+    "$vscode_binary" --install-extension --force "$vs_extension"
+  done < "$__tmp_repo"/packages/vscode-extensions
+}
 
 stow_packages() {
   for dir in */; do
@@ -201,19 +215,17 @@ popd >/dev/null 2>&1
 sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # extra steps if a Linux system
-if [[ "$__os" == "Linux" ]]; then
+if [[ "$__os" == "linux" ]]; then
   # sync local yum repository
-  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/localhost.repo
+  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/repos/localhost.repo
   "$HOME"/.local/bin/yum2
-  sudo dnf makecache
-  sudo dnf install -y codium
 
   # install gnome extensions
-  if [[ "$__xdg_desktop" == "gnome" ]]; then
-    # make the output an array to correctly pass params to install script
-    while read -r line || [[ -n "$line" ]]; do
-      extensions+=( "$(echo "$line" | grep -Eo '^[0-9]+')" )
-    done < "$__tmp_repo"/packages/gnome-extensions
-    "$HOME"/.local/bin/install_gnome_extension "${extensions[@]}"
-  fi
+  [[ "$__xdg_desktop" == "gnome" ]] && install_gnome_extensions
 fi
+
+# install vscode extensions
+case "$__os" in
+  macos) install_vscode_extensions "code" ;;
+  linux) install_vscode_extensions "codium" ;;
+esac
