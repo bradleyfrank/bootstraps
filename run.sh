@@ -139,7 +139,7 @@ install_gnome_extensions() {
 }
 
 install_vscode_extensions() {
-  vscode_binary="/usr/bin/local/$1"
+  vscode_binary="$1"
   while read -r vs_extension || [[ -n "$vs_extension" ]]; do
     "$vscode_binary" --install-extension --force "$vs_extension"
   done < "$__tmp_repo"/packages/vscode-extensions
@@ -227,6 +227,6 @@ fi
 
 # install vscode extensions
 case "$__os" in
-  macos) install_vscode_extensions "code" ;;
-  linux) install_vscode_extensions "codium" ;;
+  macos) install_vscode_extensions "/usr/bin/local/code" ;;
+  linux) install_vscode_extensions "/usr/bin/codium" ;;
 esac
