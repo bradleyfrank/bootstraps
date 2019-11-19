@@ -18,8 +18,24 @@ __tmp_repo="$(mktemp -d)"
 
 __user="$(id -un)"
 __localhost=$(uname -n)
-__os="$(uname -s)"
 __xdg_desktop=""
+
+
+#
+# --==## SETUP ##==--
+#
+
+cleanup() {
+  rm -rf "$__tmp_repo"
+}
+
+trap EXIT cleanup
+
+case "$OSTYPE" in
+  "darwin"*) __os="macos" ;;
+   "linux"*) __os="linux" ;;
+          *) printf '%s\n' "Unknown OS detected, aborting..." >&2 ; exit 1 ;;
+esac
 
 
 #
@@ -139,8 +155,8 @@ mkdir -p /usr/local/share/dict
 
 # initial bootstraps
 case "$__os" in
-  Darwin) bootstrap_macos ;;
-   Linux) bootstrap_fedora ;;
+  macos) bootstrap_macos ;;
+  linux) bootstrap_fedora ;;
 esac
 
 # install python packages
