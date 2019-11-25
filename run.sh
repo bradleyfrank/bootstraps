@@ -217,10 +217,6 @@ sudo rsync -r "$__tmp_repo"/assets/root/ /root/
 
 # extra steps if a Linux system
 if [[ "$__os" == "linux" ]]; then
-  # sync local yum repository
-  sudo dnf config-manager --add-repo="$__tmp_repo"/assets/repos/localhost.repo
-  "$HOME"/.local/bin/yum2
-
   # install gnome extensions
   [[ "$__xdg_desktop" == "gnome" ]] && install_gnome_extensions
 fi
