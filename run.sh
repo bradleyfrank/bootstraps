@@ -141,7 +141,7 @@ install_gnome_extensions() {
 install_vscode_extensions() {
   vscode_binary="$1"
   while read -r vs_extension || [[ -n "$vs_extension" ]]; do
-    "$vscode_binary" --install-extension --force "$vs_extension"
+    "$vscode_binary" --install-extension "$vs_extension"
   done < "$__tmp_repo"/packages/vscode-extensions
 }
 
