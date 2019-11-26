@@ -160,11 +160,6 @@ stow_packages() {
 # prep home directory structure
 mkdir -p "$HOME"/Development/Home
 
-# prep system directory structure
-sudo chown -R "$__user" /usr/local
-sudo chmod -R 755 /usr/local
-mkdir -p /usr/local/share/dict
-
 # initial bootstraps
 case "$__os" in
   macos) bootstrap_macos ;;
@@ -173,9 +168,6 @@ esac
 
 # install python packages
 python3 -m pip install -U --user -r "$__tmp_repo"/packages/requirements.txt
-
-# install custom dictionary
-command cp -f "$__tmp_repo"/assets/words /usr/local/share/dict/
 
 # clone dotfiles repository
 git_clone_repo "$__dotfiles_dir" "$__dotfiles_repo"
