@@ -1,0 +1,108 @@
+---
+
+homebrew_tap:
+  - homebrew/bundle
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/core
+
+homebrew_formulas:
+  - awscli
+  - bash
+  - bash-completion@2
+  - bat
+  - bcal
+  - cabextract
+  - coreutils
+  - diff-so-fancy
+  - eye-d3
+  - ffsend
+  - findutils
+  - fdupes
+  - flac
+  - gawk
+  - ghostscript
+  - glances
+  - gnu-sed
+  - gnu-tar
+  - gnu-which
+  - grep
+  - gzip
+  - hh
+  - iftop
+  - kpcli
+  - keychain
+  - lame
+  - less
+  - markdown
+  - mas
+  - mtr
+  - most
+  - ncdu
+  - neofetch
+  - nmap
+  - p7zip
+  - par
+  - prettyping
+  - python
+  - rename
+  - rpm2cpio
+  - rsync
+  - shellcheck
+  - shfmt
+  - ssh-copy-id
+  - stow
+  - tmux
+  - tree
+  - vim
+  - watch
+  - wget
+  - yamllint
+  - youtube-dl
+  - z
+
+homebrew_casks:
+  - 1password
+  - anaconda
+  - anylist
+  - appcleaner
+  - bartender
+  - balenaetcher
+  - calibre
+  - chromium
+  - fantastical
+  - fedora-media-writer
+  - firefox
+  - fliqlo
+  - font-clear-sans
+  - font-roboto
+  - font-source-code-pro
+  - font-source-code-pro-for-powerline
+  - google-backup-and-sync
+  - google-chrome
+  - iina
+  - istat-menus
+  - keepassx
+  - keepingyouawake
+  - keka
+  - macdown
+  - meld
+  - musicbrainz-picard
+  - plexamp
+  - signal
+  - spotify
+  - spotify-notifications
+  - textmate
+  - transmission
+  - transmit
+  - typora
+  - vlc
+  - xquartz
+
+homebrew_mas:
+  - 1107421413 # 1Blocker
+  - 924726344 # Deliveries
+  - 715768417 # Microsoft Remote Desktop
+  - 1179623856 # Pastebot
+  - 407963104 # Pixelmator
+  - 425424353 # The Unarchiver

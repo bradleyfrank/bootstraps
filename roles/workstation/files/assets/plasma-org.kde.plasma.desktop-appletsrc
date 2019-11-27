@@ -1,23 +1,3 @@
-#!/bin/bash
-
-# set the 'look and feel' to the Breeze theme
-lookandfeeltool --apply org.kde.breeze.desktop
-
-# default terminal profile (located in dotfiles)
-kwriteconfig5 --file konsolerc --group "Desktop Entry" --key "DefaultProfile" "Solarized-Light.profile"
-
-# interaction behavior is double-click
-kwriteconfig5 --file kdeglobals --group "KDE" --key "SingleClick" "false"
-
-# caps lock is control
-kwriteconfig5 --file kxkbrc --group "Layout" --key "Options" "ctrl:nocaps"
-
-# increase key repeat rates
-#kwriteconfig5 --file kcminputrc --group "Keyboard" --key "RepeatDelay" 140
-#kwriteconfig5 --file kcminputrc --group "Keyboard" --key "RepeatRate" 50.00
-
-# insert plasma template
-cat << EOF > "$HOME"/.config/plasma-org.kde.plasma.desktop-appletsrc
 [ActionPlugins][0]
 MidButton;NoModifier=org.kde.paste
 RightButton;NoModifier=org.kde.contextmenu
@@ -175,4 +155,3 @@ immutability=2
 
 [ScreenMapping]
 itemsOnDisabledScreens=
-EOF

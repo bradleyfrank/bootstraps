@@ -1,0 +1,23 @@
+---
+
+- name: Load desktop environment variables
+  include_vars: "{{ desktop }}.yml"
+
+- name: Install repos
+  import_tasks: repos.yml
+  become: True
+
+- name: Install OS packages
+  become: True
+  package:
+    name: "{{ sys_packages }} + {{ de_packages }}"
+    state: present
+
+- name: Setup home environment
+  import_tasks: "dotfiles.yml"
+
+- name: Setup development environment
+  import_tasks: "devenv.yml"
+
+- name: Setup desktop environment
+  import_tasks: "{{ desktop }}.yml"

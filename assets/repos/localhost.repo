@@ -1,5 +1,0 @@
-[localhost]
-name=localhost
-baseurl=file:///usr/local/cache/yum2
-enabled=1
-gpgcheck=0

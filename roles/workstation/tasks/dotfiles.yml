@@ -1,0 +1,53 @@
+---
+
+- name: Create ~/.ssh directory
+  file:
+    path: "{{ homedir }}/.ssh"
+    state: directory
+    mode: '0700'
+
+- name: Clone dotfiles repo
+  git:
+    repo: "https://github.com/bradleyfrank/dotfiles.git"
+    dest: "{{ homedir }}/.dotfiles"
+    version: master
+    force: True
+    track_submodules: True
+    accept_hostkey: True
+
+- name: Ignore executable bit changes in dotfiles repo
+  git_config:
+    name: core.fileMode
+    repo: "{{ homedir }}/.dotfiles"
+    scope: local
+    value: "false"
+
+- name: Create post-merge script in dotfiles repo
+  copy:
+    content: |
+      chmod 600 ./ssh/.ssh/authorized_keys
+      chmod 600 ./ssh/.ssh/config
+      chmod 775 ./bin/.local/bin/*
+    dest: "{{ homedir }}/.dotfiles/.git/hooks/post-merge"
+    mode: '0750'
+
+- name: Stow dotfiles
+  command:
+    cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/stow-dotfiles -b"
+
+- name: Fix dotfile ssh permissions (part 1 of 2)
+  file:
+    path: "{{ homedir }}/.dotfiles/ssh/.ssh/authorized_keys"
+    mode: '0600'
+
+- name: Fix dotfile ssh permissions (part 2 of 2)
+  file:
+    path: "{{ homedir }}/.dotfiles/ssh/.ssh/config"
+    mode: '0600'
+
+- name: Fix dotfile bin permissions
+  file:
+    path: "{{ homedir }}/.dotfiles/bin/.local/bin"
+    mode: '0755'
+    recurse: True
+    state: directory
