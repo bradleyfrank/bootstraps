@@ -1,17 +1,8 @@
 ---
 
-- name: Copy terminal profile
-  copy:
-    src: assets/plasma-org.kde.plasma.desktop-appletsrc
-    dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
-
 - name: Set 'look and feel' to Breeze theme
   command:
     cmd: lookandfeeltool --apply org.kde.breeze.desktop
-
-- name: Set default terminal profile
-  command:
-    cmd: kwriteconfig5 --file konsolerc --group "Desktop Entry" --key "DefaultProfile" "Solarized-Light.profile"
 
 - name: Make double-click the default
   command:
@@ -21,5 +12,12 @@
   command:
     cmd: kwriteconfig5 --file kxkbrc --group "Layout" --key "Options" "ctrl:nocaps"
 
-#kwriteconfig5 --file kcminputrc --group "Keyboard" --key "RepeatDelay" 140
-#kwriteconfig5 --file kcminputrc --group "Keyboard" --key "RepeatRate" 50.00
+- name: Copy desktop settings
+  copy:
+    src: assets/plasma-org.kde.plasma.desktop-appletsrc
+    dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+
+- name: Copy kate editor settings
+  copy:
+    src: assets/kde/katerc
+    dest: "{{ homedir }}/.config/katerc"
