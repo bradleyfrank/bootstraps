@@ -10,8 +10,10 @@ de_packages:
   - gedit-plugin-multiedit
   - gnome-shell-extension-auto-move-windows
   - gnome-shell-extension-dash-to-dock
+  - gnome-shell-extension-gpaste
   - gnome-shell-extension-system-monitor-applet
   - gnote
+  - gpaste*
   - libgnome-keyring
   - meld
   - mpv
@@ -19,5 +21,4 @@ de_packages:
   - transmission-gtk
 
 gnome_extensions:
-  - 779 # clipboard-indicator
   - 1011 # dynamic-panel-transparency
