@@ -1,9 +1,5 @@
 ---
 
-- name: Install Xcode
-  command:
-    cmd: xcode-select --install
-
 - name: Install Homebrew taps
   homebrew_tap:
     name: "{{ taps }}"
