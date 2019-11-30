@@ -6,20 +6,28 @@ homebrew_url="https://raw.githubusercontent.com/Homebrew/install/master/install"
 bootstrap_repo="https://github.com/bradleyfrank/bootstraps.git"
 tmp_repo="$(mktemp -d)"
 
-case "$OSTYPE" in
-  "darwin"*) __os="macos" ;;
-   "linux"*) __os="linux" ;;
-          *) printf '%s\n' "Unsupported OS, aborting..." >&2 ; exit 1 ;;
-esac
+not_supported() {
+  printf '%s\n' "Unsupported OS, aborting..." >&2
+  exit 1
+}
 
-if [[ "$__os" == "macos" ]]; then
+if [[ $OSTYPE =~ ^darwin ]]; then
+
   xcode-select --install
   [[ ! type brew >/dev/null 2>&1 ]] && /usr/bin/ruby -e "$(curl -fsSL "$homebrew_url")"
-  brew update
-  brew upgrade
   brew install ansible git
-elif [[ "$__os" == "linux" ]]; then
-  sudo dnf install ansible git -y
+
+elif [[ $OSTYPE =~ ^linux ]]; then
+
+  case "$(sed -rn 's/^ID=([a-z]+)/\1/p' /etc/os-release)" in
+    fedora) sudo dnf install ansible git -y ;;
+         *) not_supported                   ;;
+  esac
+
+else
+
+  not_supported
+
 fi
 
 git clone "$bootstrap_repo" "$tmp_repo"
