@@ -1,0 +1,14 @@
+---
+
+- name: Load desktop environment variables
+  include_vars: "de/{{ desktop }}"
+
+- name: Install repos
+  import_tasks: repos
+  become: True
+
+- name: Install OS packages
+  become: True
+  package:
+    name: "{{ distro_packages }} + {{ de_packages }}"
+    state: present

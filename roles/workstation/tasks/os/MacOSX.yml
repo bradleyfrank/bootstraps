@@ -1,0 +1,26 @@
+---
+
+- name: Install Xcode
+  command:
+    cmd: xcode-select --install
+
+- name: Install Homebrew taps
+  homebrew_tap:
+    name: "{{ taps }}"
+
+- name: Install Homebrew packages
+  homebrew:
+    name: "{{ formulas }}"
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Install Homebrew casks
+  homebrew_cask:
+    name: "{{ casks }}"
+    update_homebrew: yes
+    upgrade_all: yes
+
+- name: Install Mac App Store applications
+  command:
+    cmd: "/usr/local/bin/mas install {{ item }}"
+  with_items: "{{ apps }}"

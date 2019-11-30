@@ -1,0 +1,76 @@
+---
+
+desktop: "{{ ansible_env.DESKTOP_SESSION }}"
+vscodium: "/usr/bin/codium"
+
+distro_packages:
+  - abcde
+  - adobe-source-*-fonts
+  - bat
+  - borgbackup
+  - codium
+  - dnf-plugin-system-upgrade
+  - dnf-utils
+  - fail2ban
+  - fdupes
+  - ffmpeg
+  - figlet
+  - fish
+  - flameshot
+  - foliate
+  - fontconfig-enhanced-defaults
+  - fontconfig-font-replacements
+  - fwupd
+  - ghostscript
+  - ghostwriter
+  - glances
+  - google-chrome-stable
+  - google-noto-emoji-color-fonts
+  - hstr
+  - htop
+  - iftop
+  - joplin
+  - keepassxc
+  - keychain
+  - libmp4v2
+  - libreoffice
+  - libvirt-client
+  - libxcrypt-compat
+  - makemkv
+  - makepasswd
+  - mediawriter
+  - mkvtoolnix
+  - most
+  - mtr
+  - ncdu
+  - neofetch
+  - nextcloud-client
+  - nmap
+  - p7zip
+  - p7zip-plugins
+  - par
+  - perf
+  - picard
+  - podman
+  - python3
+  - python3-devel
+  - remmina
+  - reptyr
+  - ruby
+  - seahorse
+  - ShellCheck
+  - solaar
+  - spotify-client
+  - stow
+  - strace
+  - system-config-printer
+  - tlp
+  - tmux
+  - torbrowser-launcher
+  - tree
+  - vim
+  - vlc
+  - wget
+  - xz
+  - youtube-dl
+  - z

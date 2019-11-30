@@ -1,12 +1,14 @@
 ---
 
-homebrew_tap:
+vscodium: "/usr/bin/local/code"
+
+taps:
   - homebrew/bundle
   - homebrew/cask
   - homebrew/cask-fonts
   - homebrew/core
 
-homebrew_formulas:
+formulas:
   - awscli
   - bash
   - bash-completion@2
@@ -61,7 +63,7 @@ homebrew_formulas:
   - youtube-dl
   - z
 
-homebrew_casks:
+casks:
   - 1password
   - anaconda
   - anylist
@@ -99,7 +101,7 @@ homebrew_casks:
   - vlc
   - xquartz
 
-homebrew_mas:
+apps:
   - 1107421413 # 1Blocker
   - 924726344 # Deliveries
   - 715768417 # Microsoft Remote Desktop

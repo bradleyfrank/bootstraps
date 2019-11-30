@@ -1,23 +1,16 @@
 ---
 
-- name: Load desktop environment variables
-  include_vars: "{{ desktop }}.yml"
+- name: Load common variables
+  include_vars: "os/{{ ansible_distribution }}"
 
-- name: Install repos
-  import_tasks: repos.yml
-  become: True
-
-- name: Install OS packages
-  become: True
-  package:
-    name: "{{ sys_packages }} + {{ de_packages }}"
-    state: present
+- name: Call specific OS tasks
+  import_tasks: "os/{{ ansible_distribution }}"
 
 - name: Setup home environment
-  import_tasks: "dotfiles.yml"
+  import_tasks: dotfiles
 
 - name: Setup development environment
-  import_tasks: "devenv.yml"
+  import_tasks: devenv
 
 - name: Setup desktop environment
-  import_tasks: "{{ desktop }}.yml"
+  import_tasks: "{{ desktop }}"

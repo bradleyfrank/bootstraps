@@ -47,7 +47,7 @@
 
 - name: Install VSCode extensions
   command:
-    cmd: "/usr/bin/codium --install-extension {{ item }}"
+    cmd: "{{ vscodium }} --install-extension {{ item }}"
   with_items: "{{ vscode_extensions }}"
 
 - name: Install Python packages
