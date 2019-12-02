@@ -12,22 +12,16 @@ not_supported() {
 }
 
 if [[ $OSTYPE =~ ^darwin ]]; then
-
   xcode-select --install
-  [[ ! type brew >/dev/null 2>&1 ]] && /usr/bin/ruby -e "$(curl -fsSL "$homebrew_url")"
+  [[ ! -x /usr/local/bin/brew ]] && /usr/bin/ruby -e "$(curl -fsSL "$homebrew_url")"
   brew install ansible git
-
 elif [[ $OSTYPE =~ ^linux ]]; then
-
   case "$(sed -rn 's/^ID=([a-z]+)/\1/p' /etc/os-release)" in
     fedora) sudo dnf install ansible git -y ;;
          *) not_supported                   ;;
   esac
-
 else
-
   not_supported
-
 fi
 
 git clone "$bootstrap_repo" "$tmp_repo"
