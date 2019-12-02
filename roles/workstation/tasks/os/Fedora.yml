@@ -9,9 +9,10 @@
     state: latest
 
 - name: Install repos
-  include_tasks: repos
-  apply:
-    become: True
+  include_tasks: repos.yml
+  args:
+    apply:
+      become: True
 
 - name: Install OS packages
   become: True
