@@ -3,6 +3,11 @@
 - name: Load desktop environment variables
   include_vars: "de/{{ desktop }}"
 
+- name: Upgrade all packages
+  dnf:
+    name: "*"
+    state: latest
+
 - name: Install repos
   import_tasks: repos
   become: True
