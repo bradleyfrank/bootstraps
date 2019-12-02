@@ -1,5 +1,6 @@
 ---
 
+desktop: "{{ ansible_distribution }}"
 vscodium: "/usr/bin/local/code"
 
 taps:

@@ -20,6 +20,3 @@
   package:
     name: "{{ distro_packages }} + {{ de_packages }}"
     state: present
-
-- name: Setup desktop environment
-  include_tasks: "de/{{ desktop }}.yml"

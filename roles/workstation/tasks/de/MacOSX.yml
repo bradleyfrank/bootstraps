@@ -1,0 +1,4 @@
+---
+
+- name: Configure MacOS desktop settings
+  script: scripts/macos.sh
