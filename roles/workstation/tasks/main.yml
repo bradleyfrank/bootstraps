@@ -11,6 +11,3 @@
 
 - name: Setup development environment
   include_tasks: devenv.yml
-
-- name: Setup desktop environment
-  include_tasks: "{{ desktop }}.yml"
