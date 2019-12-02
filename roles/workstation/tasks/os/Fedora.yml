@@ -4,6 +4,7 @@
   include_vars: "de/{{ desktop }}.yml"
 
 - name: Upgrade all packages
+  become: True
   dnf:
     name: "*"
     state: latest
