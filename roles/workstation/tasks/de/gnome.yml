@@ -3,8 +3,7 @@
 # Application Settings ---------------------------------------------------------
 
 - name: Import dconf settings for applications
-  command:
-    cmd: dconf load / < "{{ item }}"
+  shell: dconf load / < "{{ item }}"
   with_fileglob:
     - "assets/gnome/*.dconf"
 
