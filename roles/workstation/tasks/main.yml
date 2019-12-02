@@ -4,13 +4,13 @@
   include_vars: "os/{{ ansible_distribution }}"
 
 - name: Call specific OS tasks
-  import_tasks: "os/{{ ansible_distribution }}"
+  include_tasks: "os/{{ ansible_distribution }}"
 
 - name: Setup home environment
-  import_tasks: dotfiles
+  include_tasks: dotfiles
 
 - name: Setup development environment
-  import_tasks: devenv
+  include_tasks: devenv
 
 - name: Setup desktop environment
-  import_tasks: "{{ desktop }}"
+  include_tasks: "{{ desktop }}"
