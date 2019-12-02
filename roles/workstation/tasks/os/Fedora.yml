@@ -10,7 +10,8 @@
 
 - name: Install repos
   include_tasks: repos
-  become: True
+  apply:
+    become: True
 
 - name: Install OS packages
   become: True
