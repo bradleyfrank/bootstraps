@@ -9,7 +9,7 @@
     state: latest
 
 - name: Install repos
-  import_tasks: repos
+  include_tasks: repos
   become: True
 
 - name: Install OS packages
