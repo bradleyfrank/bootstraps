@@ -6,10 +6,16 @@ homebrew_url="https://raw.githubusercontent.com/Homebrew/install/master/install"
 bootstrap_repo="https://github.com/bradleyfrank/bootstraps.git"
 tmp_repo="$(mktemp -d)"
 
+cleanup() {
+  rm -rf "$tmp_repo"
+}
+
 not_supported() {
   printf '%s\n' "Unsupported OS, aborting..." >&2
   exit 1
 }
+
+trap cleanup EXIT
 
 if [[ $OSTYPE =~ ^darwin ]]; then
   xcode-select --install
