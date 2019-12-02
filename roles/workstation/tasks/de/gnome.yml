@@ -11,7 +11,7 @@
 
 - name: Install Gnome extensions
   command:
-    cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/install-gnome-extension {{ item }}"
+    cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/install-gnome-extension -x {{ item }}"
   with_items: "{{ gnome_extensions }}"
 
 - name: Set the enabled extensions
