@@ -1,16 +1,97 @@
 ---
 
-- name: Install Gnome extensions
+- name: Copy desktop settings
+  copy:
+    src: assets/plasma-org.kde.plasma.desktop-appletsrc
+    dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+
+- name: Import Gnome settings for individual groups
   command:
-    cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/install-gnome-extension {{ item }}"
-  with_items: "{{ gnome_extensions }}"
+    cmd: dconf load / < "{{ item }}"
+  with_fileglob:
+    - "assets/gnome/*.dconf"
+
+- name: Disable Calendar dark mode
+  dconf:
+    key: /org/gnome/calendar/follow-night-light
+    value: "false"
+
+- name: Set a custom wallpaper
+  dconf:
+    key: /org/gnome/desktop/background/picture-uri
+    value: "file:///home/bfrank/.local/share/backgrounds/f22.jpg"
+
+- name: Enable automatic timezone
+  dconf:
+    key: /org/gnome/desktop/datetime/automatic-timezone
+    value: "true"
+
+- name: Re-map Caps Lock to Control
+  dconf:
+    key: /org/gnome/desktop/input-sources/xkb-options
+    value: "['ctrl:nocaps']"
+
+- name: Make the clock format 12h
+  dconf:
+    key: /org/gnome/desktop/interface/clock-format
+    value: "'12h'"
+
+- name: Show battery percentage in toolbar
+  dconf:
+    key: /org/gnome/desktop/interface/show-battery-percentage
+    value: "true"
+
+- name: Disable media autorun
+  dconf:
+    key: /org/gnome/desktop/media-handling/autorun-never
+    value: "true"
+
+- name: Enable two-finger scrolling on trackpad
+  dconf:
+    key: /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled
+    value: "true"
+
+- name: Enable tap-to-click on trackpad
+  dconf:
+    key: /org/gnome/desktop/peripherals/touchpad/tap-to-click
+    value: "true"
+
+- name: Clean out old temp files automatically
+  dconf:
+    key: /org/gnome/desktop/privacy/remove-old-temp-files
+    value: "true"
+
+- name: Clean out old deleted files automatically
+  dconf:
+    key: /org/gnome/desktop/privacy/remove-old-trash-files
+    value: "true"
+
+- name: Set a custom screensaver
+  dconf:
+    key: /org/gnome/desktop/screensaver/picture-uri
+    value: "file:///home/bfrank/.local/share/backgrounds/f22.jpg"
+
+- name: Add minimize and maximize button to windows
+  dconf:
+    key: /org/gnome/desktop/wm/preferences/button-layout
+    value: "'appmenu:minimize,maximize,close'"
+
+- name: Set favorite apps in dock
+  dconf:
+    key: /org/gnome/shell/favorite-apps
+    value: "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'joplin.desktop', 'org.gnome.gedit.desktop', 'spotify.desktop', 'codium.desktop']"
+
+- name: Set the enabled extensions
+  dconf:
+    key: /org/gnome/shell/enabled-extensions
+    value: "['system-monitor@paradoxxx.zero.gmail.com']"
 
 - name: Enable Night Light
   dconf:
     key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
-    value: 'true'
+    value: "true"
 
-- name: Set Night Light to automatic schedule
+- name: Put Night Light on automatic schedule
   dconf:
     key: /org/gnome/settings-daemon/plugins/color/night-light-schedule-automatic
-    value: 'true'
+    value: "true"
