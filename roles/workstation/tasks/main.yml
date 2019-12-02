@@ -1,16 +1,16 @@
 ---
 
 - name: Load common variables
-  include_vars: "os/{{ ansible_distribution }}"
+  include_vars: "os/{{ ansible_distribution }}.yml"
 
 - name: Call specific OS tasks
-  include_tasks: "os/{{ ansible_distribution }}"
+  include_tasks: "os/{{ ansible_distribution }}.yml"
 
 - name: Setup home environment
-  include_tasks: dotfiles
+  include_tasks: dotfiles.yml
 
 - name: Setup development environment
-  include_tasks: devenv
+  include_tasks: devenv.yml
 
 - name: Setup desktop environment
-  include_tasks: "{{ desktop }}"
+  include_tasks: "{{ desktop }}.yml"
