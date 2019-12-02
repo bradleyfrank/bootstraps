@@ -14,7 +14,7 @@
 
 - name: Copy desktop settings
   copy:
-    src: assets/plasma-org.kde.plasma.desktop-appletsrc
+    src: assets/kde/plasma-org.kde.plasma.desktop-appletsrc
     dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
 
 - name: Copy kate editor settings

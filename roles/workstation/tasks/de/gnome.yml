@@ -1,15 +1,26 @@
 ---
 
-- name: Copy desktop settings
-  copy:
-    src: assets/plasma-org.kde.plasma.desktop-appletsrc
-    dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+# Application Settings ---------------------------------------------------------
 
-- name: Import Gnome settings for individual groups
+- name: Import dconf settings for applications
   command:
     cmd: dconf load / < "{{ item }}"
   with_fileglob:
     - "assets/gnome/*.dconf"
+
+# Install Extensions -----------------------------------------------------------
+
+- name: Install Gnome extensions
+  command:
+    cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/install-gnome-extension {{ item }}"
+  with_items: "{{ gnome_extensions }}"
+
+- name: Set the enabled extensions
+  dconf:
+    key: /org/gnome/shell/enabled-extensions
+    value: "['system-monitor@paradoxxx.zero.gmail.com']"
+
+# Misc Settings ----------------------------------------------------------------
 
 - name: Disable Calendar dark mode
   dconf:
@@ -80,11 +91,6 @@
   dconf:
     key: /org/gnome/shell/favorite-apps
     value: "['firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'joplin.desktop', 'org.gnome.gedit.desktop', 'spotify.desktop', 'codium.desktop']"
-
-- name: Set the enabled extensions
-  dconf:
-    key: /org/gnome/shell/enabled-extensions
-    value: "['system-monitor@paradoxxx.zero.gmail.com']"
 
 - name: Enable Night Light
   dconf:
