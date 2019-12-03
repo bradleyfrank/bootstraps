@@ -17,7 +17,7 @@
 - name: Set the enabled extensions
   dconf:
     key: /org/gnome/shell/enabled-extensions
-    value: "['system-monitor@paradoxxx.zero.gmail.com']"
+    value: "['system-monitor@paradoxxx.zero.gmail.com', 'dash-to-dock@micxgx.gmail.com', 'GPaste@gnome-shell-extensions.gnome.org', 'dynamic-panel-transparency@rockon999.github.io']"
 
 # Misc Settings ----------------------------------------------------------------
 
