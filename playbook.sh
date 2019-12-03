@@ -34,7 +34,7 @@ git clone "$bootstrap_repo" "$tmp_repo"
 
 pushd "$tmp_repo" >/dev/null 2>&1 || exit 1
 git checkout ansible || exit 1
-ansible-playbook site.yml --ask-vault-pass --ask-become-pass
+ansible-playbook site.yml --ask-become-pass --vault-id @prompt
 popd >/dev/null 2>&1 || exit 1
 
 exit 0
