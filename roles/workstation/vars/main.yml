@@ -17,24 +17,24 @@ python_packages:
   - tuir
 
 my_git_projects:
-  - dotfiles
+  - appeals
   - bootstraps
   - bradleyfrank.github.io
+  - dl-reddit-top
+  - docker-server
+  - dotfiles
+  - dotfiles-minimal
   - scripts_archive
   - system_builds
-  - dl-reddit-top
-  - dotfiles-minimal
-  - docker-server
-  - appeals
 
 vscode_extensions:
   - bitzl.vscode-puppet
+  - donjayamanne.githistory
   - haaaad.ansible
+  - mikestead.dotenv
   - ms-azuretools.vscode-docker
   - redhat.vscode-yaml
   - rogalmic.bash-debug
   - shd101wyy.markdown-preview-enhanced
   - timonwong.shellcheck
   - Tyriar.sort-lines
-  - donjayamanne.githistory
-  - mikestead.dotenv
