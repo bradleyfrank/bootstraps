@@ -1,22 +1,12 @@
 ---
 
-- name: Create ~/Projects folder
+- name: Create ~/Development folder structure
   file:
-    path: "{{ homedir }}/Projects"
+    path: "{{ homedir }}/Development"
     state: directory
+    recurse: True
     mode: '0750'
-
-- name: Create ~/Development symlink to ~/Projects
-  file:
-    src: "{{ homedir }}/Projects"
-    dest: "{{ homedir }}/Development"
-    state: link
-
-- name: Create ~/Scratch folder
-  file:
-    path: "{{ homedir }}/Projects"
-    state: directory
-    mode: '0750'
+  with_items: ['Projects', 'Build', 'Scratch']
 
 - name: Ensure ~/.ssh directory exists
   file:
@@ -33,7 +23,7 @@
 - name: Clone projects
   git:
     repo: "git@github.com:bradleyfrank/{{ item }}.git"
-    dest: "{{ homedir }}/Projects/{{ item }}"
+    dest: "{{ homedir }}/Development/{{ item }}"
     key_file: "{{ homedir }}/.ssh/deploy_key"
     version: master
     track_submodules: True
