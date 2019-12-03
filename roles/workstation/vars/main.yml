@@ -11,6 +11,7 @@ python_packages:
   - pip_upgrade_outdated
   - pycodestyle
   - pydf
+  - pyflakes
   - pylint
   - tmuxp
   - tuir
