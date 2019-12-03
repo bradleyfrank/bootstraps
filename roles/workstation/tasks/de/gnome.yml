@@ -29,7 +29,7 @@
 - name: Set a custom wallpaper
   dconf:
     key: /org/gnome/desktop/background/picture-uri
-    value: "file:///home/bfrank/.local/share/backgrounds/f22.jpg"
+    value: "'file:///home/bfrank/.local/share/backgrounds/f22.jpg'"
 
 - name: Enable automatic timezone
   dconf:
@@ -79,7 +79,7 @@
 - name: Set a custom screensaver
   dconf:
     key: /org/gnome/desktop/screensaver/picture-uri
-    value: "file:///home/bfrank/.local/share/backgrounds/f22.jpg"
+    value: "'file:///home/bfrank/.local/share/backgrounds/f22.jpg'"
 
 - name: Add minimize and maximize button to windows
   dconf:
