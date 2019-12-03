@@ -59,6 +59,7 @@ distro_packages:
   - ruby
   - seahorse
   - ShellCheck
+  - signal-desktop
   - solaar
   - spotify-client
   - stow

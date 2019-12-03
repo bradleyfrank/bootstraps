@@ -11,6 +11,21 @@
     state: present
 
 
+- name: Install "Signal-Desktop" gpgkey
+  rpm_key:
+    key: https://copr-be.cloud.fedoraproject.org/results/luminoso/Signal-Desktop/pubkey.gpg
+
+- name: Install "Signal-Desktop" repo
+  yum_repository:
+    name: copr-signal_desktop
+    description: Copr repo for Signal-Desktop owned by luminoso
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/luminoso/Signal-Desktop/fedora-$releasever-$basearch/
+    gpgcheck: True
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/luminoso/Signal-Desktop/pubkey.gpg
+    repo_gpgcheck: False
+    skip_if_unavailable: True
+
+
 - name: Install "better fonts" gpgkey
   rpm_key:
     key: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/pubkey.gpg
@@ -20,10 +35,11 @@
     name: copr-better_fonts
     description: Copr repo for better_fonts owned by dawid
     baseurl: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/fedora-$releasever-$basearch/
-    gpgcheck: yes
+    gpgcheck: True
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/pubkey.gpg
-    repo_gpgcheck: no
-    skip_if_unavailable: yes
+    repo_gpgcheck: False
+    skip_if_unavailable: True
+
 
 - name: Install "Joplin" gpgkey
   rpm_key:
@@ -34,10 +50,10 @@
     name: copr-joplin
     description: Copr repo for joplin owned by taw
     baseurl: https://copr-be.cloud.fedoraproject.org/results/taw/joplin/fedora-$releasever-$basearch/
-    gpgcheck: yes
+    gpgcheck: True
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/taw/joplin/pubkey.gpg
-    repo_gpgcheck: no
-    skip_if_unavailable: yes
+    repo_gpgcheck: False
+    skip_if_unavailable: True
 
 
 - name: Install "Google" gpgkey
@@ -49,9 +65,9 @@
     name: google-chrome
     description: Google Chrome repo
     baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
-    gpgcheck: yes
+    gpgcheck: True
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-    skip_if_unavailable: no
+    skip_if_unavailable: False
 
 
 - name: Install "negativo17" gpgkey
@@ -63,14 +79,15 @@
     name: negativo17-multimedia
     description: negativo17 multimedia repo
     baseurl: https://negativo17.org/repos/multimedia/fedora-$releasever/$basearch
-    gpgcheck: yes
+    gpgcheck: True
     gpgkey: https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
     includepkgs:
       - spotify*
       - makemkv*
       - ccextractor*
-    repo_gpgcheck: no
-    skip_if_unavailable: yes
+    repo_gpgcheck: False
+    skip_if_unavailable: True
+
 
 - name: Install "paulcarroty vscodium" gpgkey
   rpm_key:
@@ -81,7 +98,7 @@
     name: gitlab.com_paulcarroty_vscodium_repo
     description: paulcarroty repo for vscodium
     baseurl: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
-    gpgcheck: yes
+    gpgcheck: True
     gpgkey: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-    repo_gpgcheck: yes
-    skip_if_unavailable: yes
+    repo_gpgcheck: True
+    skip_if_unavailable: True
