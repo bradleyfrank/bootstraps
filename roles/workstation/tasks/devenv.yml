@@ -2,7 +2,7 @@
 
 - name: Create ~/Development folder structure
   file:
-    path: "{{ homedir }}/Development"
+    path: "{{ homedir }}/Development/{{ item }}"
     state: directory
     recurse: True
     mode: '0750'
