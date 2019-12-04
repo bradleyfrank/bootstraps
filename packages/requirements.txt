@@ -1,9 +1,0 @@
-black
-dns-lexicon
-imgur_downloader
-pip_upgrade_outdated
-pycodestyle
-pydf
-pylint
-tmuxp
-tuir

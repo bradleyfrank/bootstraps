@@ -1,0 +1,22 @@
+---
+
+- name: Load desktop environment variables
+  include_vars: "de/{{ desktop }}.yml"
+
+- name: Upgrade all packages
+  become: True
+  dnf:
+    name: "*"
+    state: latest
+
+- name: Install repos
+  include_tasks: "repos/{{ ansible_distribution }}.yml"
+  args:
+    apply:
+      become: True
+
+- name: Install OS packages
+  become: True
+  package:
+    name: "{{ distro_packages }} + {{ de_packages }}"
+    state: present

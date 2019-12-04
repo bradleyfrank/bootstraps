@@ -1,0 +1,24 @@
+---
+
+de_packages:
+  - audacious
+  - celluloid
+  - gedit-plugin-codecomment
+  - gedit-plugin-colorpicker
+  - gedit-plugin-git
+  - gedit-plugin-joinlines
+  - gedit-plugin-multiedit
+  - gnome-shell-extension-auto-move-windows
+  - gnome-shell-extension-dash-to-dock
+  - gnome-shell-extension-gpaste
+  - gnome-shell-extension-system-monitor-applet
+  - gnote
+  - gpaste*
+  - libgnome-keyring
+  - meld
+  - mpv
+  - nextcloud-client-nautilus
+  - transmission-gtk
+
+gnome_extensions:
+  - 1011 # dynamic-panel-transparency

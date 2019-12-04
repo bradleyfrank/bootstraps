@@ -1,0 +1,46 @@
+---
+
+- name: Create ~/Development folder structure
+  file:
+    path: "{{ homedir }}/Development/{{ item }}"
+    state: directory
+    recurse: True
+    mode: '0750'
+  with_items: ['Projects', 'Build', 'Scratch']
+
+- name: Ensure ~/.ssh directory exists
+  file:
+    path: "{{ homedir }}/.ssh"
+    state: directory
+    mode: 0700
+
+- name: Install GitHub deploy key
+  copy:
+    src: assets/github
+    dest: "{{ homedir }}/.ssh/deploy_key"
+    mode: 0600
+
+- name: Clone projects
+  git:
+    repo: "git@github.com:bradleyfrank/{{ item }}.git"
+    dest: "{{ homedir }}/Development/Projects/{{ item }}"
+    key_file: "{{ homedir }}/.ssh/deploy_key"
+    version: master
+    track_submodules: True
+    accept_hostkey: True
+  with_items: "{{ my_git_projects }}"
+
+- name: Remove GitHub deploy key
+  file:
+    path: "{{ homedir }}/.ssh/deploy_key"
+    state: absent
+
+- name: Install VSCode extensions
+  command:
+    cmd: "{{ vscodium }} --install-extension {{ item }}"
+  with_items: "{{ vscode_extensions }}"
+
+- name: Install Python packages
+  pip:
+    name: "{{ python_packages }}"
+    extra_args: --user
