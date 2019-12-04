@@ -23,7 +23,7 @@
 - name: Clone projects
   git:
     repo: "git@github.com:bradleyfrank/{{ item }}.git"
-    dest: "{{ homedir }}/Development/{{ item }}"
+    dest: "{{ homedir }}/Development/Projects/{{ item }}"
     key_file: "{{ homedir }}/.ssh/deploy_key"
     version: master
     track_submodules: True
