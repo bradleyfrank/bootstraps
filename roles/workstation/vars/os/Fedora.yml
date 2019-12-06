@@ -9,6 +9,7 @@ distro_packages:
   - bat
   - borgbackup
   - codium
+  - dictd
   - dnf-plugin-system-upgrade
   - dnf-utils
   - fail2ban
@@ -53,6 +54,7 @@ distro_packages:
   - picard
   - pidgin
   - podman
+  - pspg
   - python3
   - python3-devel
   - remmina

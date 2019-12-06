@@ -17,6 +17,7 @@ formulas:
   - bcal
   - cabextract
   - coreutils
+  - dict
   - diff-so-fancy
   - eye-d3
   - ffsend
@@ -47,6 +48,7 @@ formulas:
   - p7zip
   - par
   - prettyping
+  - pspg
   - python
   - rename
   - rpm2cpio
