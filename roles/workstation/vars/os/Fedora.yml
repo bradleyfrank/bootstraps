@@ -68,6 +68,7 @@ distro_packages:
   - stow
   - strace
   - system-config-printer
+  - thunderbird
   - tlp
   - tmux
   - torbrowser-launcher
