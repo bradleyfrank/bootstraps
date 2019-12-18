@@ -24,6 +24,7 @@ distro_packages:
   - fwupd
   - ghostscript
   - ghostwriter
+  - git
   - glances
   - google-chrome-stable
   - google-noto-emoji-color-fonts

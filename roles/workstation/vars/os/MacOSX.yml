@@ -83,6 +83,7 @@ casks:
   - font-roboto
   - font-source-code-pro
   - font-source-code-pro-for-powerline
+  - git
   - google-backup-and-sync
   - google-chrome
   - iina
