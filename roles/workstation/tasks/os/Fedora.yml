@@ -18,5 +18,5 @@
 - name: Install OS packages
   become: True
   package:
-    name: "{{ distro_packages }} + {{ de_packages }}"
+    name: "{{ distro_packages + de_packages }}"
     state: present
