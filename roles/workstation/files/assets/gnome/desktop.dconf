@@ -1,9 +1,6 @@
 [org/gnome/calendar]
 follow-night-light=false
 
-[org/gnome/desktop/background]
-picture-uri='file:///home/bfrank/.local/share/backgrounds/f22.jpg'
-
 [org/gnome/desktop/datetime]
 automatic-timezone=true
 
@@ -34,9 +31,6 @@ remove-old-trash-files=true
 
 [org/gnome/desktop/wm/preferences]
 button-layout='appmenu:minimize,maximize,close'
-
-[org/gnome/desktop/screensaver]
-picture-uri='file:///home/bfrank/.local/share/backgrounds/f22.jpg'
 
 [org/gnome/settings-daemon/plugins/color]
 night-light-schedule-automatic=true

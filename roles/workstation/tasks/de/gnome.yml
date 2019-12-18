@@ -9,3 +9,13 @@
   command:
     cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/install-gnome-extension -x {{ item }}"
   with_items: "{{ gnome_extensions }}"
+
+- name: Set wallpaper
+  dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///{{ homedir }}/.local/share/backgrounds/f22.jpg'"
+
+- name: Set screensaver
+  dconf:
+    key: "/org/gnome/desktop/screensaver/picture-uri"
+    value: "'file:///{{ homedir }}/.local/share/backgrounds/f22.jpg'"
