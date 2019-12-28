@@ -38,7 +38,7 @@ unmaximized-opacity=129
 
 [org/gnome/shell/extensions/dash-to-dock]
 animate-show-apps=false
-animation-time=0.19999999999999968
+animation-time=1.0
 apply-custom-theme=false
 autohide=true
 background-color='#000000'
@@ -56,13 +56,14 @@ dock-position='LEFT'
 extend-height=true
 force-straight-corner=true
 height-fraction=1.0
-hide-delay=1.0
+hide-delay=0.24999999999999967
 intellihide=false
 intellihide-mode='FOCUS_APPLICATION_WINDOWS'
 preferred-monitor=0
 require-pressure-to-show=false
 running-indicator-dominant-color=true
 running-indicator-style='DOTS'
+scroll-action='switch-workspace'
 show-apps-at-top=false
 show-delay=0.0
 show-favorites=true
