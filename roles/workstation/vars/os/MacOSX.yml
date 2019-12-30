@@ -32,6 +32,7 @@ formulas:
   - gnu-which
   - grep
   - gzip
+  - hexyl
   - hh
   - iftop
   - kpcli

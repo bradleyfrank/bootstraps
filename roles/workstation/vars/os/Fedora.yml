@@ -28,6 +28,7 @@ distro_packages:
   - glances
   - google-chrome-stable
   - google-noto-emoji-color-fonts
+  - hexyl
   - hstr
   - htop
   - iftop
