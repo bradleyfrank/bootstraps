@@ -172,12 +172,6 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 defaults write com.apple.dock mru-spaces -bool false
 
 
-# ==== Dashboard ====
-
-# disable Dashboard
-defaults write com.apple.dashboard mcx-disabled -boolean true
-
-
 # ==== Interface ====
 
 # expand save panel by default
