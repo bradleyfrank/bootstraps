@@ -11,6 +11,7 @@
     repo: "https://github.com/bradleyfrank/dotfiles.git"
     dest: "{{ homedir }}/.dotfiles"
     version: master
+    depth: 1
     force: True
     track_submodules: True
     accept_hostkey: True
