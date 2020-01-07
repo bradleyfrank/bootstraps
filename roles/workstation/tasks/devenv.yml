@@ -1,5 +1,11 @@
 ---
 
+- name: Set latest Bash shell for user
+  user:
+    name: "{{ ansible_env.username }}"
+    shell: /usr/local/bin/bash
+    when: ansible_facts['os_family'] == 'Darwin'
+
 - name: Create ~/Development folder structure
   file:
     path: "{{ homedir }}/Development/{{ item }}"

@@ -1,0 +1,165 @@
+---
+
+defaults_write:
+  # ==== Time Machine ====
+  com.apple.TimeMachine:
+    # prevent Time Machine from prompting to use new hard drives as backup volume
+    DoNotOfferNewDisksForBackup:
+      - bool
+      - true
+  # ==== Disk Utility ====
+  com.apple.DiskUtility:
+    # enable the debug menu in Disk Utility
+    DUDebugMenuEnabled:
+      - bool
+      - true
+    advanced-image-options:
+      - bool
+      - true
+  # ==== Mail ====
+  com.apple.mail:
+    # show most recent messages at the top
+    ConversationViewSortDescending:
+      - int
+      - 1
+  # ==== Safari ====
+  com.apple.Safari:
+    # enable the Debug menu
+    IncludeInternalDebugMenu:
+      - bool
+      - true
+    # enable the Develop menu
+    IncludeDevelopMenu:
+      - bool
+      - true
+    # enable the Web Inspector
+    WebKitDeveloperExtrasEnabledPreferenceKey:
+      - bool
+      - true
+    com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled:
+      - bool
+      - true
+  # ==== Terminal ====
+  com.apple.Terminal:
+    # set global default Shell to user-installed Bash
+    Shell:
+      - string
+      - "/usr/local/bin/bash"
+    # make new tabs open in default directory
+    NewTabWorkingDirectoryBehavior:
+      - int
+      - 1
+  # ==== TextEdit ====
+  com.apple.TextEdit:
+    # use Plain Text Mode as Default
+    RichText:
+      - int
+      - 0
+  # ==== Desktop ====
+  NSGlobalDomain:
+    AppleShowAllExtensions:
+      - bool
+      - true
+  com.apple.desktopservices:
+    DSDontWriteNetworkStores:
+      - bool
+      - true
+  # ==== Finder ====
+  com.apple.finder:
+    # hide icons for hard drives, servers, and removable media on the desktop
+    ShowExternalHardDrivesOnDesktop:
+      - bool
+      - false
+    ShowHardDrivesOnDesktop:
+      - bool
+      - false
+    ShowRemovableMediaOnDesktop:
+      - bool
+      - false
+    ShowMountedServersOnDesktop:
+      - bool
+      - false
+    # show status bar by default
+    ShowStatusBar:
+      - bool
+      - true
+    # show Finder breadcrumb menu
+    ShowPathbar:
+      - bool
+      - true
+    # disable the warning before emptying the Trash
+    WarnOnEmptyTrash:
+      - bool
+      - false
+    # disable the warning when changing a file extension
+    FXEnableExtensionChangeWarning:
+      - bool
+      - false
+    # default view style
+    FXPreferredViewStyle:
+      - string
+      - "clmv"
+    # set default location for new windows
+    NewWindowTarget:
+      - string
+      - "PfLo"
+    NewWindowTargetPath:
+      - string
+      - "file://{{ homedir }}/Downloads/"
+    # hide desktop icons
+    CreateDesktop:
+      - bool
+      - false
+  com.apple.desktopservices:
+    # avoid creating .DS_Store files on network volumes
+    DSDontWriteNetworkStores:
+      - bool
+      - true
+  # ==== Dock & Expose ====
+  com.apple.dock:
+    # set Dock to auto-hide
+    autohide:
+      - bool
+      - true
+    # disable bouncing Dock icons
+    no-bouncing:
+      - bool
+      - true
+    # set Dock size
+    tilesize:
+      - int
+      - 43
+    # hot corner (bottom-left): show desktop
+    wvous-bl-corner:
+      - int
+      - 4
+    wvous-bl-modifier:
+      - int
+      - 0
+    # hot corner (bottom-right): screen saver
+    wvous-br-corner:
+      - int
+      - 5
+    wvous-br-modifier
+      - int
+      - 0
+    # hot corner (top-left): mission control
+    wvous-tl-corner
+      - int 2
+    wvous-tl-modifier
+      - int 0
+    # hot corner (top-right): application windows
+    wvous-tr-corner:
+      - int 3
+    wvous-tr-modifier:
+      - int 0
+    # disable automatically rearranging Spaces
+    mru-spaces:
+      - bool false
+  # ==== Screenshots ====
+  com.apple.screencapture:
+    # save screenshots as PNG
+    type:
+      - string
+      - "png"
+    

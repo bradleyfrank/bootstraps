@@ -1,5 +1,8 @@
 ---
 
+- name: Load desktop environment variables
+  include_vars: "de/{{ desktop }}.yml"
+
 - name: Install Homebrew taps
   homebrew_tap:
     name: "{{ taps }}"
