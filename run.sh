@@ -18,7 +18,7 @@ not_supported() {
 trap cleanup EXIT
 
 if [[ $OSTYPE =~ ^darwin ]]; then
-  xcode-select --print-path || xcode-select --install
+  xcode-select --print-path &> /dev/null || xcode-select --install
   [[ ! -x /usr/local/bin/brew ]] && /usr/bin/ruby -e "$(curl -fsSL "$homebrew_url")"
   brew install ansible
 elif [[ $OSTYPE =~ ^linux ]]; then
