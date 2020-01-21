@@ -20,7 +20,7 @@ trap cleanup EXIT
 if [[ $OSTYPE =~ ^darwin ]]; then
   xcode-select --print-path &> /dev/null || xcode-select --install
   [[ ! -x /usr/local/bin/brew ]] && /usr/bin/ruby -e "$(curl -fsSL "$homebrew_url")"
-  brew install ansible
+  [[ ! -x /usr/local/bin/ansible ]] && brew install ansible
 elif [[ $OSTYPE =~ ^linux ]]; then
   case "$(sed -rn 's/^ID=([a-z]+)/\1/p' /etc/os-release)" in
     fedora) sudo dnf install ansible -y ;;
