@@ -104,6 +104,7 @@ casks:
   - transmit
   - typora
   - vlc
+  - vscodium
   - xquartz
 
 apps:
