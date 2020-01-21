@@ -140,14 +140,14 @@ defaults_write:
     wvous-br-corner:
       - int
       - 5
-    wvous-br-modifier
+    wvous-br-modifier:
       - int
       - 0
     # hot corner (top-left): mission control
-    wvous-tl-corner
+    wvous-tl-corner:
       - int
       - 2
-    wvous-tl-modifier
+    wvous-tl-modifier:
       - int
       - 0
     # hot corner (top-right): application windows
