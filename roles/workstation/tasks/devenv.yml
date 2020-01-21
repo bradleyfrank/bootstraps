@@ -5,6 +5,7 @@
     name: "{{ ansible_env.USER }}"
     shell: /usr/local/bin/bash
   when: ansible_facts['os_family'] == 'Darwin'
+  become: True
 
 - name: Create ~/Development folder structure
   file:
