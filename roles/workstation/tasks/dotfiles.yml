@@ -27,7 +27,6 @@
   copy:
     content: |
       chmod 600 ./ssh/.ssh/authorized_keys
-      chmod 600 ./ssh/.ssh/config
       chmod 775 ./bin/.local/bin/*
     dest: "{{ homedir }}/.dotfiles/.git/hooks/post-merge"
     mode: '0750'
@@ -36,14 +35,9 @@
   command:
     cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/stow-dotfiles -b"
 
-- name: Fix dotfile ssh permissions (part 1 of 2)
+- name: Fix dotfile ssh permissions
   file:
     path: "{{ homedir }}/.dotfiles/ssh/.ssh/authorized_keys"
-    mode: '0600'
-
-- name: Fix dotfile ssh permissions (part 2 of 2)
-  file:
-    path: "{{ homedir }}/.dotfiles/ssh/.ssh/config"
     mode: '0600'
 
 - name: Fix dotfile bin permissions

@@ -55,16 +55,11 @@ defaults_write:
     RichText:
       - int
       - 0
-  # ==== Desktop ====
+  # ==== Finder ====
   NSGlobalDomain:
     AppleShowAllExtensions:
       - bool
       - true
-  com.apple.desktopservices:
-    DSDontWriteNetworkStores:
-      - bool
-      - true
-  # ==== Finder ====
   com.apple.finder:
     # hide icons for hard drives, servers, and removable media on the desktop
     ShowExternalHardDrivesOnDesktop:
