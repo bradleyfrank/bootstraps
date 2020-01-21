@@ -34,6 +34,7 @@ ansible-pull \
   --url "$bootstrap_repo" \
   --directory "$tmp_repo" \
   --inventory localhost \
+  --purge \
   --ask-become-pass --vault-id @prompt \
   site.yml
 
