@@ -145,17 +145,22 @@ defaults_write:
       - 0
     # hot corner (top-left): mission control
     wvous-tl-corner
-      - int 2
+      - int
+      - 2
     wvous-tl-modifier
-      - int 0
+      - int
+      - 0
     # hot corner (top-right): application windows
     wvous-tr-corner:
-      - int 3
+      - int
+      - 3
     wvous-tr-modifier:
-      - int 0
+      - int
+      - 0
     # disable automatically rearranging Spaces
     mru-spaces:
-      - bool false
+      - bool
+      - false
   # ==== Screenshots ====
   com.apple.screencapture:
     # save screenshots as PNG
