@@ -1,7 +1,7 @@
 ---
 
 - name: Workstation
-  hosts: all
+  hosts: localhost
   gather_facts: True
   roles:
     - workstation

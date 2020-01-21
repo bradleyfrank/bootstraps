@@ -33,6 +33,7 @@ fi
 ansible-pull \
   --url "$bootstrap_repo" \
   --directory "$tmp_repo" \
+  --inventory localhost,"$(uname -n)" \
   --ask-become-pass --vault-id @prompt \
   site.yml
 
