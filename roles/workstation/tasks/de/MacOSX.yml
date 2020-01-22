@@ -6,7 +6,7 @@
 
 - name: Disable Gatekeeper for downloaded apps
   command:
-    cmd: spctl –master-disable
+    cmd: spctl --master-disable
   become: True
 
 - name: Disable prompting to use new exteral drives as Time Machine volume
