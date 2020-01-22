@@ -172,12 +172,6 @@
     key: location
     value: "{{ homedir }}/Downloads"
 
-- name: Save screenshots as PNG
-  osx_defaults:
-    domain: com.apple.screencapture
-    type: string
-    value: "png"
-
 - name: Set expose hot corners
   osx_defaults:
     domain: com.apple.dock
