@@ -312,7 +312,7 @@
 
 - name: Enable FileVault
   command:
-    cmd: "fdesetup enable -user {{ ansible_env.username }}"
+    cmd: "fdesetup enable -user {{ ansible_env.USER }}"
   become: True
 
 - name: Enable firewall
@@ -357,7 +357,7 @@
   file:
     src: "{{ homedir }}/.config/VSCodium"
     dest: "{{ homedir }}/Library/Application Support/VSCodium"
-    owner: "{{ ansible_env.username }}"
+    owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
 
@@ -365,7 +365,7 @@
   file:
     src: '/Applications/VSCodium.app/Contents/Resources/app/bin/code'
     dest: '/usr/local/bin/code'
-    owner: "{{ ansible_env.username }}"
+    owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
 
@@ -373,7 +373,7 @@
   file:
     src: /usr/local/bin/par
     dest: "{{ homedir }}/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin/par"
-    owner: "{{ ansible_env.username }}"
+    owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
 
