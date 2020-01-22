@@ -44,8 +44,8 @@
     state: absent
 
 - name: Remove VSCodium from MacOS quarantine
-  cmd:
-    command: xattr -d com.apple.quarantine /Applications/VSCodium.app
+  command:
+    cmd: xattr -d com.apple.quarantine /Applications/VSCodium.app
   when: ansible_facts['os_family'] == 'Darwin'
   become: True
 
