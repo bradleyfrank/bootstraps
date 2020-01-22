@@ -145,26 +145,33 @@
     - { key: 'NewWindowTarget', value: "PfLo" }
     - { key: 'NewWindowTargetPath', value: "file://{{ homedir }}/Downloads/" }
 
-- name: Auto-hide the dock
+- name: Auto-hide the Dock
   osx_defaults:
     domain: com.apple.finder
     key: autohide
     type: bool
     value: 'true'
 
-- name: Disable icon bouncing in the dock
+- name: Disable icon bouncing in the Dock
   osx_defaults:
     domain: com.apple.finder
     key: no-bouncing
     type: bool
     value: 'true'
 
-- name: Set dock size
+- name: Set Dock size
   osx_defaults:
     domain: com.apple.dock
-    key: RichText
+    key: tilesize
     type: int
-    value: "43"
+    value: '43'
+
+- name: Reset persistent apps in Dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: persistent-apps
+    type: array
+    value: ''
 
 - name: Save screenshots to ~/Downloads
   osx_defaults:
