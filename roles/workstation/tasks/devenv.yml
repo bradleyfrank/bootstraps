@@ -43,15 +43,9 @@
     path: "{{ homedir }}/.ssh/deploy_key"
     state: absent
 
-- name: Add VSCodium to Gatekeeper safe app list
+- name: Enable Gatekeeper 'Anywhere' option
   command:
-    cmd: spctl --add --label "SafeApp" /Applications/VSCodium.app
-  when: ansible_facts['os_family'] == 'Darwin'
-  become: True
-
-- name: Enable Gatekeeper safe app list
-  command:
-    cmd: spctl --enable --label "SafeApp"
+    cmd: spctl --master-disable
   when: ansible_facts['os_family'] == 'Darwin'
   become: True
 
