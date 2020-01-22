@@ -383,7 +383,7 @@
 
 - name: Create a symlink to the patched version of `par` for TextMate
   file:
-    src: /usr/local/bin/par
+    src: '/usr/local/bin/par'
     dest: "{{ homedir }}/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin/par"
     owner: "{{ ansible_env.USER }}"
     group: admin
