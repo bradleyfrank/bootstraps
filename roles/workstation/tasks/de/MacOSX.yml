@@ -4,6 +4,11 @@
 # Miscellaneous application settings
 #
 
+- name: Disable Gatekeeper for downloaded apps
+  cmd:
+    command: spctl –master-disable
+  become: True
+
 - name: Disable prompting to use new exteral drives as Time Machine volume
   osx_defaults:
     domain: com.apple.TimeMachine
