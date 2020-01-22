@@ -1,7 +1,8 @@
 ---
 
 desktop: "{{ ansible_distribution }}"
-vscodium: "/usr/local/bin/code"
+vscodium: '/usr/local/bin/code'
+vscodium_config: "{{ homedir }}/Library/Application Support/VSCodium"
 
 taps:
   - homebrew/bundle

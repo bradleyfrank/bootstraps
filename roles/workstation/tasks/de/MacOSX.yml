@@ -354,10 +354,21 @@
     cmd: 'chflags nohidden /Volumes'
   become: True
 
-- name: Symlink vscodium configs to match Linux
+- name: Check if VSCodium configs are symlinked
+  stat:
+    path: "{{ vscodium_config }}"
+  register: vscodium_config_islink
+
+- name: Delete original VSCodium configs before first run
   file:
-    src: "{{ homedir }}/Library/Application Support/VSCodium"
-    dest: "{{ homedir }}/.config/VSCodium"
+    state: absent
+    path: "{{ vscodium_config }}"
+  when: vscodium_config_islink.stat.islnk is defined and vscodium_config_islink.stat.islnk == False
+
+- name: Symlink VSCodium configs to match Linux
+  file:
+    src: "{{ homedir }}/.config/VSCodium"
+    dest: "{{ vscodium_config }}"
     owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
