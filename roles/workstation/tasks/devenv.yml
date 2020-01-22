@@ -43,9 +43,15 @@
     path: "{{ homedir }}/.ssh/deploy_key"
     state: absent
 
-- name: Remove VSCodium from MacOS quarantine
+- name: Add VSCodium to Gatekeeper safe app list
   command:
-    cmd: xattr -d com.apple.quarantine /Applications/VSCodium.app
+    cmd: spctl --add --label "SafeApp" /Applications/VSCodium.app
+  when: ansible_facts['os_family'] == 'Darwin'
+  become: True
+
+- name: Enable Gatekeeper safe app list
+  command:
+    cmd: spctl --enable --label "SafeApp"
   when: ansible_facts['os_family'] == 'Darwin'
   become: True
 
