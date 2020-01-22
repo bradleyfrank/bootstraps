@@ -14,6 +14,7 @@
 - name: Install Homebrew casks
   homebrew_cask:
     name: "{{ casks }}"
+    accept_external_apps: True
 
 - name: Install Mac App Store applications
   command:
