@@ -376,8 +376,8 @@
 
 - name: Symlink vscodium binary to existing PATH
   file:
-    src: '/Applications/VSCodium.app/Contents/Resources/app/bin/code'
-    dest: '/usr/local/bin/code'
+    src: /Applications/VSCodium.app/Contents/Resources/app/bin/code
+    dest: /usr/local/bin/code
     owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
@@ -389,7 +389,7 @@
 
 - name: Create a symlink to the patched version of `par` for TextMate
   file:
-    src: '/usr/local/bin/par'
+    src: /usr/local/bin/par
     dest: "{{ homedir }}/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin/par"
     owner: "{{ ansible_env.USER }}"
     group: admin
@@ -399,17 +399,11 @@
 # Shell settings
 #
 
-- name: Register Homebrew Bash as available shell
-  command:
-    cmd: grep -q /usr/local/bin/bash /etc/shells
-  register: bash_available
-  ignore_errors: True
-
 - name: Make Homebrew Bash available as a shell
   lineinfile:
     path: /etc/shells
     line: /usr/local/bin/bash
-    when: bash_available.rc == 1
+    insertbefore: BOF
   become: True
 
 #
