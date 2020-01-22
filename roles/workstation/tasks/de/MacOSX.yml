@@ -304,10 +304,17 @@
     type: int
     value: '1'
 
+- name: Check FileVault status
+  command:
+    cmd: fdesetup isactive
+  become: True
+  register: fv_isactive
+
 - name: Enable FileVault
   command:
     cmd: "fdesetup enable -user {{ ansible_env.USER }} -keychain"
   become: True
+  when: fv_isactive.stdout != "true"
 
 - name: Enable firewall
   command:
