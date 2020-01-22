@@ -356,8 +356,8 @@
 
 - name: Symlink vscodium configs to match Linux
   file:
-    src: "{{ homedir }}/.config/VSCodium"
-    dest: "{{ homedir }}/Library/Application Support/VSCodium"
+    src: "{{ homedir }}/Library/Application Support/VSCodium"
+    dest: "{{ homedir }}/.config/VSCodium"
     owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
