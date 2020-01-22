@@ -309,6 +309,7 @@
     cmd: fdesetup isactive
   become: True
   register: fv_isactive
+  ignore_errors: True
 
 - name: Enable FileVault
   command:
@@ -402,6 +403,7 @@
   command:
     cmd: grep -q /usr/local/bin/bash /etc/shells
   register: bash_available
+  ignore_errors: True
 
 - name: Make Homebrew Bash available as a shell
   lineinfile:
