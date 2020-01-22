@@ -26,6 +26,7 @@ formulas:
   - flac
   - gawk
   - ghostscript
+  - git
   - glances
   - gnu-sed
   - gnu-tar
@@ -69,7 +70,6 @@ formulas:
 
 casks:
   - 1password
-  - anaconda
   - anylist
   - appcleaner
   - bartender
@@ -84,8 +84,6 @@ casks:
   - font-roboto
   - font-source-code-pro
   - font-source-code-pro-for-powerline
-  - git
-  - google-backup-and-sync
   - google-chrome
   - iina
   - istat-menus
