@@ -10,14 +10,10 @@
 - name: Install Homebrew packages
   homebrew:
     name: "{{ formulas }}"
-    update_homebrew: yes
-    upgrade_all: yes
 
 - name: Install Homebrew casks
   homebrew_cask:
     name: "{{ casks }}"
-    update_homebrew: yes
-    upgrade_all: yes
 
 - name: Install Mac App Store applications
   command:
