@@ -381,6 +381,11 @@
     group: admin
     state: link
 
+- name: Create TextMate Bundle support bin directory
+  file:
+    path: "{{ homedir }}/Library/Application Support/TextMate/Managed/Bundles/Bundle Support.tmbundle/Support/shared/bin"
+    state: directory
+
 - name: Create a symlink to the patched version of `par` for TextMate
   file:
     src: '/usr/local/bin/par'
