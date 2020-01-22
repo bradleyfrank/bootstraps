@@ -1,7 +1,7 @@
 ---
 
 desktop: "{{ ansible_distribution }}"
-vscodium: "/usr/bin/local/code"
+vscodium: "/usr/local/bin/code"
 
 taps:
   - homebrew/bundle
