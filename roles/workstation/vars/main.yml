@@ -35,6 +35,7 @@ vscode_extensions:
   - ms-azuretools.vscode-docker
   - redhat.vscode-yaml
   - rogalmic.bash-debug
+  - samuelcolvin.jinjahtml
   - shd101wyy.markdown-preview-enhanced
   - timonwong.shellcheck
   - Tyriar.sort-lines
