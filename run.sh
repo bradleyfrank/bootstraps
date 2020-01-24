@@ -4,7 +4,6 @@ set -eu
 
 homebrew_url="https://raw.githubusercontent.com/Homebrew/install/master/install"
 bootstrap_repo="https://github.com/bradleyfrank/bootstraps.git"
-tmp_repo="$(mktemp -d)"
 
 cleanup() {
   rm -rf "$tmp_repo"
@@ -32,8 +31,9 @@ fi
 
 ansible-pull \
   --url "$bootstrap_repo" \
-  --directory "$tmp_repo" \
+  --directory "$(mktemp -d)" \
   --inventory localhost \
+  --limit localhost \
   --purge \
   --ask-become-pass --vault-id @prompt \
   site.yml
