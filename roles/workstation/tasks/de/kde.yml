@@ -29,6 +29,6 @@
 
 - name: Install default desktop settings
   template:
-    src: assets/kde/plasma-org.kde.plasma.desktop-appletsrc.j2
+    src: kde/plasma-org.kde.plasma.desktop-appletsrc.j2
     dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
     mode: '0600'
