@@ -353,9 +353,13 @@
     cmd: 'launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist'
   become: True
 
-- name: Unhide ~/Library directory
+- name: Unhide ~/Library directory (part 1 of 2)
   command:
     cmd: "chflags nohidden {{ homedir }}/Library"
+
+- name: Unhide ~/Library directory (part 2 of 2)
+  command:
+    cmd: "xattr -d com.apple.FinderInfo {{ homedir }}/Library"
 
 - name: Unhide /Volumes directory
   command:
