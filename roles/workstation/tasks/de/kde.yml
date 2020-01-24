@@ -12,11 +12,6 @@
   command:
     cmd: kwriteconfig5 --file kxkbrc --group "Layout" --key "Options" "ctrl:nocaps"
 
-- name: Install default desktop settings
-  copy:
-    src: assets/kde/plasma-org.kde.plasma.desktop-appletsrc
-    dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
-
 - name: Install default Kate settings
   copy:
     src: assets/kde/katerc
@@ -31,3 +26,9 @@
   copy:
     src: assets/kde/dolphinrc
     dest: "{{ homedir }}/.config/dolphinrc"
+
+- name: Install default desktop settings
+  template:
+    src: assets/kde/plasma-org.kde.plasma.desktop-appletsrc.j2
+    dest: "{{ homedir }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    mode: '0600'
