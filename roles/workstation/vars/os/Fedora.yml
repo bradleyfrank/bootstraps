@@ -5,7 +5,7 @@ vscodium: "/usr/bin/codium"
 
 distro_packages:
   - abcde
-  - adobe-source-*-fonts
+  - adobe-source-*-pro-fonts
   - bat
   - borgbackup
   - codium
