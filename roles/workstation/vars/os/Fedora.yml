@@ -8,6 +8,7 @@ distro_packages:
   - adobe-source-*-pro-fonts
   - bat
   - borgbackup
+  - calibre
   - codium
   - dictd
   - dnf-plugin-system-upgrade
