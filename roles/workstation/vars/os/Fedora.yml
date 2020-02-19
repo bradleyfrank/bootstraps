@@ -71,6 +71,7 @@ distro_packages:
   - strace
   - system-config-printer
   - thunderbird
+  - timeshift
   - tlp
   - tmux
   - torbrowser-launcher
