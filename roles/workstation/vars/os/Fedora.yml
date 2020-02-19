@@ -75,6 +75,7 @@ distro_packages:
   - tlp
   - tmux
   - torbrowser-launcher
+  - trash-cli
   - tree
   - vim
   - vlc
