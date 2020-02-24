@@ -76,6 +76,7 @@ casks:
   - balenaetcher
   - calibre
   - chromium
+  - coconutbattery
   - fantastical
   - fedora-media-writer
   - firefox
@@ -87,6 +88,7 @@ casks:
   - google-chrome
   - iina
   - istat-menus
+  - joplin
   - keepassx
   - keepingyouawake
   - keka
