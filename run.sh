@@ -32,10 +32,8 @@ fi
 ansible-pull \
   --url "$bootstrap_repo" \
   --directory "$(mktemp -d)" \
-  --inventory localhost \
-  --limit localhost \
   --purge \
   --ask-become-pass --vault-id @prompt \
-  site.yml
+  playbooks/bootstrap.yml
 
 exit 0
