@@ -34,6 +34,6 @@ ansible-pull \
   --directory "$(mktemp -d)" \
   --purge \
   --ask-become-pass --vault-id @prompt \
-  playbooks/bootstrap.yml
+  bootstrap.yml
 
 exit 0
