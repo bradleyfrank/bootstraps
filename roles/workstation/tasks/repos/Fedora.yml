@@ -26,6 +26,21 @@
     skip_if_unavailable: True
 
 
+- name: Install "jetbrains mono" gpgkey
+  rpm_key:
+    key: https://copr-be.cloud.fedoraproject.org/results/elxreno/jetbrains-mono-fonts/pubkey.gpg
+
+- name: Install "jetbrains-mono-fonts" repo
+  yum_repository:
+    name: jetbrains-mono-fonts
+    description: Copr repo for jetbrains-mono-fonts owned by elxreno
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/elxreno/jetbrains-mono-fonts/fedora-$releasever-$basearch/
+    gpgcheck: True
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/elxreno/jetbrains-mono-fonts/pubkey.gpg
+    repo_gpgcheck: False
+    skip_if_unavailable: True
+
+
 - name: Install "better fonts" gpgkey
   rpm_key:
     key: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/pubkey.gpg

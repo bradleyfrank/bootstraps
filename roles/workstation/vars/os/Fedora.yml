@@ -32,6 +32,7 @@ distro_packages:
   - hstr
   - htop
   - iftop
+  - jetbrains-mono-fonts
   - joplin
   - keepassxc
   - keychain
