@@ -50,7 +50,6 @@ formulas:
   - p7zip
   - par
   - prettyping
-  - pspg
   - python
   - rename
   - rpm2cpio
@@ -84,10 +83,11 @@ casks:
   - font-clear-sans
   - font-roboto
   - font-source-code-pro
-  - font-source-code-pro-for-powerline
+  - font-jetbrains-mono
   - google-chrome
   - iina
   - istat-menus
+  - iterm2
   - joplin
   - keepassx
   - keepingyouawake
