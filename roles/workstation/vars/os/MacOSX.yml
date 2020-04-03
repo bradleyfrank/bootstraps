@@ -71,6 +71,7 @@ casks:
   - 1password
   - anylist
   - appcleaner
+  - authy
   - bartender
   - balenaetcher
   - calibre
@@ -90,6 +91,7 @@ casks:
   - iterm2
   - joplin
   - jumpcut
+  - logitech-options
   - keepassx
   - keepingyouawake
   - keka
