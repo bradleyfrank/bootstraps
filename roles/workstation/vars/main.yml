@@ -21,9 +21,9 @@ my_git_projects:
   - bootstraps
   - bradleyfrank.github.io
   - dl-reddit-top
-  - docker-server
   - dotfiles
   - dotfiles-minimal
+  - home-server
   - scripts_archive
   - system_builds
 

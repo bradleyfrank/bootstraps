@@ -68,6 +68,7 @@ distro_packages:
   - signal-desktop
   - solaar
   - spotify-client
+  - ssmtp
   - stow
   - strace
   - system-config-printer
@@ -75,6 +76,7 @@ distro_packages:
   - timeshift
   - tlp
   - tmux
+  - toilet
   - torbrowser-launcher
   - trash-cli
   - tree
