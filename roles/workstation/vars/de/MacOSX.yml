@@ -1,4 +1,0 @@
----
-
-vscodium_config: "{{ homedir }}/Library/Application Support/VSCodium"
-    

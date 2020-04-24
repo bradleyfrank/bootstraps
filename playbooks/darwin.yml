@@ -1,0 +1,12 @@
+---
+- name: MacOS Workstation
+  hosts: localhost
+  vars:
+    desktop: "{{ ansible_distribution }}"
+    vscodium: '/usr/local/bin/code'
+    vscodium_config: "{{ homedir }}/Library/Application Support/VSCodium"
+  roles:
+    - packages
+    - dotfiles
+    - environment
+    - desktop
