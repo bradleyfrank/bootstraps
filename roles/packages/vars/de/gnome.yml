@@ -9,6 +9,7 @@ de_packages:
   - gedit-plugin-git
   - gedit-plugin-joinlines
   - gedit-plugin-multiedit
+  - gnome-extensions-app
   - gnome-shell-extension-auto-move-windows
   - gnome-shell-extension-dash-to-dock
   - gnome-shell-extension-gpaste
