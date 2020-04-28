@@ -24,7 +24,7 @@
 
 - name: Install GitHub deploy key
   copy:
-    src: assets/github
+    src: github
     dest: "{{ ansible_env.HOME }}/.ssh/deploy_key"
     mode: '0600'
 
