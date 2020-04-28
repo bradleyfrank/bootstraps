@@ -1,0 +1,121 @@
+---
+# vars file for packages
+
+taps:
+  - homebrew/bundle
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - homebrew/core
+
+formulas:
+  - awscli
+  - bash
+  - bash-completion@2
+  - bat
+  - bcal
+  - cabextract
+  - coreutils
+  - dict
+  - diff-so-fancy
+  - eye-d3
+  - ffsend
+  - findutils
+  - fdupes
+  - flac
+  - gawk
+  - ghostscript
+  - git
+  - glances
+  - gnu-sed
+  - gnu-tar
+  - gnu-which
+  - grep
+  - gzip
+  - hexyl
+  - hh
+  - iftop
+  - kpcli
+  - keychain
+  - lame
+  - less
+  - markdown
+  - mas
+  - mtr
+  - most
+  - ncdu
+  - neofetch
+  - nmap
+  - p7zip
+  - par
+  - prettyping
+  - python
+  - rename
+  - rpm2cpio
+  - rsync
+  - shellcheck
+  - shfmt
+  - ssh-copy-id
+  - stow
+  - tmux
+  - tree
+  - vim
+  - watch
+  - wget
+  - yamllint
+  - youtube-dl
+  - z
+
+casks:
+  - 1password
+  - anylist
+  - appcleaner
+  - authy
+  - bartender
+  - balenaetcher
+  - calibre
+  - chromium
+  - coconutbattery
+  - fantastical
+  - fedora-media-writer
+  - firefox
+  - fliqlo
+  - font-clear-sans
+  - font-roboto
+  - font-source-code-pro
+  - font-jetbrains-mono
+  - google-chrome
+  - iina
+  - istat-menus
+  - iterm2
+  - joplin
+  - jumpcut
+  - logitech-options
+  - keepassx
+  - keepingyouawake
+  - keka
+  - macdown
+  - meld
+  - musicbrainz-picard
+  - netnewswire
+  - plexamp
+  - signal
+  - spotify
+  - spotify-notifications
+  - textmate
+  - transmission
+  - transmit
+  - typora
+  - vlc
+  - vscodium
+  - xquartz
+
+apps:
+  - 407963104 # Pixelmator
+  - 409183694 # Keynote
+  - 409201541 # Pages
+  - 409203825 # Numbers
+  - 425424353 # The Unarchiver
+  - 924726344 # Deliveries
+  - 1179623856 # Pastebot
+  - 1320666476 # Wipr
+  - 1481302432 # Instapaper

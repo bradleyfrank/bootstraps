@@ -1,0 +1,61 @@
+---
+# tasks file for environment
+
+- name: Set latest Bash shell for user
+  user:
+    name: "{{ ansible_env.USER }}"
+    shell: /usr/local/bin/bash
+  when: ansible_facts['os_family'] == 'Darwin'
+  become: True
+
+- name: Create ~/Development folder structure
+  file:
+    path: "{{ ansible_env.HOME }}/Development/{{ item }}"
+    state: directory
+    recurse: True
+    mode: '0750'
+  with_items: ['Projects', 'Build', 'Scratch']
+
+- name: Ensure ~/.ssh directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+    mode: '0700'
+
+- name: Install GitHub deploy key
+  copy:
+    src: github
+    dest: "{{ ansible_env.HOME }}/.ssh/deploy_key"
+    mode: '0600'
+
+- name: Clone projects
+  git:
+    repo: "git@github.com:bradleyfrank/{{ item }}.git"
+    dest: "{{ ansible_env.HOME }}/Development/Projects/{{ item }}"
+    key_file: "{{ ansible_env.HOME }}/.ssh/deploy_key"
+    version: master
+    track_submodules: True
+    accept_hostkey: True
+    force: True
+  with_items: "{{ my_git_projects }}"
+
+- name: Remove GitHub deploy key
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh/deploy_key"
+    state: absent
+
+- name: Enable Gatekeeper 'Anywhere' option
+  command:
+    cmd: spctl --master-disable
+  when: ansible_facts['os_family'] == 'Darwin'
+  become: True
+
+- name: Install VSCode extensions
+  command:
+    cmd: "{{ vscodium }} --install-extension {{ item }}"
+  with_items: "{{ vscode_extensions }}"
+
+- name: Install Python packages
+  pip:
+    name: "{{ python_packages }}"
+    extra_args: --user

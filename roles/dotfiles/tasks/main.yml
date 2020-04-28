@@ -1,0 +1,44 @@
+---
+# tasks file for dotfiles
+
+- name: Create ~/.ssh directory
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+    mode: '0700'
+
+- name: Clone dotfiles repo
+  git:
+    repo: "https://github.com/bradleyfrank/dotfiles.git"
+    dest: "{{ ansible_env.HOME }}/.dotfiles"
+    version: master
+    depth: '1'
+    force: True
+    track_submodules: True
+    accept_hostkey: True
+
+- name: Ignore executable bit changes in dotfiles repo
+  git_config:
+    name: core.fileMode
+    repo: "{{ ansible_env.HOME }}/.dotfiles"
+    scope: local
+    value: "false"
+
+- name: Create post-merge script in dotfiles repo
+  copy:
+    content: |
+      chmod 600 ./ssh/.ssh/authorized_keys
+      chmod 775 ./bin/.local/bin/*
+    dest: "{{ ansible_env.HOME }}/.dotfiles/.git/hooks/post-merge"
+    mode: '0750'
+
+- name: Stow dotfiles
+  command:
+    cmd: "{{ ansible_env.HOME }}/.dotfiles/bin/.local/bin/stow-dotfiles -b"
+
+- name: Fix dotfile bin permissions
+  file:
+    path: "{{ ansible_env.HOME }}/.dotfiles/bin/.local/bin"
+    mode: '0755'
+    recurse: True
+    state: directory
