@@ -1,5 +1,8 @@
 ---
 
+- name: Load Gnome variables
+  include_vars: "{{ desktop }}.yml"
+
 - name: Import dconf settings
   shell: dconf load / < "{{ item }}"
   with_fileglob:
