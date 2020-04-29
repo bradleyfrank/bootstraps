@@ -14,6 +14,7 @@ de_packages:
   - gnome-shell-extension-dash-to-dock
   - gnome-shell-extension-gpaste
   - gnome-shell-extension-system-monitor-applet
+  - gnome-shell-theme-yaru
   - gnote
   - gpaste*
   - libgnome-keyring
@@ -21,3 +22,4 @@ de_packages:
   - mpv
   - nextcloud-client-nautilus
   - transmission-gtk
+  - yaru-icon-theme
