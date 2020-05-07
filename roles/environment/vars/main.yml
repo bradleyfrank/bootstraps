@@ -30,7 +30,9 @@ vscode_extensions:
   - bungcip.better-toml
   - donjayamanne.githistory
   - haaaad.ansible
+  - kirozen.dokuwiki
   - mhutchie.git-graph
+  - ms-vscode-remote.vscode-remote-extensionpack
   - mikestead.dotenv
   - ms-azuretools.vscode-docker
   - redhat.vscode-yaml
