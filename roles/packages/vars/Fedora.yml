@@ -31,7 +31,6 @@ distro_packages:
   - htop
   - iftop
   - jetbrains-mono-fonts
-  - joplin
   - keepassxc
   - keychain
   - libmp4v2
