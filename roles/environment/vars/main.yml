@@ -36,6 +36,7 @@ vscode_extensions:
   - mikestead.dotenv
   - ms-azuretools.vscode-docker
   - redhat.vscode-yaml
+  - Remisa.shellman
   - rogalmic.bash-debug
   - samuelcolvin.jinjahtml
   - shd101wyy.markdown-preview-enhanced
