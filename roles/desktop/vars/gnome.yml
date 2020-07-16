@@ -1,5 +1,0 @@
----
-# vars file for desktop
-
-gnome_extensions:
-  - 1011 # dynamic-panel-transparency
