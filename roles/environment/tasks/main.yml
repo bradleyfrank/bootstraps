@@ -1,6 +1,16 @@
 ---
 # tasks file for environment
 
+- name: Make additional shells available
+  blockinfile:
+    path: /etc/shells
+    block: |
+      /usr/local/bin/bash
+      /usr/local/bin/fish
+      /usr/local/bin/zsh
+  when: ansible_facts['os_family'] == 'Darwin'
+  become: True
+
 - name: Make zsh default
   user:
     name: "{{ ansible_env.USER }}"

@@ -408,28 +408,6 @@
     state: link
 
 #
-# Shell settings
-#
-
-- name: Make new shells available
-  copy:
-    content: |
-      /bin/bash
-      /bin/csh
-      /bin/dash
-      /bin/ksh
-      /bin/sh
-      /bin/tcsh
-      /bin/zsh
-      /usr/local/bin/bash
-      /usr/local/bin/fish
-    dest: /etc/shells
-    owner: root
-    group: wheel
-    mode: '0644'
-  become: True
-
-#
 # Restart services to apply settings
 #
 
