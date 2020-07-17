@@ -45,7 +45,6 @@ main() {
     --directory "$dotfiles_dir" \
     --purge \
     --ask-become-pass \
-    --vault-id @prompt \
     --skip-tags "$skip_tags" \
     playbooks/"$system_os".yml
   then
