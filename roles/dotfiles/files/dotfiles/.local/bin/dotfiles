@@ -1,0 +1,48 @@
+#!/bin/sh
+
+usage() {
+  printf "  -e [h|w] set environment (home) or (work)"
+  printf "  -p       rerun all package installs"
+  printf "  -h       help menu"
+}
+
+main() {
+  ansible_repo="https://github.com/bradleyfrank/bootstraps.git"
+  system_os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+  tmp_checkout="$(mktemp -d)"
+  tags="dotfiles"
+  skip_tags=""
+
+  while getopts ':e:ph' flag; do
+    case "${flag}" in
+       e) skip_tags="${OPTARG}" ;;
+       p) tags="${tags},packages" ;;
+       h) usage ; exit 0 ;;
+      \?) printf "Invalid option." >&2 ; exit 1 ;;
+    esac
+  done
+
+  case "$skip_tags" in
+    h) skip_tags="work_only" ;;
+    w) skip_tags="home_only" ;;
+    *) printf "Invalid environment set." >&2 ; exit 1 ;;
+  esac
+
+  if ansible-pull \
+    --url "$ansible_repo" \
+    --directory "$tmp_checkout" \
+    --ask-become-pass \
+    --tags "$tags" \
+    --skip-tags "$skip_tags" \
+    playbooks/"$system_os".yml
+  then
+    rm -rf "$tmp_checkout"
+    exit 0
+  else
+    rm -rf "$tmp_checkout"
+    printf '%s\n' "Ansible run failed" >&2
+    exit 1
+  fi
+}
+
+main

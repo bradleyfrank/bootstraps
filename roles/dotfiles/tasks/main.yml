@@ -8,6 +8,7 @@
     mode: '0755'
   with_filetree: dotfiles/
   when: item.state == 'directory'
+  tags: dotfiles
 
 - name: Apply dotfiles
   copy:
@@ -16,12 +17,14 @@
     mode: '0755'
   with_filetree: dotfiles/
   when: item.state == 'file'
+  tags: dotfiles
 
 - name: Create vim extensions directory path
   file:
     path: "{{ vim_extensions_path }}"
     state: directory
     mode: '0755'
+  tags: dotfiles
 
 - name: Install vim-airline
   git:
@@ -30,9 +33,11 @@
     depth: '1'
     version: 'v0.11'
     update: False
+  tags: dotfiles
 
 - name: Install vim-airline-themes
   git:
     repo: https://github.com/vim-airline/vim-airline-themes.git
     dest: "{{ vim_extensions_path }}/vim-airline-themes"
     depth: '1'
+  tags: dotfiles
