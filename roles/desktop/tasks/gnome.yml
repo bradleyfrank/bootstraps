@@ -1,24 +1,6 @@
 ---
 
-- name: Load Gnome variables
-  include_vars: "{{ desktop }}.yml"
-
 - name: Import dconf settings
   shell: dconf load / < "{{ item }}"
   with_fileglob:
     - "assets/gnome/*.dconf"
-
-- name: Install Gnome extensions
-  command:
-    cmd: "{{ homedir }}/.dotfiles/bin/.local/bin/install-gnome-extension -x {{ item }}"
-  with_items: "{{ gnome_extensions }}"
-
-- name: Set wallpaper
-  dconf:
-    key: "/org/gnome/desktop/background/picture-uri"
-    value: "'file:///{{ homedir }}/.local/share/backgrounds/f22.jpg'"
-
-- name: Set screensaver
-  dconf:
-    key: "/org/gnome/desktop/screensaver/picture-uri"
-    value: "'file:///{{ homedir }}/.local/share/backgrounds/f22.jpg'"

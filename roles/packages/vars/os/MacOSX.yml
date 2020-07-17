@@ -7,7 +7,8 @@ taps:
   - homebrew/cask-fonts
   - homebrew/core
 
-formulas:
+
+base_formulas:
   - awscli
   - bash
   - bash-completion@2
@@ -17,8 +18,6 @@ formulas:
   - coreutils
   - dict
   - diff-so-fancy
-  - eye-d3
-  - ffsend
   - findutils
   - fdupes
   - flac
@@ -63,27 +62,25 @@ formulas:
   - wget
   - yamllint
   - youtube-dl
-  - z
+  - zsh
 
-casks:
-  - 1password
-  - anylist
+home_formulas:
+  - eye-d3
+  - ffsend
+
+
+base_casks:
   - appcleaner
-  - background-music
   - bartender
   - balenaetcher
-  - calibre
   - chromium
-  - fantastical
   - fedora-media-writer
   - firefox
   - font-clear-sans
   - font-roboto
   - font-source-code-pro
-  - font-jetbrains-mono
   - google-chrome
   - iina
-  - istat-menus
   - logitech-options
   - keepassx
   - keepingyouawake
@@ -91,31 +88,47 @@ casks:
   - macdown
   - meld
   - monitorcontrol
+  - stay
+  - transmission
+  - typora
+  - visual-studio-code
+  - vlc
+  - webarchiveextractor
+  - xquartz
+
+home_casks:
+  - 1password
+  - anylist
+  - calibre
+  - fantastical
+  - istat-menus
   - musicbrainz-picard
   - plexamp
   - signal
   - spotify
   - spotify-notifications
-  - stay
   - textmate
-  - transmission
   - transmit
-  - typora
-  - vlc
-  - vscodium
-  - webarchiveextractor
-  - xquartz
-  - yojimbo
 
-apps:
-  - 407963104 # Pixelmator
+work_casks:
+  - dozer
+  - jumpcut
+  - menumeters
+  - rectangle
+
+
+base_apps:
   - 409183694 # Keynote
   - 409201541 # Pages
   - 409203825 # Numbers
+  - 425424353 # The Unarchiver
+
+home_apps:
+  - 407963104 # Pixelmator
   - 441258766 # Magnet
   - 568494494 # Pocket
-  - 425424353 # The Unarchiver
   - 924726344 # Deliveries
+  - 957810159 # Raindrop.io for Safari
   - 1179623856 # Pastebot
   - 1289378661 # Twitterific
   - 1320666476 # Wipr

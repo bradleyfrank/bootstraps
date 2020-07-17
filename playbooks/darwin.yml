@@ -3,8 +3,9 @@
   hosts: localhost
   vars:
     desktop: "{{ ansible_distribution }}"
-    vscodium: '/usr/local/bin/code'
-    vscodium_config: "{{ homedir }}/Library/Application Support/VSCodium"
+    shell: /usr/local/bin/zsh
+    vscode: '/usr/local/bin/code'
+    vscode_config: "{{ homedir }}/Library/Application Support/VSCode"
   roles:
     - packages
     - dotfiles

@@ -11,110 +11,19 @@
     name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
 
-
-- name: Install "Signal-Desktop" gpgkey
+- name: Install gpg keys
   rpm_key:
-    key: https://copr-be.cloud.fedoraproject.org/results/luminoso/Signal-Desktop/pubkey.gpg
+    key: "{{ item.gpgkey }}"
+  loop: "{{ repos }}"
 
-- name: Install "Signal-Desktop" repo
+- name: Install repositories
   yum_repository:
-    name: copr-signal_desktop
-    description: Copr repo for Signal-Desktop owned by luminoso
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/luminoso/Signal-Desktop/fedora-$releasever-$basearch/
-    gpgcheck: True
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/luminoso/Signal-Desktop/pubkey.gpg
-    repo_gpgcheck: False
-    skip_if_unavailable: True
-
-
-- name: Install "jetbrains mono" gpgkey
-  rpm_key:
-    key: https://copr-be.cloud.fedoraproject.org/results/elxreno/jetbrains-mono-fonts/pubkey.gpg
-
-- name: Install "jetbrains-mono-fonts" repo
-  yum_repository:
-    name: jetbrains-mono-fonts
-    description: Copr repo for jetbrains-mono-fonts owned by elxreno
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/elxreno/jetbrains-mono-fonts/fedora-$releasever-$basearch/
-    gpgcheck: True
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/elxreno/jetbrains-mono-fonts/pubkey.gpg
-    repo_gpgcheck: False
-    skip_if_unavailable: True
-
-
-- name: Install "better fonts" gpgkey
-  rpm_key:
-    key: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/pubkey.gpg
-
-- name: Install "better fonts" repo
-  yum_repository:
-    name: copr-better_fonts
-    description: Copr repo for better_fonts owned by dawid
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/fedora-$releasever-$basearch/
-    gpgcheck: True
-    gpgkey: https://copr-be.cloud.fedoraproject.org/results/dawid/better_fonts/pubkey.gpg
-    repo_gpgcheck: False
-    skip_if_unavailable: True
-
-
-- name: Install "Google" gpgkey
-  rpm_key:
-    key: https://dl.google.com/linux/linux_signing_key.pub
-
-- name: Install "Google Chrome" repo
-  yum_repository:
-    name: google-chrome
-    description: Google Chrome repo
-    baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
-    gpgcheck: True
-    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-    skip_if_unavailable: False
-
-
-- name: Install "negativo17" gpgkey
-  rpm_key:
-    key: https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
-
-- name: Install "negativo17 - Multimedia" repo
-  yum_repository:
-    name: negativo17-multimedia
-    description: negativo17 multimedia repo
-    baseurl: https://negativo17.org/repos/multimedia/fedora-$releasever/$basearch
-    gpgcheck: True
-    gpgkey: https://negativo17.org/repos/RPM-GPG-KEY-slaanesh
-    includepkgs:
-      - spotify*
-      - makemkv*
-      - ccextractor*
-    repo_gpgcheck: False
-    skip_if_unavailable: True
-
-
-- name: Install "paulcarroty vscodium" gpgkey
-  rpm_key:
-    key: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-
-- name: Install "paulcarroty vscodium" repo
-  yum_repository:
-    name: gitlab.com_paulcarroty_vscodium_repo
-    description: paulcarroty repo for vscodium
-    baseurl: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
-    gpgcheck: True
-    gpgkey: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
-    repo_gpgcheck: True
-    skip_if_unavailable: True
-
-
-- name: Install "Visual Studio Code" gpgkey
-  rpm_key:
-    key: https://packages.microsoft.com/keys/microsoft.asc
-
-- name: Install "Visual Studio Code" repo
-  yum_repository:
-    name: code
-    description: Visual Studio Code
-    baseurl: https://packages.microsoft.com/yumrepos/vscode
-    gpgcheck: True
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-    repo_gpgcheck: False
-    skip_if_unavailable: True
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
+    includepkgs: "{{ item.includepkgs | default('') }}"
+    gpgcheck: "{{ item.gpgcheck | default(True) }}"
+    gpgkey: "{{ item.gpgkey }}"
+    repo_gpgcheck: "{{ item.repo_gpgcheck | default(False) }}"
+    skip_if_unavailable: "{{ item.skip_if_unavailable | default(True) }}"
+  loop: "{{ repos }}"

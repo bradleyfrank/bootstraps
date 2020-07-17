@@ -366,33 +366,25 @@
     cmd: 'chflags nohidden /Volumes'
   become: True
 
-- name: Check if VSCodium configs are symlinked
+- name: Check if VSCode configs are symlinked
   stat:
-    path: "{{ vscodium_config }}"
-  register: vscodium_config_islink
+    path: "{{ vscode_config }}"
+  register: macos_vscode_config_path
 
-- name: Delete original VSCodium configs
+- name: Delete original VSCode configs
   file:
     state: absent
-    path: "{{ vscodium_config }}"
-  when: vscodium_config_islink.stat.islnk == False
+    path: "{{ vscode_config }}"
+  when: macos_vscode_config_path.stat.islnk == False
 
-- name: Symlink VSCodium configs to match Linux
+- name: Symlink VSCode configs to match Linux
   file:
-    src: "{{ homedir }}/.config/VSCodium"
-    dest: "{{ vscodium_config }}"
+    src: "{{ homedir }}/.config/Code"
+    dest: "{{ vscode_config }}"
     owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
-  when: vscodium_config_islink.stat.islnk == False
-
-- name: Symlink vscodium binary to existing PATH
-  file:
-    src: /Applications/VSCodium.app/Contents/Resources/app/bin/code
-    dest: /usr/local/bin/code
-    owner: "{{ ansible_env.USER }}"
-    group: admin
-    state: link
+  when: macos_vscode_config_path.stat.islnk == False
 
 - name: Create TextMate Bundle support bin directory
   file:
@@ -414,28 +406,6 @@
     owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
-
-#
-# Shell settings
-#
-
-- name: Make new shells available
-  copy:
-    content: |
-      /bin/bash
-      /bin/csh
-      /bin/dash
-      /bin/ksh
-      /bin/sh
-      /bin/tcsh
-      /bin/zsh
-      /usr/local/bin/bash
-      /usr/local/bin/fish
-    dest: /etc/shells
-    owner: root
-    group: wheel
-    mode: '0644'
-  become: True
 
 #
 # Restart services to apply settings

@@ -15,13 +15,11 @@ python_packages:
   - tuir
 
 my_git_projects:
-  - appeals
   - bootstraps
-  - bradleyfrank.github.io
-  - dl-reddit-top
   - dotfiles
   - dotfiles-minimal
   - home-server
+  - hugo-site
   - scripts_archive
   - system_builds
 
@@ -32,7 +30,6 @@ vscode_extensions:
   - haaaad.ansible
   - kirozen.dokuwiki
   - mhutchie.git-graph
-  - ms-vscode-remote.vscode-remote-extensionpack
   - mikestead.dotenv
   - ms-azuretools.vscode-docker
   - redhat.vscode-yaml

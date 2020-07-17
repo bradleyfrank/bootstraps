@@ -1,10 +1,13 @@
 # Bootstrapping MacOS & Fedora
 
-*For MacOS, ensure you're signed into iCloud and the Mac App Store.*
+The `run.sh` script bootstraps Ansible itself before running the playbook.
 
-The `run.sh` bootstraps Ansible itself before running the playbook.
+1. For MacOS ensure you're signed into iCloud and the Mac App Store.
+2. Create vault password file: `echo "password" > ~/.ansible_vault_password`
 
-* For MacOS, this includes Ansible, Git, Xcode, and Homebrew.
-* For Fedora, this includes Ansible and Git.
+Supports systems for work or home.
 
-`curl -fsSL https://bradleyfrank.github.io/bootstraps/run.sh | bash`
+* Use `-h` to run on a personal computer.
+* Use `-w` to run on a work computer.
+
+`curl -fsSL https://bradleyfrank.github.io/bootstraps/run.sh | bash -s -- [-h|-w]`
