@@ -375,7 +375,7 @@
   file:
     state: absent
     path: "{{ vscode_config }}"
-  when: macos_vscode_config_path.stat.islnk == False
+  when: macos_vscode_config_path.stat.islnk
 
 - name: Symlink VSCode configs to match Linux
   file:
@@ -384,7 +384,7 @@
     owner: "{{ ansible_env.USER }}"
     group: admin
     state: link
-  when: macos_vscode_config_path.stat.islnk == False
+  when: not macos_vscode_config_path.stat.islnk
 
 - name: Create TextMate Bundle support bin directory
   file:
