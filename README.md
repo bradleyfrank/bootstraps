@@ -10,4 +10,4 @@ Supports systems for work or home.
 * Use `-h` to run on a personal computer.
 * Use `-w` to run on a work computer.
 
-`curl -fsSL https://bradleyfrank.github.io/bootstraps/run.sh | bash -s -- [-h|-w]`
+`curl -fsSL https://raw.githubusercontent.com/bradleyfrank/bootstraps/master/run.sh | bash -s -- [-h|-w]`
