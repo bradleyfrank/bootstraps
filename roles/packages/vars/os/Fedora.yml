@@ -76,7 +76,6 @@ base_packages:
 
 home_packages:
   - calibre
-  - codium
   - makemkv
   - mkvtoolnix
   - nextcloud-client

@@ -3,7 +3,8 @@
   hosts: localhost
   vars:
     desktop: "{{ ansible_env.XDG_CURRENT_DESKTOP | lower }}"
-    vscodium: '/usr/bin/codium'
+    shell: /usr/bin/zsh
+    vscode: '/usr/bin/code'
   roles:
     - repositories
     - packages

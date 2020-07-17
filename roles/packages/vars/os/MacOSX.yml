@@ -91,6 +91,7 @@ base_casks:
   - stay
   - transmission
   - typora
+  - visual-studio-code
   - vlc
   - webarchiveextractor
   - xquartz
@@ -108,7 +109,6 @@ home_casks:
   - spotify-notifications
   - textmate
   - transmit
-  - vscodium
 
 work_casks:
   - dozer
