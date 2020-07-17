@@ -6,16 +6,16 @@ copr_repo_url: https://copr-be.cloud.fedoraproject.org/results
 repos:
   - name: Signal-Desktop
     description: Signal Desktop repo
-    baseurl: "{{ copr_repo_url }}"/luminoso/Signal-Desktop/fedora-$releasever-$basearch/
-    gpgkey: "{{ copr_repo_url }}"/luminoso/Signal-Desktop/pubkey.gpg
+    baseurl: "{{ copr_repo_url }}/luminoso/Signal-Desktop/fedora-$releasever-$basearch/"
+    gpgkey: "{{ copr_repo_url }}/luminoso/Signal-Desktop/pubkey.gpg"
   - name: better_fonts
     description: Better Fonts repo
-    baseurl: "{{ copr_repo_url }}"/dawid/better_fonts/fedora-$releasever-$basearch/
-    gpgkey: "{{ copr_repo_url }}"/dawid/better_fonts/pubkey.gpg
+    baseurl: "{{ copr_repo_url }}/dawid/better_fonts/fedora-$releasever-$basearch/"
+    gpgkey: "{{ copr_repo_url }}/dawid/better_fonts/pubkey.gpg"
   - name: diff-so-fancy
     description: diff-so-fancy repo
-    baseurl: "{{ copr_repo_url }}"/apuimedo/diff-so-fancy/fedora-$releasever-$basearch/
-    gpgkey: "{{ copr_repo_url }}"/apuimedo/diff-so-fancy/pubkey.gpg
+    baseurl: "{{ copr_repo_url }}/apuimedo/diff-so-fancy/fedora-$releasever-$basearch/"
+    gpgkey: "{{ copr_repo_url }}/apuimedo/diff-so-fancy/pubkey.gpg"
   - name: google-chrome
     description: Google Chrome repo
     baseurl: http://dl.google.com/linux/chrome/rpm/stable/$basearch
