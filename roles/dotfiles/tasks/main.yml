@@ -26,13 +26,13 @@
 - name: Install vim-airline
   git:
     repo: https://github.com/vim-airline/vim-airline.git
-    dest: "{{ vim_extensions_path }}/"
+    dest: "{{ vim_extensions_path }}/vim-airline"
     depth: '1'
-    version: v0.11
+    version: 'v0.11'
     update: False
 
 - name: Install vim-airline-themes
   git:
     repo: https://github.com/vim-airline/vim-airline-themes.git
-    dest: "{{ vim_extensions_path }}/"
+    dest: "{{ vim_extensions_path }}/vim-airline-themes"
     depth: '1'
