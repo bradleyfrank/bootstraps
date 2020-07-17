@@ -45,7 +45,8 @@ main() {
     --skip-tags "$skip_tags" \
     playbooks/"$system_os".yml
   then
-    rm -rf "$tmp_checkout"
+    [ -e "$HOME"/.dotfiles ] && rm -rf "$HOME"/.dotfiles
+    mv "$tmp_checkout" "$HOME"/.dotfiles
     exit 0
   else
     rm -rf "$tmp_checkout"

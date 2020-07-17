@@ -10,14 +10,12 @@
       /usr/local/bin/zsh
   when: ansible_facts['os_family'] == 'Darwin'
   become: True
-  tags: dotfiles
 
 - name: Make zsh default
   user:
     name: "{{ ansible_env.USER }}"
     shell: "{{ shell }}"
   become: True
-  tags: dotfiles
 
 - name: Create ~/Development folder structure
   file:
@@ -38,7 +36,6 @@
     path: "{{ ansible_env.HOME }}/.ssh/authorized_keys"
     state: touch
     mode: '0600'
-  tags: dotfiles
 
 - name: Install GitHub deploy key
   copy:
