@@ -6,6 +6,7 @@ base_packages:
   - adobe-source-*-pro-fonts
   - bat
   - borgbackup
+  - code
   - dictd
   - diff-so-fancy
   - dnf-plugin-system-upgrade
