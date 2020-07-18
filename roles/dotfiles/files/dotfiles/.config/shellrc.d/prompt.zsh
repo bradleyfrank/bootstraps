@@ -6,7 +6,7 @@ function precmd() {
   local ret=$? reset="%f"
   local blue="%F{33}" cyan="%F{37}" green="%F{64}" magenta="%F{125}" red="%F{160}" orange="%F{166}"
 
-  _CWD="in ${blue}%0~${reset}" _TIMESTAMP=" ❲${cyan}$(date +%b" "%e" "%T)${reset}❳"
+  _CWD="in ${blue}%1~${reset}" _TIMESTAMP=" ❲${cyan}$(date +%b" "%e" "%T)${reset}❳"
   _HOST="" _PYENV="" _PROMPT="" _ELAPSED=""
   _NEWLINE=$'\n'
 
@@ -14,9 +14,8 @@ function precmd() {
   GIT_PS1_SHOWSTASHSTATE=true
   GIT_PS1_SHOWUNTRACKEDFILES=true
   GIT_PS1_SHOWCOLORHINTS=true
-  GIT_PS1_SHOWUPSTREAM="auto verbose"
+  GIT_PS1_SHOWUPSTREAM="verbose name"
 
-  [[ -n "$TMUX" ]] && _CWD="in ${blue}%1~${reset}"
   [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]] && _HOST="on ${orange}%m${reset}:"
   [[ -n "$VIRTUAL_ENV" ]] && _PYENV=" ❲${cyan}$(basename "$VIRTUAL_ENV")${reset}❳"
   [[ -n "$CONDA_DEFAULT_ENV" ]] && _PYENV=" ❲${cyan}${CONDA_DEFAULT_ENV}${reset}❳"
@@ -46,6 +45,6 @@ function precmd() {
     unset timer
   fi
 
-  __git_ps1 "╭ ${_HOST}${_CWD}" "${_PYENV}${_NEWLINE}╰${_PROMPT}" " ❲%s❳"
+  __git_ps1 "${_HOST}${_CWD}" "${_PYENV}${_PROMPT}" " ❲%s❳"
   RPROMPT="${_ELAPSED}${_TIMESTAMP}"
 }
