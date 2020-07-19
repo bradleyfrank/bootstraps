@@ -88,7 +88,6 @@ base_casks:
   - macdown
   - meld
   - monitorcontrol
-  - stay
   - transmission
   - typora
   - visual-studio-code
@@ -107,6 +106,7 @@ home_casks:
   - signal
   - spotify
   - spotify-notifications
+  - stay
   - textmate
   - transmit
 
@@ -128,7 +128,6 @@ home_apps:
   - 441258766 # Magnet
   - 568494494 # Pocket
   - 924726344 # Deliveries
-  - 957810159 # Raindrop.io for Safari
   - 1179623856 # Pastebot
   - 1289378661 # Twitterific
   - 1320666476 # Wipr
