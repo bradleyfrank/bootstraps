@@ -73,7 +73,7 @@ function ytdl-video() {
   youtube-dl \
     --format "bestvideo+bestaudio[ext=m4a]/bestvideo+bestaudio/best" \
     --merge-output-format mp4 \
-    -o "%(title)s.%(ext)s"
+    -o "%(title)s.%(ext)s" \'"$1"\'
 }
 
 # Download YouTube video as music only
