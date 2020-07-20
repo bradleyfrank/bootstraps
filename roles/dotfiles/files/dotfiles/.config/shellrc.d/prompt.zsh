@@ -6,9 +6,8 @@ function precmd() {
   local ret=$? reset="%f"
   local blue="%F{33}" cyan="%F{37}" green="%F{64}" magenta="%F{125}" red="%F{160}" orange="%F{166}"
 
-  _CWD="in ${blue}%1~${reset}" _TIMESTAMP=" ❲${cyan}$(date +%b" "%e" "%T)${reset}❳"
+  _CWD="${blue}%1~${reset}" _TIMESTAMP=" ❲${cyan}$(date +%b" "%e" "%T)${reset}❳"
   _HOST="" _PYENV="" _PROMPT="" _ELAPSED=""
-  _NEWLINE=$'\n'
 
   GIT_PS1_SHOWDIRTYSTATE=true
   GIT_PS1_SHOWSTASHSTATE=true
@@ -16,7 +15,7 @@ function precmd() {
   GIT_PS1_SHOWCOLORHINTS=true
   GIT_PS1_SHOWUPSTREAM="verbose name"
 
-  [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]] && _HOST="on ${orange}%m${reset}:"
+  [[ -n "$SSH_CONNECTION" && -z "$TMUX" ]] && _HOST="${orange}%m${reset}:"
   [[ -n "$VIRTUAL_ENV" ]] && _PYENV=" ❲${cyan}$(basename "$VIRTUAL_ENV")${reset}❳"
   [[ -n "$CONDA_DEFAULT_ENV" ]] && _PYENV=" ❲${cyan}${CONDA_DEFAULT_ENV}${reset}❳"
 
@@ -41,10 +40,10 @@ function precmd() {
     if [[ "$seconds" == "0" ]];  then seconds=""  else seconds+="s ";  fi
     if [[ "$millisec" == "0" ]]; then millisec="" else millisec+="ms"; fi
 
-    _ELAPSED="took ${magenta}${hours}${minutes}${seconds}${millisec}${reset}"
+    _ELAPSED="${magenta}${hours}${minutes}${seconds}${millisec}${reset}"
     unset timer
   fi
 
-  __git_ps1 "${_HOST}${_CWD}" "${_PYENV}${_PROMPT}" " ❲%s❳"
+  __git_ps1 "[${_HOST}${_CWD}]" "${_PYENV}${_PROMPT}" " ❲%s❳"
   RPROMPT="${_ELAPSED}${_TIMESTAMP}"
 }
