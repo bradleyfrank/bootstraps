@@ -1,22 +1,15 @@
 #!/bin/sh
 
-main() {
+usage() { echo "Requires [-w|-h], aborting..." >&2 ; exit 1 ; }
+
+ansible_pull() {
   ansible_repo="https://github.com/bradleyfrank/bootstraps.git"
   dotfiles_dir="$HOME"/.dotfiles
-  skip_tags=""
-
-  while getopts ':wh' flag; do
-    case "${flag}" in
-      w) skip_tags="home_only" ;;
-      h) skip_tags="work_only" ;;
-      *) printf "%s\n" "Requires [-w|-h], aborting..." >&2 ; exit 1 ;;
-    esac
-  done
+  skip_tags="$1"
 
   if ansible-pull \
     --url "$ansible_repo" \
     --directory "$dotfiles_dir" \
-    --only-if-changed \
     --skip-tags "$skip_tags" \
     playbooks/dotfiles.yml
   then
@@ -27,4 +20,12 @@ main() {
   fi
 }
 
-main
+[ $# -lt 1 ] && usage
+
+while getopts ':wh' flag; do
+  case "${flag}" in
+    w) ansible_pull "home_only" ;;
+    h) ansible_pull "work_only" ;;
+    *) usage                    ;;
+  esac
+done
