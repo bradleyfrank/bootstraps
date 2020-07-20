@@ -1,3 +1,5 @@
+⚠ This repository is archived in favor of using Ansible to manage dotfiles. See https://github.com/bradleyfrank/dotfiles
+
 # Bootstrapping MacOS & Fedora
 
 The `run.sh` script bootstraps Ansible itself before running the playbook.
