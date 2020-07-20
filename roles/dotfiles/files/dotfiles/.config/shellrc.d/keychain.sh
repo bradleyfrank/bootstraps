@@ -1,6 +1,5 @@
 case "$_OSTYPE" in
-  darwin) _kc_args="--inherit any" ;;
-   linux) _kc_args=""               ;;
+  darwin) eval "$(keychain --eval --ignore-missing --quiet --inherit any id_rsa id_develop id_home)" ;;
+   linux) eval "$(keychain --eval --ignore-missing --quiet id_rsa id_develop id_home)" ;;
 esac
 
-eval "$(keychain --eval --ignore-missing --quiet "$_kc_args" id_rsa id_develop id_home)"
